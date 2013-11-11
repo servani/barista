@@ -1,0 +1,67 @@
+{
+	"": {
+		"controller": "Frontend",
+		"action": "index"
+	},
+	"admin": {
+		"controller": "Backend",
+		"action": "index"
+	},
+	"login": {
+		"controller": "Default",
+		"action": "authenticate"
+	},
+	"logout": {
+		"controller": "Default",
+		"action": "logout"
+	},
+	"admin/list/{slug}": {
+		"controller": "Backend",
+		"action": "list",
+		"params": {
+			"slug": null
+		}
+	},
+	"admin/new/{slug}": {
+		"controller": "Backend",
+		"action": "new",
+		"params": {
+			"slug": null
+		}
+	},
+	"admin/create/{slug}": {
+		"controller": "Backend",
+		"action": "create",
+		"params": {
+			"slug": null
+		}
+	},
+	"admin/edit/{slug}/{id}": {
+		"controller": "Backend",
+		"action": "edit",
+		"params": {
+			"slug": null,
+			"id": null
+		}
+	},
+	"admin/update/{slug}/{id}": {
+		"controller": "Backend",
+		"action": "update",
+		"params": {
+			"slug": null,
+			"id": null
+		}
+	},
+	"admin/delete/{slug}/{id}": {
+		"controller": "Backend",
+		"action": "delete",
+		"params": {
+			"slug": null,
+			"id": null
+		}
+	},
+	"admin/deletefile": {
+		"controller": "Backend",
+		"action": "deleteFile"
+	}
+}

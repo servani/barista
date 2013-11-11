@@ -1,0 +1,25 @@
+{% extends 'base.backend.html.twig' %}
+
+{% block section %}
+{% if edit %}
+	<h2>Edit Quote</h2>
+	{% set action = 'admin/update/' ~ entityName ~ '/' ~ entity.id %}
+	<a onclick="if(confirm('Delete {{ entity.title }}?')) return true; else return false;" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ entity.id) }}" title="Delete" class="delete">Delete</a>
+{% else %}
+	<h2>New Quote</h2>
+	{% set action = 'admin/create/' ~ entityName %}
+{% endif %}
+<a class="back" href="{{ url('admin/list/' ~ entityName) }}" title="Back">Back</a>
+<div id="form">
+	<form action="{{ url(action) }}" method="POST">
+		<div class="fieldset">
+			<label>Author</label>
+			<input required type="text" name="{{ entityName }}[Author]" value="{{ entity.author|default("")}}" />
+		</div>
+		<div class="fieldset">
+			<label>Text</label>
+			<textarea required name="{{ entityName }}[Text]" class="ckeditor">{{ entity.text|default("")}}</textarea>
+		</div>
+		<input type="submit" class="submit" value="{% if edit %}Save{% else %}Create{% endif %}" /></form>
+</div>
+{% endblock %}

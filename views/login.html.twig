@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block section %}
+	<form action="{{ url('login') }}" method="POST" novalidate>
+		<label>User:</label>
+		<br />
+		<input type="text" name="username" />
+		<br />
+		<br />
+		<label>Pass:</label>
+		<br />
+		<input type="password" name="password" />
+		<br />
+		<input type="submit" />
+	</form>
+{% endblock %}

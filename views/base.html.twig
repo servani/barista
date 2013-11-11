@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="rating" content="General" />
+		<meta name="language" content="Spanish">
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="fragment" content="!" />
+		<meta name="author" content="Grupo NSNC">
+		<meta name="title" content="" />
+		<title></title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>window.jQuery || document.write("<script src=\"{{ asset('js/jquery-1.10.2.min.js') }}\"><\/script>")</script>
+		<script src="{{ asset('js/script.js') }}"></script>
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	</head>
+
+	</head>
+	<body>
+		<div id="container">
+			<div id="header"></div>
+			<div id="section">{% block section %}{% endblock %}</div>
+			<div id="footer"></div>
+		</div>
+	</body>
+</html>
