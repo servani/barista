@@ -1,16 +1,18 @@
 <?php
-// to do create config.dev.php
+$url = @$_SERVER['SERVER_NAME'];
+// Prod Params
 $config = array(
 	'DB' => array(
 		'driver'	=> 'pdo_mysql',
-		'user'		=> 'root',
+		'user'		=> 'roost',
 		'password'	=> 'root',
 		'dbname'	=> 'framework',
 		'host'		=> 'localhost',
 		'charset'	=> 'utf8'
 	),
 	'PATHS' => array(
-		'upload'	=> __DIR__ . '/web/content/'
+		'upload'	=> __DIR__ . '/web/content/',
+		'cache'	=> __DIR__ . '/cache/'
 	),
 	'SWIFTMAILER' => array(
 		'transport'	=> 'sendmail', /* [sendmail, smtp, mail] */
@@ -21,3 +23,11 @@ $config = array(
 		'smtp_pass'	=> 'password'
 	)
 );
+// Overwrite prod params for each instance
+if (strpos($url, 'local.') !== FALSE) {
+	// Local
+	$config['DB']['user'] = 'root';
+} elseif (strpos($url, 'dev.') !== FALSE) {
+	// Dev
+	$config['DB']['user'] = 'root';
+}

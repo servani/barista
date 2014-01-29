@@ -1,91 +1,39 @@
-de Fede
-
-Ale
-
-El framework que voy a armar, como paquete básico va a contener las siguientes funcionalidades y la idea es que resuelva sitios de tamaño chico a mediano en la menor cantidad de tiempo posible. Para sitios grandes, voy a seguir utilizando Symfony 2+. Pensalo un segundo y decime si se te ocurre algo, más que nada en lo referido a "Lo que si ve". Yo esto lo tengo que pasar en limpio y armartelo prolijo para que lo puedas vender. Pero es RECONTRA vendible.
-
-Lo que el cliente no ve:
-Uso de Doctrine para optimizar y facilitar la interacción con la base de datos.
-LESS para optimizar los estilos del sitio (css).
-TWIG para aplicar técnicas de templating, esto es separar las vistas de los controladores de manera efectiva y limpia, y además aprovechar (e implementar) el uso de caché.
-jQuery para potenciar el motor de JavaScript.
-GIT como sistema de repositorios para versionar el trabajo y generar backups.
-Arquitectura del desarrollo basada en MVC (modelo-vista-controlador)
-Resolver de requests (user) pensado para el uso de nice urls (buscadores)
-Soporte IE 8+, Firefox, Chrome, Safari (dejo de dar soporte para ie7 e ie6, se pierde tiempo, se limitan muchos aspectos del coding y ademas me lleva mas tiempo, en caso de que el cliente quiera soporte para ie6, se cobra un plus)
-...
-
-Lo que si ve:
-Instancia de desarrollo (ej: cotik: http://198.74.52.128/cotik/)
-Carga, visualización y edición del contenido básico de una vista del sitio (título, texto e imagen).
-Carga, visualización y edición de entradas (posts, productos,...) asociados a una determinada categoría. Un post tiene título texto e imagen.
-Carga, visualización y edición de categorías.
-
-
-------------
-
-De Alejo
-
-te lo tiro suelto pero lo mas importante
-
-→ post noticia
-mas de una imagen
-pies para las imagenes
-links
-documentos
-youtube/vimeo
-fecha
-
-→ post producto
-muchos campos diversos titulo / campos para armado de ficha
-galeria de imagenes, orden de las imagenes
-idem noticia links, fecha, etc.
-
-→ relaciones entre posts
-se tiene que poder (fijate cotik pasa)
-una noticia que se le pueda cargar un producot
-un producto que se le pueda mostrar una noticia (semex)
-
-→ tags
-tanto para news como products
-esto es SUPER importante y que tenga URL
-edicion de tags
-
-→ social
-compartir URL de news y productos propia, friendly?
-que redes?
-
-→ consultar por productos
-form de contacto asociado a productos
-
-→ mercado pago / tarjeta
-estas ahi de hacer un ecommerce si se puede mandar a pagar (aunque sea un plus)
-
-→ search y search results
-super importante si hablas de news o productos
-
-→ gestion del home
-CLAVE
-que mando, que no, en que orden o en cuantos niveles de jerarquias o posiciones
-como le gestiono lo que se ve
-
-→ support
-que onda? se publica y despues que pasa?
-digo para pensarlo
-
-__________________________
-
-
-
-Otros
-----------
-
-- Comprimir JS (script)
-- Manual de instalación (documentación) + "scripts para el deploy"
-- login y backend por https?
-- documentacion y scripts para deploy
-- backend (queries, paginacion, estilos, meterle garra)
-- auto clean cache script
-- pasar dev a prod symfony (script?)
-- autocreate sitemap
-- ver que cosas de um se pueden generalizar
+* Módulos de posts, tags y categorías por defecto
+	- Imágen destacada (crop y thumb)
+	- Más de una imagen con pie y orden
+	- Links con target y title
+	- Documentos adjuntos (más de uno)
+	- Video (youtube o vimeo)
+	- Fecha (datepicker)
+	- Categoría única asociada (1:n)
+	- Tags multiple (n:n)
+	- Alguna relación (1:1)
+	- Custom fields (estilo wp)
+	- Orden (prioridad)
+	- Precio (float)
+	- Visible/Ocutlo
+	- Destacado
+	- Slug
+	- Input simple
+	- Select simple
+	- Checkbox simple
+	- Textarea
+	- Textarea bbcode
+	+ En base a los sitios ya realizados, definir qué herramientas se podrían agregar en el módulo de posts
+* Comprimir JS
+* Documentación
+* Meterle fuerza al backend
+	- Estilos
+	- Paginación
+	- Buscador
+	- Ordenar
+	- Drag & Drop
+	+ Etc
+* Meterle fuerza al frontend
+* Script clean cache
+* Script autocreate sitemap
+* TO DO's
+* Meterle Modernizr?
+* Responsive?
+* Mobile?
+* Limpiar ckeditor

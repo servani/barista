@@ -30,6 +30,8 @@ class DefaultController
 		$this->loadTwig(); // HTML templating
 		$this->loadImageHandler(); // Image manipulation
 		$this->loadMailer(); // Mailer transport agent
+		// Where the fuck am I?
+		$this->instance = $this->whereTheFuckAmI();
 	}
 
 	/*
@@ -72,7 +74,7 @@ class DefaultController
 		$dirs = array("../html/forms","../html/lists","../html/views","../html/widgets");
 		$loader = new Twig_Loader_Filesystem($dirs);
 		// Set up environment
-		$params = array('cache' => '../cache', 'auto_reload' => true, 'autoescape' => true );
+		$params = array('cache' => $this->config['PATHS']['cache'], 'auto_reload' => true, 'autoescape' => true );
 		$this->twig = new Twig_Environment($loader, $params);
 		// Add Extension Core (some basic functions)
 		$this->twig->addExtension(new Twig_Extension_Core());
@@ -200,7 +202,7 @@ class DefaultController
 		try {
 			$this->em->getConnection()->connect();
 		} catch (Exception $e) {
-			$this->handleError(1); die();
+			echo "Connection error \n"; die();
 		}
 	}
 
@@ -381,5 +383,16 @@ class DefaultController
 			// This will create something like this: $this->get['param1'] = 'value1'
 			$this->get[$aux[0]] = isset($aux[1]) ? $aux[1] : null;
 		}
+	}
+
+	/* Define instance */
+	public function whereTheFuckAmI() {
+		$url = $_SERVER['SERVER_NAME'];
+		if (strpos($url, 'local.') !== FALSE) {
+			return "local";
+		} elseif (strpos($url, 'dev.') !== FALSE) {
+			return "dev";
+		}
+		return "prod";
 	}
 }
