@@ -3,13 +3,33 @@
 		"controller": "Frontend",
 		"action": "index"
 	},
+	"home": {
+		"controller": "Frontend",
+		"action": "index"
+	},
+	"xhr/{slug}": {
+		"controller": "Frontend",
+		"action": "xhr",
+		"params": {
+			"slug": null
+		}
+	},
 	"admin": {
 		"controller": "Backend",
-		"action": "index"
+		"action": "index",
+		"secured": true
 	},
 	"login": {
 		"controller": "Default",
 		"action": "authenticate"
+	},
+	"home/login": {
+		"controller": "Frontend",
+		"action": "index"
+	},
+	"flogout": {
+		"controller": "Default",
+		"action": "logoutClient"
 	},
 	"logout": {
 		"controller": "Default",
@@ -20,21 +40,24 @@
 		"action": "list",
 		"params": {
 			"slug": null
-		}
+		},
+		"secured": true
 	},
 	"admin/new/{slug}": {
 		"controller": "Backend",
 		"action": "new",
 		"params": {
 			"slug": null
-		}
+		},
+		"secured": true
 	},
 	"admin/create/{slug}": {
 		"controller": "Backend",
 		"action": "create",
 		"params": {
 			"slug": null
-		}
+		},
+		"secured": true
 	},
 	"admin/edit/{slug}/{id}": {
 		"controller": "Backend",
@@ -42,7 +65,8 @@
 		"params": {
 			"slug": null,
 			"id": null
-		}
+		},
+		"secured": true
 	},
 	"admin/update/{slug}/{id}": {
 		"controller": "Backend",
@@ -50,7 +74,8 @@
 		"params": {
 			"slug": null,
 			"id": null
-		}
+		},
+		"secured": true
 	},
 	"admin/delete/{slug}/{id}": {
 		"controller": "Backend",
@@ -58,10 +83,22 @@
 		"params": {
 			"slug": null,
 			"id": null
-		}
+		},
+		"secured": true
 	},
 	"admin/deletefile": {
 		"controller": "Backend",
-		"action": "deleteFile"
+		"action": "deleteFile",
+		"secured": true
+	},
+	"admin/togglestate": {
+		"controller": "Backend",
+		"action": "toggleState",
+		"secured": true
+	},
+	"admin/togglestarred": {
+		"controller": "Backend",
+		"action": "toggleStarred",
+		"secured": true
 	}
 }

@@ -68,13 +68,13 @@ class BackendController extends DefaultController
 	public function updateAction($params = null) {
 		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
 		$entity = $this->setFromPost($_POST[$params['slug']], $entity);
-		if (isset($_FILES) && count($_FILES)) {
-			$entity = $this->setFromFiles($_FILES, $entity, $params['slug']);
-		}
-
 		$cm = 'set' . $params['slug'] . 'Action';
 		if (method_exists($this, $cm)) {
 			$entity = $this->$cm($entity);
+		}
+
+		if (isset($_FILES) && count($_FILES)) {
+			$entity = $this->setFromFiles($_FILES, $entity, $params['slug']);
 		}
 
 		$this->em->persist($entity);
@@ -84,9 +84,35 @@ class BackendController extends DefaultController
 
 	public function deleteAction($params = null) {
 		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
+		$cm = 'delete' . $params['slug'] . 'Action';
+		if (method_exists($this, $cm)) {
+			$entity = $this->$cm($entity);
+		}
 		$this->em->remove($entity);
 		$this->em->flush();
 		$this->redirect("admin/list/" . $params['slug']);
+	}
+
+	public function toggleStateAction($params = null) {
+		if (isset($_POST['en'], $_POST['id'])) {
+			$entity = $this->em->getRepository($_POST['en'])->find($_POST['id']);
+			$entity->setVisible(!$entity->getVisible());
+			$this->em->persist($entity);
+			$this->em->flush();
+			return true;
+		}
+		return false;
+	}
+
+	public function toggleStarredAction($params = null) {
+		if (isset($_POST['en'], $_POST['id'])) {
+			$entity = $this->em->getRepository($_POST['en'])->find($_POST['id']);
+			$entity->setStarred(!$entity->getStarred());
+			$this->em->persist($entity);
+			$this->em->flush();
+			return true;
+		}
+		return false;
 	}
 
 	public function deleteFileAction($params = null) {
@@ -100,6 +126,10 @@ class BackendController extends DefaultController
 		}
 		return false;
 	}
+
+	/* Custom Delete Methods */
+
+	public function deleteUserAction($entity) {}
 
 	/* Custom List Methods */
 
@@ -115,26 +145,45 @@ class BackendController extends DefaultController
 
 	/* Custom Image Handlers */
 
-	public function handleUserImage($path, $file) { /* User must have image field */ }
+	public function handleUserCover($path, $file) { /* User must have cover field */ /* to do lo puedo validar de ultima */ }
 
 	/* Helpers */
 
 	public function setFromPost($post, $entity) {
 		foreach ($post as $key => $value) {
-			$property = 'set' . $key;
-			if (strpos($property, 'setId') !== FALSE) {
-				$r = str_replace('setId', '', $property);
-				if (class_exists($r)) {
-					$value = $this->em->getRepository($r)->find($value);
+			if (is_array($value)) {
+				$property = 'get' . $key;
+				$e = $entity->$property();
+				$property = 'remove' . $key;
+				foreach ($e as $t) {
+					$entity->$property($t);
 				}
-			} else if (strpos($property, 'setDate') !== FALSE) {
-				try {
-					$value = new DateTime($value);
-				} catch(Exception $e) {
-					$value = new DateTime();
+				foreach ($value as $v) {
+					if (class_exists($key)) {
+						$v = $this->em->getRepository($key)->find($v);
+						$property = 'add' . $key;
+						$entity->$property($v);
+					}
 				}
+			} else {
+				$property = 'set' . $key;
+				if (strpos($property, 'setId') !== FALSE) {
+					$r = str_replace('setId', '', $property);
+					if (class_exists($r)) {
+						$value = $this->em->getRepository($r)->find($value);
+					}
+					if (!method_exists($entity, $property)) {
+						$property = str_replace('setId', 'set', $property);
+					}
+				} else if (strpos($property, 'setDate') !== FALSE) {
+					try {
+						$value = new DateTime($value);
+					} catch(Exception $e) {
+						$value = new DateTime();
+					}
+				}
+				$entity->$property($value);
 			}
-			$entity->$property($value);
 		}
 		return $entity;
 	}
@@ -184,5 +233,6 @@ class BackendController extends DefaultController
 			$this->$cm($path, $file);
 		}
 	}
+
 
 }
