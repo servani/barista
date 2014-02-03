@@ -25,7 +25,6 @@ class DefaultController
 			$this->setGet(); // We need to manipulate the get param a little bit
 		}
 		// Load the awesome vendors
-		$this->loadLess(); // CSS
 		$this->loadDoctrine(); // Database
 		$this->loadTwig(); // HTML templating
 		$this->loadImageHandler(); // Image manipulation
@@ -60,14 +59,6 @@ class DefaultController
 		$this->mailer = Swift_Mailer::newInstance($transport);
 	}
 
-	/* Less */
-	public function loadLess() {
-		$this->less = new lessc;
-		$this->less->setFormatter("compressed");
-		$this->less->checkedCompile("./css/styles.less", "./css/styles.css");
-		$this->less->checkedCompile("./css/styles.backend.less", "./css/styles.backend.css");
-	}
-
 	/* Twig */
 	public function loadTwig() {
 		// Load templates
@@ -79,7 +70,8 @@ class DefaultController
 		// Add Extension Core (some basic functions)
 		$this->twig->addExtension(new Twig_Extension_Core());
 		// Set global variables
-		$this->twig->addGlobal('_FOO', 'BAR');
+		$this->twig->addGlobal('_FRAMEWORK', 'Barista');
+		$this->twig->addGlobal('_VERSION', '2.0');
 		// Register simple functions
 		$fn = $this->registerTwigSimpleFunctions();
 		foreach ($fn as $f) {

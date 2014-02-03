@@ -1,3 +1,14 @@
+* SASS
+* Foundation
+
+* Meterle fuerza al backend
+	- Estilos
+	- Paginación
+	- Buscador
+	- Ordenar
+	- Drag & Drop
+	+ Etc
+
 * Módulos de posts, tags y categorías por defecto
 	- Imágen destacada (crop y thumb)
 	- Más de una imagen con pie y orden
@@ -19,21 +30,19 @@
 	- Checkbox simple
 	- Textarea
 	- Textarea bbcode
-	+ En base a los sitios ya realizados, definir qué herramientas se podrían agregar en el módulo de posts
+	- Google Map
+	+ Retomar punto anterior a la par (estilos)
+
+* Meterle fuerza al frontend
+* Remover LESS
 * Comprimir JS
 * Documentación
-* Meterle fuerza al backend
-	- Estilos
-	- Paginación
-	- Buscador
-	- Ordenar
-	- Drag & Drop
-	+ Etc
-* Meterle fuerza al frontend
 * Script clean cache
 * Script autocreate sitemap
+
 * TO DO's
-* Meterle Modernizr?
-* Responsive?
-* Mobile?
+
 * Limpiar ckeditor
+
+* Nombrar framework: Barista Framework
+* baristaframework.com

@@ -1,28 +1,62 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="rating" content="General" />
-		<meta name="language" content="Spanish">
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<meta name="fragment" content="!" />
-		<meta name="author" content="Grupo NSNC">
-		<meta name="title" content="" />
-		<title></title>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script>window.jQuery || document.write("<script src=\"{{ asset('js/jquery-1.10.2.min.js') }}\"><\/script>")</script>
-		<script src="{{ asset('js/script.backend.js') }}"></script>
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/styles.backend.css') }}" />
-		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-	</head>
-
-	</head>
-	<body>
-		<div id="container">
-			<div id="header"></div>
-			<div id="section">{% block section %}{% endblock %}</div>
-			<div id="footer"></div>
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{{ _FRAMEWORK }} {{ _VERSION }}</title>
+	<link rel="stylesheet" href="css/foundation.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+	<header>
+		<div id="header" class="fixed">
+			<nav class="top-bar" data-topbar>
+				<ul class="title-area">
+					<li class="name">
+						<h1>{{ _FRAMEWORK }} {{ _VERSION }} <small>Site Admin</small></h1>
+					</li>
+					<li class="toggle-topbar menu-icon"><a href="#"></a></li>
+				</ul>
+				<section class="top-bar-section">
+					<ul class="right">
+						<li><a href="#" target="_blank">Ver al sitio web</a></li>
+						<li class="has-dropdown">
+						<a href="#">Federico Viarnés</a>
+							<ul class="dropdown">
+								<li><a href="#">Salir</a></li>
+							</ul>
+						</li>
+						<li class="show-for-small-only"><a href="#">Mod 1</a></li>
+						<li class="show-for-small-only"><a href="#">Mod 2</a></li>
+						<li class="show-for-small-only"><a href="#">Mod 3</a></li>
+					</ul>
+				</section>
+			</nav>
 		</div>
-	</body>
+	</header>
+
+	<div class="row fixed hide-for-small-only">
+		<nav id="sidebar" class="medium-2 columns">
+			<ul class="side-nav">
+				<li><a href="#">Mod 1</a></li>
+				<li><a href="#">Mod 2</a></li>
+				<li><a href="#">Mod 3</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="row fluid" id="content">
+		<div class="small-12 medium-10 medium-offset-2 columns">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, labore, eveniet, in enim reprehenderit aliquam odio quibusdam expedita odit consequuntur laboriosam dicta ipsam molestiae adipisci incidunt. Quos, doloremque, aliquam, deleniti doloribus vel fuga repudiandae possimus commodi fugiat impedit laborum sapiente tenetur in dignissimos quae ullam nemo illo officia sed ab aut voluptatem accusamus enim perferendis maiores deserunt numquam unde hic neque dolores atque architecto quasi adipisci esse quo tempore accusantium. Culpa, repellat, atque, consectetur iste voluptatum officia nobis dolor earum qui provident similique excepturi minima voluptates laborum aut sunt saepe blanditiis maxime odit ea ut quis ipsa facere sit eligendi reprehenderit dignissimos quam delectus tempore optio sapiente accusantium mollitia ratione. Mollitia, laborum, in, optio omnis illum cupiditate commodi ea delectus rerum eligendi quis molestias itaque nostrum. Cupiditate, voluptates, ducimus, quidem nihil tempora deleniti totam corrupti quas odio dignissimos mollitia voluptatem praesentium numquam! Ad, velit, autem saepe odio sapiente deserunt quae delectus sunt iste aperiam ducimus fugit vero dolor in sint iure eligendi ullam placeat rerum dolorum minima beatae totam sit. Id, aut, quod, delectus nulla dolor distinctio porro iure natus ratione beatae vel facilis ipsum possimus! Placeat, rerum, odit, delectus nemo magnam fugiat officiis possimus minima ea praesentium sapiente perspiciatis. Sed, aut, molestias quo aliquid eius temporibus ipsa ut est veritatis quod ratione itaque quaerat cumque ipsum dolorum illo repellat recusandae velit culpa sint pariatur illum eos dolorem maiores dolores aperiam officia? Velit, molestiae, saepe, maxime voluptate magnam quod dolor voluptatem labore sint mollitia aliquam non sit ratione. Debitis, maxime, eius quod rem libero repudiandae magni unde repellat odit consequuntur sequi perferendis ipsa dicta adipisci itaque assumenda ex deserunt nihil porro cupiditate aperiam totam illum tempore? Hic tenetur reprehenderit unde explicabo possimus deleniti ab accusamus labore eius officia. Eos, nihil, nobis qui neque cupiditate ipsum maxime! Facilis, debitis, perspiciatis, quia animi autem laborum velit doloribus aut iusto incidunt veritatis illo quos cum cumque reiciendis quae alias in quasi possimus distinctio. Doloremque, aliquid magni nobis maxime voluptates molestias optio blanditiis cumque soluta consectetur ipsum nostrum ipsam aut atque minus alias debitis! Temporibus, eum, voluptas ut voluptatibus praesentium ea illo distinctio veritatis non natus iusto reprehenderit. Esse, laudantium placeat voluptate vitae ullam debitis inventore reiciendis eius totam illo dolore possimus adipisci recusandae repellat animi iusto eos similique in cum optio beatae perferendis enim! Vero, dolore, eveniet aliquid impedit cum dicta aspernatur hic atque dolor veniam laudantium autem nihil harum earum necessitatibus dolorem sequi. Officia, eveniet nisi fuga voluptas repellendus adipisci in omnis ad sit expedita. Incidunt, debitis non ducimus enim error. Quasi, maiores, sed quibusdam molestiae maxime nihil! Tenetur, laboriosam, tempore, eaque, error voluptate in ex eligendi adipisci dicta voluptas obcaecati officiis eum pariatur eius provident esse itaque cupiditate nemo animi quos vero commodi dolor assumenda. Optio, porro, vitae ducimus harum eveniet nobis minus asperiores quam magni architecto ea quisquam perferendis a enim modi dolorum aspernatur est in saepe quia. Dignissimos, cum, quod, ut voluptatum deserunt beatae ipsa veniam iure sunt laudantium doloremque suscipit molestias numquam qui nam praesentium vel expedita ad sapiente labore excepturi libero ea assumenda dolorum necessitatibus animi consectetur enim. Harum, enim, laboriosam rem quos ducimus delectus quas reiciendis adipisci qui voluptate ex odit maiores ipsa. Nam, dignissimos, fuga laborum illum eveniet cumque molestiae ipsam ab officia reprehenderit dolores quibusdam odit similique ullam error voluptas cum libero ad consequuntur pariatur enim autem distinctio est quaerat amet. Fugiat, culpa nobis blanditiis aliquam unde ipsum dolorum earum vero. Incidunt, nesciunt, veritatis labore amet adipisci maiores magnam eum recusandae sit omnis iusto eligendi pariatur repellat voluptate modi cum placeat dolorem repellendus ab accusantium sapiente asperiores corporis animi eveniet assumenda? Ut, est, reiciendis, doloribus, rem necessitatibus officiis ipsa consequuntur et repudiandae repellendus natus tenetur iste magni quasi omnis officia labore. Nisi, neque, blanditiis, corrupti voluptatum molestiae temporibus at a debitis soluta dignissimos reiciendis culpa voluptate dolorum officiis sequi unde omnis rerum provident tempore excepturi numquam expedita impedit incidunt libero sit nulla quidem corporis totam tempora dolore perspiciatis dolores nesciunt aperiam distinctio illum nobis commodi sunt illo ullam rem eos fugit ab maxime quas molestias nemo eligendi labore enim nam voluptas? Unde, neque, ducimus, rem, et id atque ab expedita a illum quis adipisci aut pariatur aliquam praesentium consequatur quia sapiente. Sit, aliquam vero sunt autem repudiandae asperiores provident inventore quae sequi ex accusantium illo optio voluptates quas delectus quidem veniam aut ipsum ullam consectetur dolores quaerat dolor saepe. Numquam soluta adipisci impedit similique omnis dicta molestias iure? Dolores, quidem, vitae laborum suscipit provident labore voluptatem voluptatibus a nobis aliquid. Ab, laudantium, commodi, vitae assumenda provident architecto aliquam officiis laboriosam eos sint eum veritatis est praesentium consequuntur itaque earum recusandae perferendis dolorem sit harum adipisci voluptates alias cum quas debitis animi voluptatum facere magnam nam natus minima quaerat optio ut asperiores expedita voluptas saepe. Temporibus, suscipit, reprehenderit dignissimos amet non maxime veritatis ut dolorem earum aut. Praesentium, similique mollitia perspiciatis accusantium explicabo alias quia fuga est molestiae vitae ex sed esse vero aliquid officiis harum quo temporibus obcaecati consequuntur minus atque hic reprehenderit rerum tempore excepturi corporis assumenda magnam aut repellendus? Modi cum voluptatum unde magnam tenetur facere! Soluta, atque, nostrum, vel aut autem accusantium esse voluptas vero in dignissimos nam eos explicabo asperiores repudiandae obcaecati deleniti tenetur sint dolores quam officia nihil cupiditate aperiam officiis ex suscipit assumenda repellendus maiores ea dolorem? Unde, ipsa accusantium saepe porro mollitia non! Saepe, totam officiis voluptas quia culpa sunt reiciendis labore excepturi non optio impedit cum? Soluta, pariatur, consequatur eos exercitationem ut totam facere vitae sequi quos tempora quis atque cumque nulla itaque rerum voluptatem minus quidem deserunt sed accusamus ab modi aspernatur. Vel, laboriosam, aspernatur, nemo, magnam temporibus ipsum ea maxime accusamus odio mollitia pariatur veniam saepe est quo autem velit doloremque id expedita quisquam eos. Tempora, veritatis, nihil qui debitis atque tempore molestias! Labore in illo voluptates corrupti beatae nostrum quos aliquid corporis! Asperiores, sint, consequatur facilis quasi iste quos incidunt ipsam saepe omnis aut eligendi laborum! Ducimus, est, blanditiis nostrum at quae consectetur expedita sed cumque harum quia labore deleniti officia vero neque!</p>
+		</div>
+	</div>
+
+	<script src="js/vendor/jquery.js"></script>
+	<script src="js/vendor/fastclick.js"></script>
+	<script src="js/foundation.min.js"></script>
+	<script>
+		$(document).foundation();
+	</script>
+</body>
 </html>
