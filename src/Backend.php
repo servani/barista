@@ -7,16 +7,38 @@ class BackendController extends DefaultController
 	}
 
 	public function listAction($params = null) {
-		$cm = 'list' . $params['slug'] . 'Action';
-		$data = false;
-		if (method_exists($this, $cm)) {
-			$entity = $this->$cm();
-		} else {
-			$entity = $this->em->getRepository($params['slug'])->findAll();
+		try {
+			// Query conditions
+			$results_x_page = 20;
+			$current_offset = isset($this->get['p']) ? ($this->get['p'] - 1) * $results_x_page : 0;
+			$order = isset($this->get['o']) ? $this->get['o'] : 'id';
+			$dir = isset($this->get['d']) && $this->get['d'] == 1 ? 'ASC' : 'DESC';
+			// Basic Query
+			$entity = $this->em
+				->getRepository($params['slug'])
+				->createQueryBuilder('q');
+			// Number of items
+			$n = count($entity->getQuery()->getResult());
+			// Query requested
+			$entity = $entity->setMaxresults($results_x_page)
+				->setFirstResult($current_offset)
+				->orderBy('q.' . $order, $dir)
+				->getQuery()
+				->getResult();
+		} catch (Exception $e) {
+			echo "Entity not found \n"; die();
 		}
 		$this->render($params['slug'] . ".list.html.twig", array(
 			'entity' => $entity,
-			'entityName' => $params['slug']
+			'entityName' => $params['slug'],
+			'q' => array(
+				'results' => $n,
+				'max' => $results_x_page,
+				'nofpages' => ceil($n / $results_x_page),
+				'page' => $current_offset / $results_x_page + 1,
+				'order' => $order,
+				'dir' => $dir === 'ASC' ? 1 : 0
+			)
 		));
 	}
 
@@ -39,7 +61,11 @@ class BackendController extends DefaultController
 		if (method_exists($this, $cm)) {
 			$data = $this->$cm();
 		}
-		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
+		try {
+			$entity = $this->em->getRepository($params['slug'])->find($params['id']);
+		} catch (Exception $e) {
+			echo "Entity or Entry not found \n"; die();
+		}
 		$this->render($params['slug'] . ".form.html.twig", array(
 			'entity' => $entity,
 			'entityName' => $params['slug'],
@@ -129,23 +155,21 @@ class BackendController extends DefaultController
 
 	/* Custom Delete Methods */
 
-	public function deleteUserAction($entity) {}
-
 	/* Custom List Methods */
-
-	public function listUserAction() {}
 
 	/* Custom New Methods */
 
-	public function newUserAction() {}
-
 	/* Custom Set Methods */
 
-	public function setUserAction($entity) {}
+	public function setUserAction($entity) {
+		// Don't set password if already is a md5 hash
+		if (!preg_match('/^[a-f0-9]{32}$/', $entity->getPassword())) {
+			$entity->setPassword(md5($entity->getPassword()));
+		}
+		return $entity;
+	}
 
 	/* Custom Image Handlers */
-
-	public function handleUserCover($path, $file) { /* User must have cover field */ /* to do lo puedo validar de ultima */ }
 
 	/* Helpers */
 

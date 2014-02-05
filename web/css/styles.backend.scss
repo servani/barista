@@ -1,6 +1,9 @@
+$baristacolor1: #FFCB8B;
+
 .row.fluid {
 	max-width: 100%;
 }
+
 #header {
 	.top-bar {
 		ul {
@@ -12,13 +15,22 @@
 		}
 	}
 }
+
 #sidebar {
-	margin-top: 45px;
+	position: fixed;
+	top: 45px;
+	left: 0;
+	height: 100%;
+	background-color: $baristacolor1;
 	ul.side-nav {
 		li {
 			a {
 				display: inline-block;
 			}
 		}
+	}
+	#copy {
+		bottom: 45px;
+		position: absolute;
 	}
 }

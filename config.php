@@ -4,9 +4,9 @@ $url = @$_SERVER['SERVER_NAME'];
 $config = array(
 	'DB' => array(
 		'driver'	=> 'pdo_mysql',
-		'user'		=> 'roost',
+		'user'		=> 'root',
 		'password'	=> 'root',
-		'dbname'	=> 'framework',
+		'dbname'	=> 'barista',
 		'host'		=> 'localhost',
 		'charset'	=> 'utf8'
 	),
@@ -24,7 +24,7 @@ $config = array(
 	)
 );
 // Overwrite prod params for each instance
-if (strpos($url, 'local.') !== FALSE) {
+if (strpos($url, 'local.') !== FALSE || !$url) {
 	// Local
 	$config['DB']['user'] = 'root';
 } elseif (strpos($url, 'dev.') !== FALSE) {

@@ -1,0 +1,43 @@
+File:
+    type: entity
+    table: file
+    indexes:
+        fk_file_post:
+            columns:
+                - post_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+    fields:
+        src:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+        title:
+            type: string
+            nullable: true
+            length: 400
+            fixed: false
+            comment: ''
+        sort:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+    oneToOne:
+        post:
+            targetEntity: Post
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                post_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

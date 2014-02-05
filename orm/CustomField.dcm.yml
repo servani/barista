@@ -1,0 +1,57 @@
+CustomField:
+    type: entity
+    table: custom_field
+    indexes:
+        fk_custom_field_post:
+            columns:
+                - post_id
+        fk_custom_field_cf_type:
+            columns:
+                - cf_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+    fields:
+        value:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+        title:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+        attributes:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+    oneToOne:
+        post:
+            targetEntity: Post
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                post_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToOne:
+        cfType:
+            targetEntity: CfType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cf_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

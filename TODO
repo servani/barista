@@ -46,3 +46,8 @@
 
 * Nombrar framework: Barista Framework
 * baristaframework.com
+
+* Poder borrar Entity por defecto (Post Tag Category)
+* Dummy post preloaded
+* script autocreate db
+* User fields must be not null

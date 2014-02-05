@@ -1,6 +1,6 @@
-User:
+TagType:
     type: entity
-    table: user
+    table: tag_type
     id:
         id:
             type: integer
@@ -12,18 +12,6 @@ User:
                 strategy: IDENTITY
     fields:
         name:
-            type: string
-            nullable: true
-            length: 100
-            fixed: false
-            comment: ''
-        username:
-            type: string
-            nullable: true
-            length: 100
-            fixed: false
-            comment: ''
-        password:
             type: string
             nullable: true
             length: 100

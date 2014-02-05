@@ -17,17 +17,17 @@ class User
     /**
      * @var string
      */
+    private $name;
+
+    /**
+     * @var string
+     */
     private $username;
 
     /**
      * @var string
      */
     private $password;
-
-    /**
-     * @var string
-     */
-    private $name;
 
 
     /**
@@ -38,6 +38,29 @@ class User
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -84,28 +107,5 @@ class User
     public function getPassword()
     {
         return $this->password;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 }

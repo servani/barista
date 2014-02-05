@@ -33,6 +33,19 @@ class DefaultController
 		$this->instance = $this->whereTheFuckAmI();
 	}
 
+	/* Proyect Modules */
+
+	public function registerMods() {
+		return array(
+			'User' => 'Usuarios',
+			'' => '',
+			'Blog' => array(
+				'Post' => 'Posts',
+				'Category' => 'Categorías'
+			)
+		);
+	}
+
 	/*
 	 *
 	 * Vendors
@@ -72,6 +85,8 @@ class DefaultController
 		// Set global variables
 		$this->twig->addGlobal('_FRAMEWORK', 'Barista');
 		$this->twig->addGlobal('_VERSION', '2.0');
+		$this->twig->addGlobal('_MODS', $this->registerMods());
+		$this->twig->addGlobal('_USER', @$this->session['uname']);
 		// Register simple functions
 		$fn = $this->registerTwigSimpleFunctions();
 		foreach ($fn as $f) {
@@ -302,7 +317,11 @@ class DefaultController
 
 	/* Render a Twig template */
 	public function render($template, $params = array()) {
-		$this->twig->loadTemplate($template)->display($params);
+		try {
+			$this->twig->loadTemplate($template)->display($params);
+		} catch (Exception $e) {
+			echo "Template not found \n"; die();
+		}
 	}
 
 	/* Redirect */

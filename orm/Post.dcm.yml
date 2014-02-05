@@ -1,0 +1,124 @@
+Post:
+    type: entity
+    table: post
+    indexes:
+        fk_post_category:
+            columns:
+                - category_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+        slug:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+        subtitle:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+        summary:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        text:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        creationDate:
+            type: date
+            nullable: false
+            comment: ''
+            column: creation_date
+        publicDate:
+            type: date
+            nullable: true
+            comment: ''
+            column: public_date
+        cover:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+        video:
+            type: string
+            nullable: true
+            length: 400
+            fixed: false
+            comment: ''
+        map:
+            type: string
+            nullable: true
+            length: 400
+            fixed: false
+            comment: ''
+        rating:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            comment: ''
+        sort:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        visible:
+            type: boolean
+            nullable: true
+            comment: ''
+            default: '1'
+        starred:
+            type: boolean
+            nullable: true
+            comment: ''
+            default: '0'
+    manyToOne:
+        category:
+            targetEntity: Category
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        tag:
+            targetEntity: Tag
+            cascade: {  }
+            mappedBy: null
+            inversedBy: post
+            joinTable:
+                name: post_has_tag
+                joinColumns:
+                    -
+                        name: post_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: tag_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

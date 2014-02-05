@@ -1,6 +1,6 @@
-User:
+Category:
     type: entity
-    table: user
+    table: category
     id:
         id:
             type: integer
@@ -13,19 +13,25 @@ User:
     fields:
         name:
             type: string
-            nullable: true
+            nullable: false
             length: 100
             fixed: false
             comment: ''
-        username:
+        image:
             type: string
             nullable: true
-            length: 100
+            length: 200
             fixed: false
             comment: ''
-        password:
-            type: string
+        description:
+            type: text
             nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        slug:
+            type: string
+            nullable: false
             length: 100
             fixed: false
             comment: ''
