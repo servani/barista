@@ -45,7 +45,7 @@ class Tag
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -68,7 +68,7 @@ class Tag
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -91,7 +91,7 @@ class Tag
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -114,7 +114,7 @@ class Tag
     /**
      * Get tagType
      *
-     * @return \TagType 
+     * @return \TagType
      */
     public function getTagType()
     {
@@ -147,7 +147,7 @@ class Tag
     /**
      * Get post
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPost()
     {

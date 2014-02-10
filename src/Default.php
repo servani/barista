@@ -41,7 +41,10 @@ class DefaultController
 			'' => '',
 			'Blog' => array(
 				'Post' => 'Posts',
-				'Category' => 'Categorías'
+				'Category' => 'Categorías',
+				'Tag' => 'Tags',
+				'TagType' => 'Tipos de Tag',
+				'CfType' => 'Tipos de Campos Pers.',
 			)
 		);
 	}
@@ -132,7 +135,7 @@ class DefaultController
 		 * return: (str) active [or empty string]
 		 */
 		$fn[] = new Twig_SimpleFunction('active', function ($slug) {
-			return strpos($_SERVER['REQUEST_URI'] . '/', '/'. $slug) !== FALSE ? 'active' : '';
+			return strpos($_SERVER['REQUEST_URI'] . '/', '/'. $slug . '/') !== FALSE ? 'active' : '';
 		});
 		return $fn;
 	}
@@ -157,6 +160,16 @@ class DefaultController
 				$res = implode(' ', $array).'...';
 			}
 			return $res;
+		});
+		/*
+		 * @ for retrieving object values dynamically
+		 * name: array_get
+		 * params: (arr|obj) array, (str) name
+		 * return: array value
+		 */
+		$fl[] = new Twig_SimpleFilter('array_get', function($array, $name) {
+			$array = (array) $array;
+			return $array[$name];
 		});
 		/*
 		 * @ bbcode parser

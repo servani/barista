@@ -1,0 +1,7 @@
+<label>Categoría</label>
+<select {{ required|default('') }} class="{{ class|default('')}}" id="{{ id|default('') }}" name="{{ entityName }}[{{ name }}]">
+	<option value="" {{ edit and selected ? '' : 'selected'}} disabled>Seleccionar</option>
+	{% for o in options %}
+		<option {{ edit and selected == o.id ? 'selected' : '' }} value="{{ o.id }}">{{ o[optionname] }}</option>
+	{% endfor %}
+</select>

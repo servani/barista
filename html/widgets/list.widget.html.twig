@@ -1,0 +1,30 @@
+<h1>{{ title }}</h1>
+<a class="button radius" href="{{ url('admin/new/' ~ en) }}" title="Crear">Crear</a>
+{% if pagenav.results %}
+	<div class="row">
+		<table width="100%">
+			<thead>
+				<tr>
+					{% for k,v in cols %}
+						<th><a href="{{ url('admin/list/' ~ en) }}?o={{ k }}&amp;d={{ q.dir ? 0 : 1 }}">{{ v }}</a></th>
+					{% endfor %}
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			{% for e in entity %}
+				<tbody>
+					<tr class="{{ loop.index % 2 ? 'even' : '' }}">
+						{% for k,v in cols %}
+							<td>{{ e|array_get(k) }}</td>
+						{% endfor %}
+						<td><a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="edit" title="Editar">Editar</a></td>
+						<td><a onclick="if(confirm('Borrar {{ e[deletekey] }}?')) return true; else return false;" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="del">Borrar</a></td>
+					</tr>
+				</tbody>
+			{% endfor %}
+		</table>
+	</div>
+{% else %}
+	<h4>No se encontraron resultados</h4>
+{% endif %}

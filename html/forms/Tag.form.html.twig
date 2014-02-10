@@ -2,14 +2,14 @@
 
 {% block section %}
 	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
-	{% include 'form.header.widget.html.twig' with { title: 'Categoría' } %}
+	{% include 'form.header.widget.html.twig' with { title: 'Tag' } %}
 	<div id="form">
 		<form action="{{ url(action) }}" method="POST" data-abide>
 			<!-- # -->
 			<div class="row">
 				<div class="large-4 small-6 columns">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Nombre', placeholder: 'Nombre de la Categoría',
+							label: 'Nombre', placeholder: 'Nombre',
 							value: entity.name, name: 'Name',
 							required: 'required'
 						}
@@ -18,10 +18,12 @@
 			</div>
 			<!-- # -->
 			<div class="row">
-				<div class="small-12 columns">
-					{% include 'form.bbcode.widget.html.twig' with {
-							label: 'Descripción',
-							value: entity.description, name: 'Description'
+				<div class="large-4 small-6 columns">
+					{% include 'form.select.widget.html.twig' with {
+							label: 'Tipo de Tag',
+							options: data, selected: entity.tagtype.id,
+							optionname: 'name',
+							value: entity.tagtype, name: 'IdTagType'
 						}
 					%}
 				</div>

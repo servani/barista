@@ -1,0 +1,23 @@
+{% if pagenav.nofpages > 1 %}
+	<div class="pagination-centered">
+		<ul class="pagination">
+			<li class="arrow {{ pagenav.page == 1 ? 'unavailable' : '' }}">
+				{% if pagenav.page == 1 %}
+					<a href="#">&laquo;</a>
+				{% else %}
+					<a href="{{ url('admin/list/' ~ en) }}?p={{ pagenav.page - 1}}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}">&laquo;</a>
+				{% endif %}
+			</li>
+			{% for i in 1..pagenav.nofpages %}
+				<li class="{{ pagenav.page == i ? 'current' : '' }}"><a href="{{ url('admin/list/' ~ en) }}?p={{ i }}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}">{{ i }}</a></li>
+			{% endfor %}
+			<li class="arrow {{ pagenav.page == pagenav.nofpages ? 'unavailable' : '' }}">
+				{% if pagenav.page == pagenav.nofpages %}
+					<a href="#">&raquo;</a>
+				{% else %}
+					<a href="{{ url('admin/list/' ~ en) }}?p={{ pagenav.page + 1}}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}">&raquo;</a>
+				{% endif %}
+			</li>
+		</ul>
+	</div
+{% endif %}

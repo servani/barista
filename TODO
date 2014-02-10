@@ -1,12 +1,15 @@
 * SASS
 * Foundation
 
+* https://github.com/blueimp/jQuery-File-Upload
+
 * Meterle fuerza al backend
 	- Estilos
 	- Paginación
 	- Buscador
 	- Ordenar
 	- Drag & Drop
+	. Ver N por página
 	+ Etc
 
 * Módulos de posts, tags y categorías por defecto

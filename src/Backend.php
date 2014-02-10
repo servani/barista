@@ -24,7 +24,7 @@ class BackendController extends DefaultController
 				->setFirstResult($current_offset)
 				->orderBy('q.' . $order, $dir)
 				->getQuery()
-				->getResult();
+				->getResult(); // Number 2 is for fetching an array instead of a motherfucker object
 		} catch (Exception $e) {
 			echo "Entity not found \n"; die();
 		}
@@ -159,6 +159,15 @@ class BackendController extends DefaultController
 
 	/* Custom New Methods */
 
+	public function newTagAction() {
+		return $this->em
+			->getRepository('TagType')
+			->createQueryBuilder('q')
+			->orderBy('q.name', 'ASC')
+			->getQuery()
+			->getResult(2);
+	}
+
 	/* Custom Set Methods */
 
 	public function setUserAction($entity) {
@@ -167,6 +176,16 @@ class BackendController extends DefaultController
 			$entity->setPassword(md5($entity->getPassword()));
 		}
 		return $entity;
+	}
+
+	public function setCategoryAction($entity) {
+		$edit = $entity->getSlug() ? true : false;
+		return $entity->setSlug($this->str2slug($entity->getName(), array('Category', $edit, $entity->getSlug())));
+	}
+
+	public function setTagAction($entity) {
+		$edit = $entity->getSlug() ? true : false;
+		return $entity->setSlug($this->str2slug($entity->getName(), array('Tag', $edit, $entity->getSlug())));
 	}
 
 	/* Custom Image Handlers */

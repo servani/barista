@@ -1,50 +1,57 @@
 {% extends 'base.backend.html.twig' %}
 
 {% block section %}
-	{% if edit %}
-		<h2>Editar Usuario</h2>
-	{% else %}
-		<h2>Nuevo Usuario</h2>
-		{% set action = 'admin/create/' ~ entityName %}
-	{% endif %}
-	<a class="button secondary radius" href="{{ url('admin/list/' ~ entityName) }}" title="Volver">Volver</a>
+	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ en %}
+	{% include 'form.header.widget.html.twig' with { title: 'Usuario' } %}
 	<div id="form">
 		<form action="{{ url(action) }}" method="POST" data-abide>
+			<!-- # -->
 			<div class="row">
 				<div class="large-4 small-6 columns">
-					<label>Nombre</label>
-					<input required type="text" name="{{ entityName }}[Name]" value="{{ entity.name|default("")}}" {{ entity.name ? '' : 'placeholder="Nombre"' }}
-						/>
-					<small class="error">Campo Requerido</small>
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Nombre',
+							value: entity.name, name: 'Name',
+							required: 'required'
+						}
+					%}
 				</div>
 			</div>
+			<!-- # -->
 			<div class="row">
 				<div class="large-4 small-6 columns">
-					<label>Usuario</label>
-					<input autocomplete="off" required type="text" name="{{ entityName }}[Username]" value="{{ entity.username|default("")}}" {{ entity.username ? '' : 'placeholder="Nombre de Usuario"' }}
-						/>
-					<small class="error">Campo Requerido</small>
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Usuario', placeholder: 'Nombre de Usuario',
+							value: entity.username, name: 'Username',
+							autocompleteoff: true, required: 'required'
+						}
+					%}
 				</div>
 			</div>
+			<!-- # -->
 			<div class="row">
 				<div class="large-4 small-6 columns">
-					<label>Contraseña</label>
-					<input id="password" required pattern="alpha_numeric" type="password" name="{{ entityName }}[Password]" value="{{ entity.password|default("")}}" {{ entity.password ? '' : 'placeholder="Contraseña"' }}
-						/>
-					<small class="error">Campo Requerido</small>
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Contraseña',
+							id: 'password', type: 'password',
+							pattern: 'alpha_numeric',
+							value: entity.password, name: 'Password',
+							required: 'required'
+						}
+					%}
 				</div>
 				<div class="large-4 small-6 columns large-pull-4">
-					<label>Repetir Contraseña</label>
-					<input required pattern="alpha_numeric" type="password" data-equalto="password" name="password-repeat" value="{{ entity.password|default("")}}" {{ entity.password ? '' : 'placeholder="Repetir Contraseña"' }}
-						/>
-					<small class="error">Las contraseñas no coinciden</small>
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Repetir Contraseña',
+							type: 'password', equalto: 'password',
+							pattern: 'alpha_numeric',
+							value: entity.password, name: 'password-repeat',
+							required: 'required', errormsg: 'Las contraseñas no coinciden'
+						}
+					%}
 				</div>
 			</div>
-			<input type="submit" class="button radius submit" value="{% if edit %}Guardar{% else %}Crear{% endif %}" />
-			{% if edit %}
-				{% set action = 'admin/update/' ~ entityName ~ '/' ~ entity.id %}
-				<a onclick="if(confirm('Borrar {{ entity.username }}?')) return true; else return false;" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ entity.id) }}" title="Borrar" class="button alert radius delete">Borrar</a>
-			{% endif %}
+			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.username } %}
 		</form>
 	</div>
 {% endblock %}
+

@@ -1,51 +1,22 @@
 {% extends 'base.backend.html.twig' %}
 
 {% block section %}
-	<h1>Usuarios</h1>
-	<a class="button radius" href="{{ url('admin/new/' ~ entityName) }}" title="Nuevo">Nuevo</a>
-	<div class="row">
-		<table width="100%">
-			<thead>
-				<tr>
-					<th><a href="{{ url('admin/list/' ~ entityName) }}?o=id&amp;d={{ q.dir ? 0 : 1 }}">ID</a></th>
-					<th><a href="{{ url('admin/list/' ~ entityName) }}?o=name&amp;d={{ q.dir ? 0 : 1 }}">Nombre</a></th>
-					<th><a href="{{ url('admin/list/' ~ entityName) }}?o=username&amp;d={{ q.dir ? 0 : 1 }}">Usuario</a></th>
-					<th>&nbsp;</th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-			{% for e in entity %}
-				<tbody>
-					<tr class="{{ loop.index % 2 ? 'even' : '' }}">
-						<td>{{ e.id }}</td>
-						<td>{{ e.name }}</td>
-						<td>{{ e.username }}</td>
-						<td><a href="{{ url('admin/edit/' ~ entityName ~ '/' ~ e.id) }}" class="edit" title="Editar">Editar</a></td>
-						<td><a onclick="if(confirm('Borrar {{ e.username }}?')) return true; else return false;" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ e.id) }}" title="Borrar" class="del">Borrar</a></td>
-					</tr>
-				</tbody>
-			{% endfor %}
-		</table>
-	</div>
-	<div class="pagination-centered">
-		<ul class="pagination">
-			<li class="arrow {{ q.page == 1 ? 'unavailable' : '' }}">
-				{% if q.page == 1 %}
-					<a href="#">&laquo;</a>
-				{% else %}
-					<a href="{{ url('admin/list/' ~ entityName) }}?p={{ q.page - 1}}&amp;o={{ q.order }}&amp;d={{ q.dir }}">&laquo;</a>
-				{% endif %}
-			</li>
-			{% for i in 1..q.nofpages %}
-				<li class="{{ q.page == i ? 'current' : '' }}"><a href="{{ url('admin/list/' ~ entityName) }}?p={{ i }}&amp;o={{ q.order }}&amp;d={{ q.dir }}">{{ i }}</a></li>
-			{% endfor %}
-			<li class="arrow {{ q.page == q.nofpages ? 'unavailable' : '' }}">
-				{% if q.page == q.nofpages %}
-					<a href="#">&raquo;</a>
-				{% else %}
-					<a href="{{ url('admin/list/' ~ entityName) }}?p={{ q.page + 1}}&amp;o={{ q.order }}&amp;d={{ q.dir }}">&raquo;</a>
-				{% endif %}
-			</li>
-		</ul>
-	</div>
+	{% include 'list.widget.html.twig' with {
+			title: 'Usuarios',
+			cols: {
+				'id': 'ID',
+				'name': 'Nombre',
+				'username': 'Usuario'
+			},
+			deletekey: 'username',
+			entity: entity,
+			pagenav: q,
+			en: entityName
+		}
+	%}
+	{% include 'pagenav.widget.html.twig' with {
+			pagenav: q,
+			en: entityName
+		}
+	%}
 {% endblock %}
