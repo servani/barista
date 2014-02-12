@@ -1,0 +1,10 @@
+{% if label %}
+	<label>{{ label }}</label>
+{% endif %}
+<textarea id="{{ id|default('') }}" rows="{{ rows|default(5) }}" name="{{ entityName }}[{{ name }}]" class="{{ class|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" {{ required|default('') }}>{{ value|default('')}}</textarea>
+{% if errormsg or required %}
+	<small class="error">{{ errormsg|default('Campo Requerido') }}</small>
+{% endif %}
+{% if example %}
+	<span class="example">{{ example }}</span>
+{% endif %}

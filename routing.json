@@ -19,6 +19,13 @@
 		"action": "index",
 		"secured": true
 	},
+	"admin/xhr/{slug}": {
+		"controller": "Backend",
+		"action": "xhr",
+		"params": {
+			"slug": null
+		}
+	},
 	"login": {
 		"controller": "Default",
 		"action": "authenticate"
@@ -84,21 +91,6 @@
 			"slug": null,
 			"id": null
 		},
-		"secured": true
-	},
-	"admin/deletefile": {
-		"controller": "Backend",
-		"action": "deleteFile",
-		"secured": true
-	},
-	"admin/togglestate": {
-		"controller": "Backend",
-		"action": "toggleState",
-		"secured": true
-	},
-	"admin/togglestarred": {
-		"controller": "Backend",
-		"action": "toggleStarred",
 		"secured": true
 	}
 }

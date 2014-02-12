@@ -143,6 +143,36 @@ class DefaultController
 	public function registerTwigSimpleFilters() {
 		$fl = array();
 		/*
+		 * @ get obj property
+		 * name: get
+		 * params: (obj) obj, (str) prop, (str) empty
+		 * return: (str) object property value
+		 */
+		$fl[] = new Twig_SimpleFilter('get', function ($obj, $prop, $empty = '-') {
+			if (strpos($prop, '.') !== FALSE) {
+				$arr = explode('.', $prop);
+				$prop = 'get' . $arr[0];
+				$sub_prop = 'get' . $arr[1];
+				if (method_exists($obj, $prop) && method_exists($obj->$prop(), $sub_prop)) {
+					return $obj->$prop()->$sub_prop();
+				}
+				return $empty;
+			}
+			$prop = 'get' . $prop;
+			if (strpos($prop, 'Date') !== FALSE) {
+				try {
+					$res = $obj->$prop()->format('d-m-Y H:i');
+				} catch(Exception $e) {
+					$res = $empty;
+				}
+				return $res;
+			}
+			if (method_exists($obj, $prop)) {
+				return $obj->$prop();
+			}
+			return $empty;
+		});
+		/*
 		 * @ first n words given a string
 		 * name: words
 		 * params: (str) string, (int) n
@@ -160,16 +190,6 @@ class DefaultController
 				$res = implode(' ', $array).'...';
 			}
 			return $res;
-		});
-		/*
-		 * @ for retrieving object values dynamically
-		 * name: array_get
-		 * params: (arr|obj) array, (str) name
-		 * return: array value
-		 */
-		$fl[] = new Twig_SimpleFilter('array_get', function($array, $name) {
-			$array = (array) $array;
-			return $array[$name];
 		});
 		/*
 		 * @ bbcode parser

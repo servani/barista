@@ -36,6 +36,8 @@
 	- Google Map
 	+ Retomar punto anterior a la par (estilos)
 
+* handle expection errors with a nice function
+
 * Meterle fuerza al frontend
 * Remover LESS
 * Comprimir JS

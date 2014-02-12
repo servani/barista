@@ -1,5 +1,132 @@
 {% extends 'base.backend.html.twig' %}
 
 {% block section %}
-	<h1>Post Form</h1>
+	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
+	{% include 'form.header.widget.html.twig' with { title: 'Post' } %}
+	<div id="form">
+		<form action="{{ url(action) }}" method="POST" data-abide>
+			<!-- # -->
+			<div class="row">
+				<div class="large-4 small-9 columns">
+					<fieldset>
+						<legend>Flags</legend>
+						{% include 'form.checkbox.widget.html.twig' with {
+								label: 'Destacado', value: entity.starred, name: 'Starred'
+							}
+						%}
+						{% include 'form.checkbox.widget.html.twig' with {
+								label: 'Visible', value: entity.visible,
+								name: 'Visible', checked: 'checked',
+							}
+						%}
+					</fieldset>
+				</div>
+				<div class="large-2 large-pull-6 small-3 columns">
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Rating',
+							value: entity.rating, name: 'Rating',
+							value: entity.rating, name: 'Rating',
+							type: 'number',
+							pattern: 'number',
+							errormsg: 'Valor inválido',
+							min: 0, max: 5, step: 0.5,
+							example: 'Entre 1 y 5'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-8 small-9 columns">
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Título',
+							value: entity.title, name: 'Title',
+							required: 'required'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-10 small-12 columns">
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Subtítulo',
+							value: entity.subtitle, name: 'Subtitle'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-2 small-5 columns">
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Fecha', class: 'datetimepicker',
+							value: entity.publicdate|date('d-m-Y H:i'), name: 'PublicDate',
+							required: 'required'
+						}
+					%}
+				</div>
+				<div class="large-6 large-pull-4 small-7 columns">
+					{% include 'form.select.widget.html.twig' with {
+							label: 'Categoría',
+							options: data, selected: entity.category.id,
+							optionname: 'name',
+							value: entity.category, name: 'IdCategory'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-5 small-8 columns">
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Video (código)',
+							value: entity.video, name: 'Video',
+							pattern: 'alpha_numeric',
+							placeholder: 'Ejemplos: YiBLBn1z1vY, 42788820',
+							errormsg: 'Código inválido',
+							example: 'Para Vimeo el código es numérico (ej: 42788820). Para Youtube es alfanumérico (ej:YiBLBn1z1vY)'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-6 small-12 columns">
+					{% include 'form.textarea.widget.html.twig' with {
+							label: 'Mapa (Google)',
+							value: entity.map, name: 'Map',
+							placeholder: 'Código de embedado completo (envuelto en la etiqueta <iframe>)'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="small-12 columns">
+					{% include 'form.bbcode.widget.html.twig' with {
+							label: 'Resumen',
+							value: entity.summary, name: 'Summary'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="small-12 columns">
+					{% include 'form.bbcode.widget.html.twig' with {
+							label: 'Texto', placeholder: 'Contenido del post...',
+							value: entity.text, name: 'Text'
+						}
+					%}
+				</div>
+			</div>
+			<!-- flags  (visible, starred) -->
+			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.name } %}
+		</form>
+	</div>
 {% endblock %}
+

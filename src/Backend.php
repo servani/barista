@@ -9,9 +9,14 @@ class BackendController extends DefaultController
 	public function listAction($params = null) {
 		try {
 			// Query conditions
-			$results_x_page = 20;
+			$results_x_page = 3;
 			$current_offset = isset($this->get['p']) ? ($this->get['p'] - 1) * $results_x_page : 0;
-			$order = isset($this->get['o']) ? $this->get['o'] : 'id';
+			$cm = 'list' . $params['slug'] . 'Action';
+			if (method_exists($this, $cm) && !isset($this->get['o'])) {
+				$order = $this->$cm();
+			} else {
+				$order = isset($this->get['o']) ? $this->get['o'] : 'id';
+			}
 			$dir = isset($this->get['d']) && $this->get['d'] == 1 ? 'ASC' : 'DESC';
 			// Basic Query
 			$entity = $this->em
@@ -24,7 +29,7 @@ class BackendController extends DefaultController
 				->setFirstResult($current_offset)
 				->orderBy('q.' . $order, $dir)
 				->getQuery()
-				->getResult(); // Number 2 is for fetching an array instead of a motherfucker object
+				->getResult();
 		} catch (Exception $e) {
 			echo "Entity not found \n"; die();
 		}
@@ -85,9 +90,12 @@ class BackendController extends DefaultController
 		if (method_exists($this, $cm)) {
 			$entity = $this->$cm($entity);
 		}
-
-		$this->em->persist($entity);
-		$this->em->flush();
+		try {
+			$this->em->persist($entity);
+			$this->em->flush();
+		} catch (Exception $e) {
+			echo "Cannot persist entity to database \n"; die();
+		}
 		$this->redirect("admin/list/" . $params['slug']);
 	}
 
@@ -102,9 +110,12 @@ class BackendController extends DefaultController
 		if (isset($_FILES) && count($_FILES)) {
 			$entity = $this->setFromFiles($_FILES, $entity, $params['slug']);
 		}
-
-		$this->em->persist($entity);
-		$this->em->flush();
+		try {
+			$this->em->persist($entity);
+			$this->em->flush();
+		} catch (Exception $e) {
+			echo "Cannot persist entity to database. <br> Error: <pre>" . $e . "</pre>"; die();
+		}
 		$this->redirect("admin/list/" . $params['slug']);
 	}
 
@@ -119,7 +130,54 @@ class BackendController extends DefaultController
 		$this->redirect("admin/list/" . $params['slug']);
 	}
 
-	public function toggleStateAction($params = null) {
+	/* XHR */
+
+	public function xhrAction($params = null) {
+		if ($this->post) {
+			$method = 'XHR' . $params['slug'];
+			if (method_exists($this, $method)) {
+				print_r(json_encode($this->$method()));
+				die();
+			}
+			print_r(json_encode(array('success' => false)));
+			die();
+		}
+		echo "Error";
+		die();
+	}
+
+	public function XHRsaveorder() {
+		$res = array('success' => false);
+		if (isset($this->post['items'])) {
+			try {
+				$entity = $this->em
+					->getRepository($this->post['en'])
+					->createQueryBuilder('q')
+					->where('q.id IN (:ids)')
+					->setParameter('ids', $this->post['items'])
+					->orderBy('q.sort', 'DESC')
+					->getQuery()
+					->getResult();
+			} catch (Exception $e) {
+				return $res;
+			}
+			$values = array();
+			$max = $entity[0]->getSort();
+			foreach ($this->post['items'] as $i) {
+				$values[$i] = $max--;
+			}
+			foreach ($entity as $e) {
+				$e->setSort($values[$e->getId()]);
+				$this->em->persist($e);
+			}
+			$this->em->flush();
+			$res['success'] = true;
+		}
+		return $res;
+	}
+
+	public function XHRtogglestate() {
+		/*
 		if (isset($_POST['en'], $_POST['id'])) {
 			$entity = $this->em->getRepository($_POST['en'])->find($_POST['id']);
 			$entity->setVisible(!$entity->getVisible());
@@ -128,9 +186,11 @@ class BackendController extends DefaultController
 			return true;
 		}
 		return false;
+		*/
 	}
 
-	public function toggleStarredAction($params = null) {
+	public function XHRtogglestarred() {
+		/*
 		if (isset($_POST['en'], $_POST['id'])) {
 			$entity = $this->em->getRepository($_POST['en'])->find($_POST['id']);
 			$entity->setStarred(!$entity->getStarred());
@@ -139,9 +199,11 @@ class BackendController extends DefaultController
 			return true;
 		}
 		return false;
+		*/
 	}
 
-	public function deleteFileAction($params = null) {
+	public function XHRdeletefile() {
+		/*
 		if (isset($_POST['en'], $_POST['prop'], $_POST['id'])) {
 			$entity = $this->em->getRepository($_POST['en'])->find($_POST['id']);
 			$property = 'set' . $_POST['prop'];
@@ -151,11 +213,16 @@ class BackendController extends DefaultController
 			return true;
 		}
 		return false;
+		*/
 	}
 
 	/* Custom Delete Methods */
 
 	/* Custom List Methods */
+
+	public function listPostAction() {
+		return 'sort';
+	}
 
 	/* Custom New Methods */
 
@@ -165,7 +232,16 @@ class BackendController extends DefaultController
 			->createQueryBuilder('q')
 			->orderBy('q.name', 'ASC')
 			->getQuery()
-			->getResult(2);
+			->getResult(2); // Number 2 is for fetching an array instead of a motherfucker object
+	}
+
+	public function newPostAction() {
+		return $this->em
+			->getRepository('Category')
+			->createQueryBuilder('q')
+			->orderBy('q.name', 'ASC')
+			->getQuery()
+			->getResult(2); // Number 2 is for fetching an array instead of a motherfucker object
 	}
 
 	/* Custom Set Methods */
@@ -186,6 +262,20 @@ class BackendController extends DefaultController
 	public function setTagAction($entity) {
 		$edit = $entity->getSlug() ? true : false;
 		return $entity->setSlug($this->str2slug($entity->getName(), array('Tag', $edit, $entity->getSlug())));
+	}
+
+	public function setPostAction($entity) {
+		// Creation Date
+		if (!$entity->getCreationDate()) { // == if already exists
+			$now = new DateTime();
+			$entity->setCreationDate($now);
+			$entity->setSort(time());
+		}
+		// Slug
+		$edit = $entity->getSlug() ? true : false;
+		$slug = $this->str2slug($entity->getTitle(), array('Post', $edit, $entity->getSlug()));
+		$entity->setSlug($slug);
+		return $entity;
 	}
 
 	/* Custom Image Handlers */
@@ -218,7 +308,7 @@ class BackendController extends DefaultController
 					if (!method_exists($entity, $property)) {
 						$property = str_replace('setId', 'set', $property);
 					}
-				} else if (strpos($property, 'setDate') !== FALSE) {
+				} else if (strpos($property, 'setCreationDate') !== FALSE || strpos($property, 'setPublicDate') !== FALSE) {
 					try {
 						$value = new DateTime($value);
 					} catch(Exception $e) {

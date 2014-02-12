@@ -1,28 +1,45 @@
 <h1>{{ title }}</h1>
 <a class="button radius" href="{{ url('admin/new/' ~ en) }}" title="Crear">Crear</a>
 {% if pagenav.results %}
+	{% if sort %}
+		{% if pagenav.order == 'sort' %}
+			<a data-en="{{ entityName }}" class="button secondary success submit-order" href="#">Guardar Orden</a>
+			<span class="example">Mueva los elementos utilizando drag & drop. Luego haga click en GUARDAR para confirmar los cambios de orden</span>
+		{% else %}
+			<a class="button secondary radius" href="{{ url('admin/list/' ~ en) }}?o=sort">Ordenar</a>
+		{% endif %}
+	{% endif %}
 	<div class="row">
 		<table width="100%">
 			<thead>
 				<tr>
+					{% if sort %}
+						<th><a href="{{ url('admin/list/' ~ en) }}?o=sort">Orden</th>
+					{% endif %}
 					{% for k,v in cols %}
-						<th><a href="{{ url('admin/list/' ~ en) }}?o={{ k }}&amp;d={{ q.dir ? 0 : 1 }}">{{ v }}</a></th>
+						{% set order = k %}
+						{% if '.' in k %}
+							{% set arr = k|split('.') %}
+							{% set order = arr[0] %}
+						{% endif %}
+						<th><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ q.dir ? 0 : 1 }}">{{ v }}</a></th>
 					{% endfor %}
 					<th>&nbsp;</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
-			{% for e in entity %}
-				<tbody>
-					<tr class="{{ loop.index % 2 ? 'even' : '' }}">
+			<tbody class="{{ pagenav.order == 'sort' ? 'sortable' : '' }}">
+				{% for e in entity %}
+					<tr data-id="{{ e.id }}" class="{{ loop.index % 2 ? '' : 'even' }}">
+						<td>{{ loop.index }}</td>
 						{% for k,v in cols %}
-							<td>{{ e|array_get(k) }}</td>
+							<td>{{ e|get(k) }}</td>
 						{% endfor %}
 						<td><a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="edit" title="Editar">Editar</a></td>
 						<td><a onclick="if(confirm('Borrar {{ e[deletekey] }}?')) return true; else return false;" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="del">Borrar</a></td>
 					</tr>
-				</tbody>
-			{% endfor %}
+				{% endfor %}
+			</tbody>
 		</table>
 	</div>
 {% else %}

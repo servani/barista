@@ -33,4 +33,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'link:advanced';
 
 	config.autoParagraph = false;
+	config.defaultLanguage = 'es';
+	config.language = 'es';
+	config.extraPlugins = 'confighelper';
 };

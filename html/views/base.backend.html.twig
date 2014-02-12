@@ -8,9 +8,15 @@
 	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3" />
 	<link rel="stylesheet" href="{{ asset('css/foundation.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/styles.backend.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui-1.10.4.custom.min.css') }}" />
 	<script src="{{ asset('js/vendor/modernizr.js') }}"></script>
 </head>
 <body>
+	<div id="modals">
+		<div id="loading" class="reveal-modal tiny" data-reveal data-options="close_on_background_click:false;animation:none">
+			<p>Cargando...</p>
+		</div>
+	</div>
 	<header>
 		<div id="header" class="fixed">
 			<nav class="top-bar" data-topbar data-options="scrolltop:false;back_text:Volver">
@@ -31,15 +37,15 @@
 						</li>
 						{% for key,mod in _MODS %}
 							{% if mod is iterable %}
-								<li class="has-dropdown">
+								<li class="show-for-small-only has-dropdown">
 									<a href="#">{{ key }}</a>
 									<ul class="dropdown">
 										{% for slug,name in mod %}
-											<li class="show-for-small-only"><a href="{{ url('admin/list/' ~ slug) }}">{{ name }}</a></li>
+											<li><a href="{{ url('admin/list/' ~ slug) }}">{{ name }}</a></li>
 										{% endfor %}
 									</ul>
 								</li>
-							{% else %}
+							{% elseif mod %}
 								<li class="show-for-small-only"><a href="{{ url('admin/list/' ~ key) }}">{{ mod }}</a></li>
 							{% endif %}
 						{% endfor %}
@@ -70,7 +76,7 @@
 			<div id="copy">Powered by <a href="http://gruponsnc.com.ar" target="_blank" title="Grupo NSNC">NSNC</a></div>
 		</nav>
 		<div class="small-12 medium-10 columns">
-			<section>{% block section %}{% endblock %}</section>
+			<section id="content">{% block section %}{% endblock %}</section>
 		</div>
 	</div>
 
@@ -78,9 +84,20 @@
 	<script src="{{ asset('js/vendor/fastclick.js') }}"></script>
 	<script src="{{ asset('js/foundation.min.js') }}"></script>
 	<script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+	<script src="{{ asset('js/jquery-ui-1.10.4.custom.min.js') }}"></script>
+	<script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
+	<script src="{{ asset('js/jquery.ui.datepicker-es.js') }}"></script>
 	<script src="{{ asset('js/scripts.backend.js') }}"></script>
 	<script>
 		$(document).foundation();
+		$('.datetimepicker').datetimepicker({
+			dateFormat: 'dd-mm-yy'
+		});
+		$('.sortable').sortable({
+			placeholder: "ui-state-highlight",
+			axis: 'y'
+		});
+		$('.sortable').disableSelection();
 	</script>
 </body>
 </html>

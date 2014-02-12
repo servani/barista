@@ -1,5 +1,26 @@
 {% extends 'base.backend.html.twig' %}
 
 {% block section %}
-	<h1>Post List</h1>
+	{% include 'list.widget.html.twig' with {
+			title: 'Posts',
+			cols: {
+				'id': 'ID',
+				'title': 'Título',
+				'category.name': 'Categoría',
+				'creationDate': 'Creado',
+				'visible': '',
+				'starred': '',
+			},
+			deletekey: 'title',
+			entity: entity,
+			pagenav: q,
+			en: entityName,
+			sort: true
+		}
+	%}
+	{% include 'pagenav.widget.html.twig' with {
+			pagenav: q,
+			en: entityName
+		}
+	%}
 {% endblock %}

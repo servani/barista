@@ -1,6 +1,10 @@
-<label>{{ label }}</label>
-<input data-equalto="{{ equalto|default('') }}" pattern="{{ pattern|default('')}}" class="{{ class|default('')}}" id="{{ id|default('') }}" {{ autocompleteoff ? 'autocomplete="off"' : '' }} {{ required|default('') }} {{ autofocus|default('') }} type="{{ type|default('text') }}" name="{{ entityName }}[{{ name }}]" value="{{ value|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}"
-/>
+{% if label %}
+	<label>{{ label }}</label>
+{% endif %}
+<input data-equalto="{{ equalto|default('') }}" pattern="{{ pattern|default('')}}" class="{{ class|default('')}}" id="{{ id|default('') }}" {{ autocompleteoff ? 'autocomplete="off"' : '' }} {{ required|default('') }} {{ autofocus|default('') }} type="{{ type|default('text') }}" name="{{ entityName }}[{{ name }}]" value="{{ value|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" {{ step ? 'step=' ~ step : '' }} {{ max ? 'max=' ~ max : '' }} {{ min is defined ? 'min=' ~ min : '' }} />
 {% if errormsg or required %}
 	<small class="error">{{ errormsg|default('Campo Requerido') }}</small>
+{% endif %}
+{% if example %}
+	<span class="example">{{ example }}</span>
 {% endif %}

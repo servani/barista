@@ -2,11 +2,11 @@
 
 {% block section %}
 	{% include 'list.widget.html.twig' with {
-			title: 'Tag',
+			title: 'Tags',
 			cols: {
 				'id': 'ID',
 				'name': 'Nombre',
-				'tagtypename': 'Tipo'
+				'tagtype.name': 'Tipo'
 			},
 			deletekey: 'name',
 			entity: entity,
