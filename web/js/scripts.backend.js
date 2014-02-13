@@ -9,6 +9,8 @@ $(function () {
 		var BaristaBackend = function () {
 			this.$content = $('#content');
 			this.$loading = $('#loading');
+			this.entityName = $('#entityName').text();
+			this.availableTags = [];
 		};
 		BaristaBackend.prototype = {
 			init: function () {
@@ -32,26 +34,52 @@ $(function () {
 					self.deleteFile($(this));
 					return false;
 				});
-				// Submit Order
-				this.$content.on('click', '.submit-order', function (e) {
-					e.preventDefault();
-					var en = $(this).data('en');
-					self.saveOrder(en);
-				});
 				// Bind close to new alerts
 				this.$content.on('click', '.alert-box .close', function (e) {
 					e.preventDefault();
 					console.log('explode!');
 					$(this).parent().hide('fade');
 				});
+				// Tags
+				this.$content.find('.autocomplete')
+					.on('keydown', function(event) {
+						self.availableTags = $(this).nextAll('.availabletags').text().split(',');
+						if (event.keyCode === $.ui.keyCode.TAB &&
+							$(this).data("ui-autocomplete").menu.active) {
+							event.preventDefault();
+						}
+					})
+					.autocomplete({
+						minLength: 0,
+						source: function(request, response) {
+							// delegate back to autocomplete, but extract the last term
+							response($.ui.autocomplete.filter(
+							self.availableTags, self.extractLast(request.term)));
+						},
+						focus: function() {
+							// prevent value inserted on focus
+							return false;
+						},
+						select: function(event, ui) {
+							var terms = self.split(this.value);
+							// remove the current input
+							terms.pop();
+							// add the selected item
+							terms.push(ui.item.value);
+							// add placeholder to get the comma-and-space at the end
+							terms.push("");
+							this.value = terms.join(", ");
+							return false;
+						}
+					});
 			},
-			saveOrder: function (en) {
+			saveOrder: function () {
 				var items = [], self = this, msg, alertclass;
 				this.$content.find('.sortable tr').each(function () {
 					items.push($(this).data('id'));
 				});
 				this.openLoading();
-				$.post(this.baseUrl + "/xhr/saveorder", {items: items, en: en}, function (res) {
+				$.post(this.baseUrl + "/xhr/saveorder", {items: items, en: self.entityName}, function (res) {
 					if (res.success) {
 						msg = 'Los cambios fueron guardados exitosamente.';
 						alertclass = 'success';
@@ -66,7 +94,7 @@ $(function () {
 			createAlert: function (classname, msg) {
 				var $box = $('<div></div>');
 				var time = new Date();
-				msg = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + ' / ' + msg;
+				msg = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + ' // ' + msg;
 				$box
 					.attr('data-alert', '')
 					.attr('class', 'alert-box radius ' + classname)
@@ -107,6 +135,12 @@ $(function () {
 						self.$content.find('#' + data.en + data.prop).remove();
 					});
 				}
+			},
+			split: function (val) {
+				return val.split(/,\s*/);
+			},
+			extractLast: function (term) {
+				return this.split(term).pop();
 			}
 		};
 		return new BaristaBackend();
@@ -115,5 +149,6 @@ $(function () {
 	Barista.init = function () {
 		this.Backend.init();
 	};
-	Barista.init();
 });
+
+

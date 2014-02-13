@@ -1,4 +1,6 @@
 $baristacolor1: #FFCB8B;
+$linkcolor: #008cba;
+$linkhovercolor: #0078a0;
 
 textarea { height: auto; }
 .bbcontainer {
@@ -56,12 +58,31 @@ span.example {
 	.row {
 		table {
 			tbody {
-				&.sortable {
-					tr {
-						background-color: #eee;
-						cursor: move;
-						&.ui-sortable-helper {
-							background-color: #ccc;
+				tr {
+					cursor: move;
+					&.ui-sortable-helper {
+						background-color: #ccc;
+					}
+					td {
+						span {
+							display: block;
+							a {
+								font-size: 1em;
+								color: black;
+								&:hover {
+									text-decoration: underline;
+									color: $linkhovercolor;
+								}
+							}
+						}
+						a {
+							font-size: 0.8em;
+							&.del {
+								color: #FF7676;
+								&:hover {
+									color: red;
+								}
+							}
 						}
 					}
 				}

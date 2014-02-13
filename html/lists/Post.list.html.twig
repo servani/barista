@@ -4,12 +4,9 @@
 	{% include 'list.widget.html.twig' with {
 			title: 'Posts',
 			cols: {
-				'id': 'ID',
 				'title': 'Título',
 				'category.name': 'Categoría',
-				'creationDate': 'Creado',
-				'visible': '',
-				'starred': '',
+				'creationDate': 'Creado'
 			},
 			deletekey: 'title',
 			entity: entity,

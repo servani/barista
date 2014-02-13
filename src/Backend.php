@@ -9,7 +9,7 @@ class BackendController extends DefaultController
 	public function listAction($params = null) {
 		try {
 			// Query conditions
-			$results_x_page = 3;
+			$results_x_page = 20;
 			$current_offset = isset($this->get['p']) ? ($this->get['p'] - 1) * $results_x_page : 0;
 			$cm = 'list' . $params['slug'] . 'Action';
 			if (method_exists($this, $cm) && !isset($this->get['o'])) {
@@ -236,12 +236,25 @@ class BackendController extends DefaultController
 	}
 
 	public function newPostAction() {
-		return $this->em
+		$category = $this->em
 			->getRepository('Category')
 			->createQueryBuilder('q')
 			->orderBy('q.name', 'ASC')
 			->getQuery()
-			->getResult(2); // Number 2 is for fetching an array instead of a motherfucker object
+			->getResult(2);
+		$tag = $this->em
+			->getRepository('Tag')
+			->createQueryBuilder('q')
+			->orderBy('q.name', 'ASC')
+			->getQuery()
+			->getResult();
+		$tags = array();
+		foreach ($tag as $t) {
+			$i = $t->getTagType();
+			$i = $i ? $i->getId() : 0;
+			$tags[$i][] = $t->getName();
+		}
+		return array('categories' => $category, 'tags' => $tags);
 	}
 
 	/* Custom Set Methods */
@@ -298,6 +311,56 @@ class BackendController extends DefaultController
 						$entity->$property($v);
 					}
 				}
+			// Maybe I should rewrite the following tag stuff
+			} elseif (strpos($key, 'Tags') !== FALSE) {
+				$values = explode(', ', $value); // in other word: tags
+				// Capitalize All!
+				$values = array_map('ucwords', $values);
+				// Global tags or type tags?
+				$type = explode('-', $property);
+				$type = isset($type[1]) ? $type[1] : false;
+				$tag = $entity->getTag();
+				echo '1 <br />';
+				foreach ($tag as $t) {
+					echo '2 <br />';
+					die();
+					// This is a motherfucker IF statement
+					// And I wont explain it
+					// (Yes, I'm sure I will regret)
+					if (($type && @$t->getTagType()->getId() === $type) ||
+							$type === false && !$t->getTagType() &&
+								!in_array($t->getName(), $values)) {
+						$entity->removeTag($t);
+						echo '5 <br />';
+					}
+					// Remove from $values the existing relationships
+					if (in_array($t->getName(), $values)) {
+						$rk = array_keys($values, $t->getName());
+						unset($values[$rk]);
+						echo '6 <br />';
+					}
+					// (insert and) create relations
+					foreach ($values as $v) {
+						echo '3 <br />';
+						die();
+						$tag = $this->em->getRepository('Tag')->findByName($v);
+						if (!$tag) {
+							echo '7 <br />';
+							// If not exist, create the tag
+							$ntag = new Tag;
+							$ntag->setName($v);
+							if ($type) {
+								echo '8 <br />';
+								$tagtype = $this->em->getRepository('TagType')->find($type);
+								$ntag->setType($tagtype);
+							}
+							$this->em->persist($ntag);
+							$tag = $ntag;
+						}
+						$entity->addTag($tag);
+					}
+				}
+				echo '4 <br />'; die();
 			} else {
 				$property = 'set' . $key;
 				if (strpos($property, 'setId') !== FALSE) {
@@ -308,7 +371,8 @@ class BackendController extends DefaultController
 					if (!method_exists($entity, $property)) {
 						$property = str_replace('setId', 'set', $property);
 					}
-				} else if (strpos($property, 'setCreationDate') !== FALSE || strpos($property, 'setPublicDate') !== FALSE) {
+				} else if (strpos($property, 'setCreationDate') !== FALSE ||
+							strpos($property, 'setPublicDate') !== FALSE) {
 					try {
 						$value = new DateTime($value);
 					} catch(Exception $e) {

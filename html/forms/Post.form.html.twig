@@ -69,9 +69,35 @@
 				<div class="large-6 large-pull-4 small-7 columns">
 					{% include 'form.select.widget.html.twig' with {
 							label: 'Categoría',
-							options: data, selected: entity.category.id,
+							options: data.categories, selected: entity.category.id,
 							optionname: 'name',
 							value: entity.category, name: 'IdCategory'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-10 small-12 columns">
+					{% include 'form.tags.widget.html.twig' with {
+							label: 'Tags (sin tipo)',
+							value: entity.tag, name: 'Tags',
+							placeholder: 'John Paul, Robert, Jimmy, John',
+							tags: data.tags[0],
+							example: 'Separados por una coma seguida de un espacio'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-10 small-12 columns">
+					{% include 'form.tags.widget.html.twig' with {
+							label: 'Colores (tags con tipo)',
+							value: entity.tag, name: 'Tags-4',
+							placeholder: 'Azul, Verde, Blanco, Negro',
+							tagtype: 4, tags: data.tags[4],
+							example: 'Separados por una coma seguida de un espacio'
 						}
 					%}
 				</div>

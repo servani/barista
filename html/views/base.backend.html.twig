@@ -90,14 +90,20 @@
 	<script src="{{ asset('js/scripts.backend.js') }}"></script>
 	<script>
 		$(document).foundation();
-		$('.datetimepicker').datetimepicker({
-			dateFormat: 'dd-mm-yy'
+		$(function () {
+			Barista.init();
+			$('.datetimepicker').datetimepicker({
+				dateFormat: 'dd-mm-yy'
+			});
+			$('.sortable').sortable({
+				placeholder: "ui-state-highlight",
+				axis: 'y',
+				stop: function (event, ui) {
+					Barista.Backend.saveOrder();
+				}
+			});
+			$('.sortable').disableSelection();
 		});
-		$('.sortable').sortable({
-			placeholder: "ui-state-highlight",
-			axis: 'y'
-		});
-		$('.sortable').disableSelection();
 	</script>
 </body>
 </html>

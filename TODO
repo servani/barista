@@ -17,24 +17,13 @@
 	- Más de una imagen con pie y orden
 	- Links con target y title
 	- Documentos adjuntos (más de uno)
-	- Video (youtube o vimeo)
-	- Fecha (datepicker)
-	- Categoría única asociada (1:n)
 	- Tags multiple (n:n)
-	- Alguna relación (1:1)
 	- Custom fields (estilo wp)
-	- Orden (prioridad)
-	- Precio (float)
-	- Visible/Ocutlo
-	- Destacado
 	- Slug
 	- Input simple
 	- Select simple
-	- Checkbox simple
-	- Textarea
-	- Textarea bbcode
-	- Google Map
 	+ Retomar punto anterior a la par (estilos)
+	- acciones masivas
 
 * handle expection errors with a nice function
 
