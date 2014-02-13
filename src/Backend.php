@@ -320,10 +320,7 @@ class BackendController extends DefaultController
 				$type = explode('-', $property);
 				$type = isset($type[1]) ? $type[1] : false;
 				$tag = $entity->getTag();
-				echo '1 <br />';
 				foreach ($tag as $t) {
-					echo '2 <br />';
-					die();
 					// This is a motherfucker IF statement
 					// And I wont explain it
 					// (Yes, I'm sure I will regret)
@@ -331,36 +328,30 @@ class BackendController extends DefaultController
 							$type === false && !$t->getTagType() &&
 								!in_array($t->getName(), $values)) {
 						$entity->removeTag($t);
-						echo '5 <br />';
 					}
 					// Remove from $values the existing relationships
 					if (in_array($t->getName(), $values)) {
 						$rk = array_keys($values, $t->getName());
 						unset($values[$rk]);
-						echo '6 <br />';
-					}
-					// (insert and) create relations
-					foreach ($values as $v) {
-						echo '3 <br />';
-						die();
-						$tag = $this->em->getRepository('Tag')->findByName($v);
-						if (!$tag) {
-							echo '7 <br />';
-							// If not exist, create the tag
-							$ntag = new Tag;
-							$ntag->setName($v);
-							if ($type) {
-								echo '8 <br />';
-								$tagtype = $this->em->getRepository('TagType')->find($type);
-								$ntag->setType($tagtype);
-							}
-							$this->em->persist($ntag);
-							$tag = $ntag;
-						}
-						$entity->addTag($tag);
 					}
 				}
-				echo '4 <br />'; die();
+				// (insert and) create relations
+				foreach ($values as $v) {
+					if (!$v) { continue; }
+					$tag = $this->em->getRepository('Tag')->findOneByName($v);
+					if (!$tag) {
+						// If not exist, create the tag
+						$ntag = new Tag;
+						$ntag->setName($v);
+						if ($type) {
+							$tagtype = $this->em->getRepository('TagType')->find($type);
+							$ntag->setType($tagtype);
+						}
+						$this->em->persist($ntag);
+						$tag = $ntag;
+					}
+					$entity->addTag($tag);
+				}
 			} else {
 				$property = 'set' . $key;
 				if (strpos($property, 'setId') !== FALSE) {
