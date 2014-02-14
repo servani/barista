@@ -1,3 +1,5 @@
+-- Log 2.0 --
+
 * SASS
 * Foundation
 
@@ -5,27 +7,18 @@
 
 * Meterle fuerza al backend
 	- Estilos
-	- Paginación
 	- Buscador
-	- Ordenar
-	- Drag & Drop
 	. Ver N por página
 	+ Etc
 
 * Módulos de posts, tags y categorías por defecto
 	- Imágen destacada (crop y thumb)
 	- Más de una imagen con pie y orden
-	- Links con target y title
 	- Documentos adjuntos (más de uno)
-	- Tags multiple (n:n)
-	- Custom fields (estilo wp)
-	- Slug
-	- Input simple
-	- Select simple
 	+ Retomar punto anterior a la par (estilos)
 	- acciones masivas
 
-* handle expection errors with a nice function
+* handle exception errors with a nice function
 
 * Meterle fuerza al frontend
 * Remover LESS
@@ -45,3 +38,5 @@
 * Dummy post preloaded
 * script autocreate db
 * User fields must be not null
+
+-- Log 2.1 --

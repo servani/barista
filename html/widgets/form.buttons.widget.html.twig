@@ -1,4 +1,4 @@
 <input type="submit" class="button radius submit" value="{% if edit %}Guardar{% else %}Crear{% endif %}" />
 {% if edit %}
-	<a onclick="if(confirm('Borrar {{ deletevalue }}?')) return true; else return false;" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ entity.id ) }}" title="Borrar" class="button alert radius delete">Borrar</a>
+	<a data-value="{{ deletevalue }}" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ entity.id ) }}" title="Borrar" class="button alert radius delete delen">Borrar</a>
 {% endif %}

@@ -9,7 +9,9 @@ $(function () {
 		var BaristaBackend = function () {
 			this.$content = $('#content');
 			this.$loading = $('#loading');
+			this.$confirm = $('#confirm');
 			this.entityName = $('#entityName').text();
+			this.confirmCallback = function () {};
 			this.availableTags = [];
 		};
 		BaristaBackend.prototype = {
@@ -39,6 +41,52 @@ $(function () {
 					e.preventDefault();
 					console.log('explode!');
 					$(this).parent().hide('fade');
+				});
+				// Confirm modal
+				this.$confirm.on('click', 'a', function (e) {
+					e.preventDefault();
+					self.closeConfirm();
+					if ($(this).hasClass('true')) {
+						if (typeof self.confirmCallback === 'function') {
+							self.confirmCallback.call();
+							self.confirmCallback = null;
+						}
+						return true;
+					}
+					return false;
+				});
+				// Delete entity
+				this.$content.on('click', '.delen', function (e) {
+					e.preventDefault();
+					var $btn = $(this);
+					self.openConfirm('Desea borrar ' + $btn.data('value') + '?');
+					self.confirmCallback = function () {
+						window.location = $btn.attr('href');
+					};
+				}),
+				// Remove CF
+				this.$content.on('click', '.rmcf', function (e) {
+					e.preventDefault();
+					self.openConfirm('Desea borrar el campo personalizado?');
+					var $btn = $(this);
+					self.confirmCallback = function () {
+						$btn.parents('.cf').remove();
+					};
+				});
+				// add CF
+				this.$content.on('click', '.addcf', function (e) {
+					e.preventDefault();
+					var i = $(this).data('index'),
+						j = i + 1;
+					$(this).data('index', j);
+					var $ncf = $(this).prev('.cf').clone();
+					$ncf.find('input').each(function() {
+						if ($(this).attr('type') !== 'hidden') {
+							$(this).val(null);
+						}
+						$(this).attr('name', $(this).attr('name').replace(i, j));
+					});
+					$(this).before($ncf);
 				});
 				// Tags
 				this.$content.find('.autocomplete')
@@ -101,6 +149,13 @@ $(function () {
 					.html(msg + '<a href="#" class="close">&times;</a>');
 				this.$content.prepend($box);
 			},
+			openConfirm: function (msg) {
+				this.$confirm.find('p').text(msg);
+				this.$confirm.foundation('reveal', 'open');
+			},
+			closeConfirm: function () {
+				this.$confirm.foundation('reveal', 'close');
+			},
 			openLoading: function () {
 				this.$loading.foundation('reveal', 'open');
 			},
@@ -112,20 +167,25 @@ $(function () {
 				this.baseUrl = 'http://' + url + '/admin';
 			},
 			toogleEntityState: function ($elem) {
+				/*
 				var id = $elem.data('id'),
 					en = $elem.data('en');
 				// Toogle state
 				$elem.toggleClass('hidden');
 				$.post(this.baseUrl + "/xhr/togglestate", {id: id, en: en});
+				*/
 			},
 			toogleEntityStarred: function ($elem) {
+				/*
 				var id = $elem.data('id'),
 					en = $elem.data('en');
 				// Toogle state
 				$elem.toggleClass('starred');
 				$.post(this.baseUrl + "/xhr/togglestarred", {id: id, en: en});
+				*/
 			},
 			deleteFile: function ($elem) {
+				/*
 				var self = this,
 					data = $elem.data();
 				var $msg = $elem.parent();
@@ -135,6 +195,7 @@ $(function () {
 						self.$content.find('#' + data.en + data.prop).remove();
 					});
 				}
+				*/
 			},
 			split: function (val) {
 				return val.split(/,\s*/);

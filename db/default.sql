@@ -35,14 +35,14 @@ CREATE  TABLE IF NOT EXISTS `barista`.`tag` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) NOT NULL ,
   `slug` VARCHAR(100) NULL ,
-  `tag_type_id` INT NOT NULL ,
+  `tag_type_id` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_tag_tag_type` (`tag_type_id` ASC) ,
   CONSTRAINT `fk_tag_tag_type`
     FOREIGN KEY (`tag_type_id` )
     REFERENCES `barista`.`tag_type` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
 ENGINE = InnoDB;
 
 
@@ -112,8 +112,8 @@ CREATE  TABLE IF NOT EXISTS `barista`.`image` (
   CONSTRAINT `fk_image_post`
     FOREIGN KEY (`post_id` )
     REFERENCES `barista`.`post` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -136,20 +136,20 @@ CREATE  TABLE IF NOT EXISTS `barista`.`custom_field` (
   `title` VARCHAR(200) NULL ,
   `attributes` VARCHAR(100) NULL ,
   `post_id` INT NOT NULL ,
-  `cf_type_id` INT NOT NULL ,
+  `cf_type_id` INT NULL ,
   PRIMARY KEY (`id`, `post_id`) ,
   INDEX `fk_custom_field_post` (`post_id` ASC) ,
   INDEX `fk_custom_field_cf_type` (`cf_type_id` ASC) ,
   CONSTRAINT `fk_custom_field_post`
     FOREIGN KEY (`post_id` )
     REFERENCES `barista`.`post` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_custom_field_cf_type`
     FOREIGN KEY (`cf_type_id` )
     REFERENCES `barista`.`cf_type` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
 ENGINE = InnoDB;
 
 
@@ -167,8 +167,8 @@ CREATE  TABLE IF NOT EXISTS `barista`.`file` (
   CONSTRAINT `fk_file_post`
     FOREIGN KEY (`post_id` )
     REFERENCES `barista`.`post` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

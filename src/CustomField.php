@@ -39,24 +39,10 @@ class CustomField
      */
     private $cfType;
 
-
-    /**
-     * Set id
-     *
-     * @param integer $id
-     * @return CustomField
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,7 +65,7 @@ class CustomField
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -102,7 +88,7 @@ class CustomField
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -125,7 +111,7 @@ class CustomField
     /**
      * Get attributes
      *
-     * @return string 
+     * @return string
      */
     public function getAttributes()
     {
@@ -148,7 +134,7 @@ class CustomField
     /**
      * Get post
      *
-     * @return \Post 
+     * @return \Post
      */
     public function getPost()
     {
@@ -171,7 +157,7 @@ class CustomField
     /**
      * Get cfType
      *
-     * @return \CfType 
+     * @return \CfType
      */
     public function getCfType()
     {

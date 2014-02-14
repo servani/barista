@@ -31,7 +31,7 @@
 								{% if loop.first %}
 									<span><a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="edit" title="{{ e|get(k) }}">{{ e|get(k) }}</a></span>
 									<a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="edit" title="Editar">Editar</a>
-									<a onclick="if(confirm('Borrar {{ e[deletekey] }}?')) return true; else return false;" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="del">Borrar</a>
+									<a data-value="{{ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="del delen">Borrar</a>
 								{% else %}
 									<span>{{ e|get(k) }}</span>
 								{% endif %}

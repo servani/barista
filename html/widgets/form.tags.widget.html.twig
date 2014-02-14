@@ -1,12 +1,12 @@
 {% set pvalue = [] %}
 {% if value %}
 	{% for v in value %}
-		{% if (tagtype and v.tagtype == tagtype) or
+		{% if (tagtype and v.tagtype.id == tagtype) or
 			 not (tagtype or v.tagtype) %}
-			{% set pvalue = pvalue + [v.name] %}
+			{% set pvalue = pvalue|merge([v.name]) %}
 		{% endif %}
 	{% endfor %}
-	{% set value = pvalue|join(', ') %}
+	{% set value = pvalue|sort|join(', ') %}
 {% endif %}
 {% if label %}
 	<label>{{ label }}</label>

@@ -9,7 +9,7 @@ class BackendController extends DefaultController
 	public function listAction($params = null) {
 		try {
 			// Query conditions
-			$results_x_page = 20;
+			$results_x_page = 10;
 			$current_offset = isset($this->get['p']) ? ($this->get['p'] - 1) * $results_x_page : 0;
 			$cm = 'list' . $params['slug'] . 'Action';
 			if (method_exists($this, $cm) && !isset($this->get['o'])) {
@@ -63,13 +63,13 @@ class BackendController extends DefaultController
 	public function editAction($params = null) {
 		$cm = 'new' . $params['slug'] . 'Action';
 		$data = false;
-		if (method_exists($this, $cm)) {
-			$data = $this->$cm();
-		}
 		try {
 			$entity = $this->em->getRepository($params['slug'])->find($params['id']);
 		} catch (Exception $e) {
 			echo "Entity or Entry not found \n"; die();
+		}
+		if (method_exists($this, $cm)) {
+			$data = $this->$cm($entity->getId());
 		}
 		$this->render($params['slug'] . ".form.html.twig", array(
 			'entity' => $entity,
@@ -226,7 +226,7 @@ class BackendController extends DefaultController
 
 	/* Custom New Methods */
 
-	public function newTagAction() {
+	public function newTagAction($id = null) {
 		return $this->em
 			->getRepository('TagType')
 			->createQueryBuilder('q')
@@ -235,13 +235,15 @@ class BackendController extends DefaultController
 			->getResult(2); // Number 2 is for fetching an array instead of a motherfucker object
 	}
 
-	public function newPostAction() {
+	public function newPostAction($id = null) {
+		// Categories
 		$category = $this->em
 			->getRepository('Category')
 			->createQueryBuilder('q')
 			->orderBy('q.name', 'ASC')
 			->getQuery()
 			->getResult(2);
+		// Tags
 		$tag = $this->em
 			->getRepository('Tag')
 			->createQueryBuilder('q')
@@ -254,7 +256,45 @@ class BackendController extends DefaultController
 			$i = $i ? $i->getId() : 0;
 			$tags[$i][] = $t->getName();
 		}
-		return array('categories' => $category, 'tags' => $tags);
+		// Custom Fields
+		$cf = array();
+		if ($id) {
+			$cf = $this->em
+				->getRepository('CustomField')
+				->createQueryBuilder('q')
+				->join('q.post', 'p')
+				->where('p.id = :id')
+				->setParameter('id', $id)
+				->orderBy('q.id', 'ASC')
+				->getQuery()
+				->getResult();
+		}
+		foreach ($cf as $c) {
+			$type = $c->getCfType() ? $c->getCfType()->getId() : 0;
+			$ccf[$type][] = $c;
+		}
+		// Custom Fields Types
+		$cftype = $this->em
+			->getRepository('CfType')
+			->createQueryBuilder('q')
+			->orderBy('q.name', 'ASC')
+			->getQuery()
+			->getResult(2);
+		$cftype[] = array('id' => 0);
+		// Always add an extra field for each type
+		foreach ($cftype as $c) {
+			$ccf[$c['id']][] = array(
+				'title' => '',
+				'value' => '',
+				'attribute' => ''
+			);
+		}
+		return array(
+			'categories' => $category,
+			'tags' => $tags,
+			'cf' => $ccf,
+			'cftype' => $cftype
+		);
 	}
 
 	/* Custom Set Methods */
@@ -297,18 +337,43 @@ class BackendController extends DefaultController
 
 	public function setFromPost($post, $entity) {
 		foreach ($post as $key => $value) {
-			if (is_array($value)) {
-				$property = 'get' . $key;
-				$e = $entity->$property();
-				$property = 'remove' . $key;
-				foreach ($e as $t) {
-					$entity->$property($t);
+			// Custom fucking fields
+			if (strpos($key, 'CustomField') !== FALSE) {
+				// Delete all entity cfs if edit
+				if ($entity->getId()) {
+					$cf = $this->em
+						->getRepository('CustomField')
+						->createQueryBuilder('q')
+						->where('q.post = :id')
+						->setParameter('id', $entity->getId())
+						->getQuery()
+						->getResult();
+					foreach ($cf as $c) {
+						$this->em->remove($c);
+					}
 				}
+				// Process all the custom fields at once
 				foreach ($value as $v) {
-					if (class_exists($key)) {
-						$v = $this->em->getRepository($key)->find($v);
-						$property = 'add' . $key;
-						$entity->$property($v);
+					// If isset title and value (attr is optional)
+					if ($v['Title'] && $v['Value']) {
+						$cf = new CustomField;
+						$cf->setTitle($v['Title']);
+						$cf->setValue($v['Value']);
+						$cf->setAttributes($v['Attr']);
+						if (@$v['Type']) {
+							$t = $this->em->getRepository('CfType')->find($v['Type']);
+							if ($t) {
+								$cf->setCfType($t);
+							}
+						}
+						$cf->setPost($entity);
+						$this->em->persist($cf);
+					}
+				}
+				// Delete CustoField[Type] from $post
+				foreach ($post as $key => $value) {
+					if (strpos($key, 'CustomField') !== FALSE) {
+						unset($post[$key]);
 					}
 				}
 			// Maybe I should rewrite the following tag stuff
@@ -316,36 +381,56 @@ class BackendController extends DefaultController
 				$values = explode(', ', $value); // in other word: tags
 				// Capitalize All!
 				$values = array_map('ucwords', $values);
+				// Delete duplicated
+				$values = array_unique($values);
 				// Global tags or type tags?
-				$type = explode('-', $property);
-				$type = isset($type[1]) ? $type[1] : false;
+				$type = explode('-', $key);
+				$type = isset($type[1]) ? intval($type[1]) : false;
 				$tag = $entity->getTag();
 				foreach ($tag as $t) {
 					// This is a motherfucker IF statement
 					// And I wont explain it
 					// (Yes, I'm sure I will regret)
-					if (($type && @$t->getTagType()->getId() === $type) ||
-							$type === false && !$t->getTagType() &&
-								!in_array($t->getName(), $values)) {
-						$entity->removeTag($t);
-					}
-					// Remove from $values the existing relationships
-					if (in_array($t->getName(), $values)) {
-						$rk = array_keys($values, $t->getName());
-						unset($values[$rk]);
+					// Update (2 h after): I regret
+					// Update (2 h after I regret): FUCK
+					if (($type && $t->getTagType() && $t->getTagType()->getId() === $type) ||
+							($type === false && !$t->getTagType())) {
+						if (!in_array($t->getName(), $values)) {
+							$entity->removeTag($t);
+						}
+						// Remove from $values the existing relationships
+						if (($rk = array_search($t->getName(), $values)) !== false) {
+							unset($values[$rk]);
+						}
 					}
 				}
 				// (insert and) create relations
 				foreach ($values as $v) {
 					if (!$v) { continue; }
-					$tag = $this->em->getRepository('Tag')->findOneByName($v);
+					$tag = $this->em
+						->getRepository('Tag')
+						->createQueryBuilder('q')
+						->join('q.tagType', 'tt')
+						->setMaxresults(1)
+						->where('q.name = :name')
+						->setParameter('name', $v);
+					if ($type) {
+						$tag = $tag->andWhere('tt.id = :type')
+							->setParameter('type', $type);
+					} else {
+						$tag = $tag->andWhere('tt.id is NULL');
+					}
+					$tag = $tag
+						->getQuery()
+						->getOneOrNullResult();
 					if (!$tag) {
 						// If not exist, create the tag
 						$ntag = new Tag;
 						$ntag->setName($v);
+						$ntag = $this->setTagAction($ntag);
 						if ($type) {
 							$tagtype = $this->em->getRepository('TagType')->find($type);
-							$ntag->setType($tagtype);
+							$ntag->setTagType($tagtype);
 						}
 						$this->em->persist($ntag);
 						$tag = $ntag;

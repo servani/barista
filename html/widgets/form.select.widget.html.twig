@@ -1,4 +1,6 @@
-<label>Categoría</label>
+{% if label %}
+	<label>{{ label }}</label>
+{% endif %}
 <select {{ required|default('') }} class="{{ class|default('')}}" id="{{ id|default('') }}" name="{{ entityName }}[{{ name }}]">
 	<option value="" {{ edit and selected ? '' : 'selected'}} disabled>Seleccionar</option>
 	{% for o in options %}

@@ -30,7 +30,7 @@
 							pattern: 'number',
 							errormsg: 'Valor inválido',
 							min: 0, max: 5, step: 0.5,
-							example: 'Entre 1 y 5'
+							example: 'Entre 0 y 5'
 						}
 					%}
 				</div>
@@ -150,8 +150,89 @@
 					%}
 				</div>
 			</div>
-			<!-- flags  (visible, starred) -->
-			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.name } %}
+			<!-- # -->
+			<fieldset>
+				<legend>Campos Personalizados (sin tipo)</legend>
+				{% for cf in data.cf[0] %}
+					<div class="cf row">
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-2 medium-1 columns">
+									<a href="#" class="button alert postfix rmcf">&times;</a>
+								</div>
+								<div class="small-10 medium-11 columns">
+									{% include 'form.cf.widget.html.twig' with {
+											placeholder: 'Título', name: 'Title',
+											value: cf.title, index: loop.index
+										}
+									%}
+								</div>
+							</div>
+						</div>
+						<div class="small-4 columns">
+							{% include 'form.cf.widget.html.twig' with {
+									placeholder: 'Valor', name: 'Value',
+									value: cf.value, index: loop.index
+								}
+							%}
+						</div>
+						<div class="small-4 columns">
+							{% include 'form.cf.widget.html.twig' with {
+									placeholder: 'Atributos', name: 'Attr',
+									value: cf.attribute, index: loop.index
+								}
+							%}
+						</div>
+					</div>
+				{% endfor %}
+				<a href="#" class="addcf button radius tiny" data-index="{{ data.cf[0]|length }}">Agregar</a>
+			</fieldset>
+			<!-- # -->
+			<fieldset>
+				<legend>Links (campos personalizados con tipo)</legend>
+				{% for cf in data.cf[1] %}
+					<div class="cf row">
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-2 medium-1 columns">
+									<a href="#" class="button alert postfix rmcf">&times;</a>
+								</div>
+								<div class="small-10 medium-11 columns">
+									{% include 'form.cf.widget.html.twig' with {
+											placeholder: 'Título', name: 'Title',
+											value: cf.title, index: loop.index, type: 'Link'
+										}
+									%}
+								</div>
+							</div>
+						</div>
+						<div class="small-5 columns">
+							<div class="row collapse">
+								<div class="small-3 large-2 columns">
+									<span class="prefix">http://</span>
+								</div>
+								<div class="small-9 large-10 columns">
+									{% include 'form.cf.widget.html.twig' with {
+											placeholder: 'Url', name: 'Value',
+											value: cf.value, index: loop.index, type: 'Link'
+										}
+									%}
+								</div>
+							</div>
+						</div>
+						<div class="small-3 columns">
+							{% include 'form.cf.widget.html.twig' with {
+									placeholder: 'Target', name: 'Attr',
+									value: cf.attribute, index: loop.index, type: 'Link'
+								}
+							%}
+						</div>
+						<input type="hidden" name="{{ entityName }}[CustomFieldLink][{{ loop.index }}][Type]" value="1">
+					</div>
+				{% endfor %}
+				<a href="#" class="addcf button radius tiny" data-index="{{ data.cf[1]|length }}">Agregar</a>
+			</fieldset>
+			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.title } %}
 		</form>
 	</div>
 {% endblock %}

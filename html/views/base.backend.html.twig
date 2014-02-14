@@ -12,11 +12,6 @@
 	<script src="{{ asset('js/vendor/modernizr.js') }}"></script>
 </head>
 <body>
-	<div id="modals">
-		<div id="loading" class="reveal-modal tiny" data-reveal data-options="close_on_background_click:false;animation:none">
-			<p>Cargando...</p>
-		</div>
-	</div>
 	<header>
 		<div id="header" class="fixed">
 			<nav class="top-bar" data-topbar data-options="scrolltop:false;back_text:Volver">
@@ -80,6 +75,17 @@
 		</div>
 	</div>
 
+	<div id="modals">
+		<div id="loading" class="reveal-modal tiny text-center" data-reveal data-options="close_on_background_click:false">
+			<p>Cargando...</p>
+		</div>
+		<div id="confirm" class="reveal-modal small text-center" data-reveal data-options="close_on_background_click:false">
+			<p>Estás seguro wachin?</p>
+			<a href="#" class="false button secondary radius">Cancelar</a>
+			<a href="#" class="true button alert radius">Confirmar</a>
+		</div>
+	</div>
+
 	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
 	<script src="{{ asset('js/vendor/fastclick.js') }}"></script>
 	<script src="{{ asset('js/foundation.min.js') }}"></script>
@@ -98,7 +104,7 @@
 			$('.sortable').sortable({
 				placeholder: "ui-state-highlight",
 				axis: 'y',
-				stop: function (event, ui) {
+				update: function (event, ui) {
 					Barista.Backend.saveOrder();
 				}
 			});
