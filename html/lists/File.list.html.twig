@@ -1,0 +1,24 @@
+{% extends 'base.backend.html.twig' %}
+
+{% block section %}
+	{% include 'list.widget.html.twig' with {
+			title: 'Documentos',
+			cols: {
+				'src': 'Nombre de archivo',
+				'title': 'Título',
+				'post.title': 'Post'
+			},
+			deletekey: 'src',
+			entity: entity,
+			pagenav: q,
+			en: entityName,
+			sort: true,
+			nocreate: true
+		}
+	%}
+	{% include 'pagenav.widget.html.twig' with {
+			pagenav: q,
+			en: entityName
+		}
+	%}
+{% endblock %}

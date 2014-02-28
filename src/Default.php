@@ -41,6 +41,8 @@ class DefaultController
 			'' => '',
 			'Blog' => array(
 				'Post' => 'Posts',
+				'Image' => 'Imágenes',
+				'File' => 'Documentos',
 				'Category' => 'Categorías',
 				'Tag' => 'Tags',
 				'TagType' => 'Tipos de Tag',

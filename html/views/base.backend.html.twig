@@ -80,9 +80,9 @@
 			<p>Cargando...</p>
 		</div>
 		<div id="confirm" class="reveal-modal small text-center" data-reveal data-options="close_on_background_click:false">
-			<p>Estás seguro wachin?</p>
-			<a href="#" class="false button secondary radius">Cancelar</a>
-			<a href="#" class="true button alert radius">Confirmar</a>
+			<p>Está seguro que desea continuar?</p>
+			<a href="#" class="false button secondary radius">No</a>
+			<a href="#" class="true button alert radius">Si</a>
 		</div>
 	</div>
 
@@ -94,6 +94,8 @@
 	<script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
 	<script src="{{ asset('js/jquery.ui.datepicker-es.js') }}"></script>
 	<script src="{{ asset('js/scripts.backend.js') }}"></script>
+	<script src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
+	<script src="{{ asset('js/jquery.fileupload.js') }}"></script>
 	<script>
 		$(document).foundation();
 		$(function () {

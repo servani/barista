@@ -13,6 +13,7 @@ $(function () {
 			this.entityName = $('#entityName').text();
 			this.confirmCallback = function () {};
 			this.availableTags = [];
+			this.FUV = {};
 		};
 		BaristaBackend.prototype = {
 			init: function () {
@@ -39,7 +40,6 @@ $(function () {
 				// Bind close to new alerts
 				this.$content.on('click', '.alert-box .close', function (e) {
 					e.preventDefault();
-					console.log('explode!');
 					$(this).parent().hide('fade');
 				});
 				// Confirm modal
@@ -120,6 +120,134 @@ $(function () {
 							return false;
 						}
 					});
+				// Fileupload Single
+				this.$content.find('.fileupload.single').fileupload({
+					url: self.baseUrl + '/xhr/upload',
+					dataType: 'json',
+					add: function (e, data) {
+						self.setFileUploadVars($(e.target));
+						data.submit();
+					},
+					submit: function (e, data) {
+						data.formData = {filetype: $(e.target).hasClass('image') ? 'image' : 'file' };
+					},
+					done: function (e, data) {
+						var msg, classname;
+						if (data.result.success) {
+							var file = data.result.files[0];
+							self.FUV.upcontainer.html('');
+							self.appendFile(file);
+							self.FUV.button.text('Reemplazar');
+							self.FUV.button.addClass('secondary');
+							self.FUV.hidden.val(file);
+							msg = 'Se subio el archivo ' + file + ' correctamente';
+							classname = 'success';
+						} else {
+							msg = 'Error en la carga del archivo';
+							classname = 'alert';
+						}
+						self.createAlert(classname, msg, self.FUV.alertcontainer);
+					},
+					fail: function (e, data) {
+						var msg = 'Error en la carga del archivo';
+						self.createAlert('alert', msg, self.FUV.alertcontainer);
+					},
+					always: function (e, data) {
+						console.log(data.result);
+						self.FUV.progressbar.css('display', 'none');
+					},
+					progress: function (e, data) {
+						var progress = parseInt(data.loaded / data.total * 100, 10);
+						self.FUV.progressbar.css({
+								'width': progress + '%',
+								'display': 'block'
+							}
+						);
+					}
+				});
+				// Fileupload Multi
+				this.$content.find('.fileupload.multiple').fileupload({
+					url: self.baseUrl + '/xhr/upload',
+					dataType: 'json',
+					add: function (e, data) {
+						self.setFileUploadVars($(e.target));
+						data.submit();
+					},
+					submit: function (e, data) {
+						data.formData = {filetype: $(e.target).hasClass('image') ? 'image' : 'file' };
+					},
+					done: function (e, data) {
+						var msg, classname;
+						if (data.result.success) {
+							var file = data.result.files[0];
+							self.appendFile(file);
+							var files = self.FUV.hidden.val().split(', ');
+							files.push(file);
+							self.FUV.hidden.val(files.join(', '));
+							msg = 'Se subio el archivo ' + file + ' correctamente';
+							classname = 'success';
+						} else {
+							msg = 'Error en la carga del archivo';
+							classname = 'alert';
+						}
+						self.createAlert(classname, msg, self.FUV.alertcontainer);
+					},
+					fail: function (e, data) {
+						var msg = 'Error en la carga del archivo';
+						self.createAlert('alert', msg, self.FUV.alertcontainer);
+					},
+					always: function (e, data) {
+						console.log(data.result);
+						self.FUV.progressbar.css('display', 'none');
+					},
+					progress: function (e, data) {
+						var progress = parseInt(data.loaded / data.total * 100, 10);
+						self.FUV.progressbar.css({
+								'width': progress + '%',
+								'display': 'block'
+							}
+						);
+					}
+				});
+				// Remove Fileuploaded
+				this.$content.find('.upload-container').on('click', '.remove', function () {
+					var multiple = $(this).parents('.upload-container').hasClass('multiple');
+					var file = $(this).prevAll('a').text();
+					if (!self.FUV.input) {
+						self.setFileUploadVars($(this));
+					}
+					self.deleteFile(file);
+					if (multiple) {
+						var files = self.FUV.hidden.val().split(', ');
+						var index = $.inArray(file, files);
+						if (index !== -1) {
+							files.splice(index, 1);
+						}
+						self.FUV.hidden.val(files.join(', '));
+					} else {
+						self.FUV.button.removeClass('secondary').text('Agregar +');
+						self.FUV.hidden.val('');
+					}
+					$(this).parent().remove();
+				});
+			},
+			appendFile: function (file) {
+				this.FUV.upcontainer.append('<div class="radius label upload"><a href="http://' + document.domain + '/content/' + file + '" target="_blank" title="' + file + '">' + file + '</a><span class="remove">&times;</span></div>');
+			},
+			setFileUploadVars: function ($target) {
+				var $btnc = $target.parents('.file-upload-module').find('.btn-container');
+				if (!$target.hasClass('fileupload')) {
+					$target = $btnc.find('.fileupload');
+				}
+				this.FUV = {
+					input: $target,
+					hidden: $target.nextAll('input'),
+					button: $target.prevAll('.button'),
+					btncontainer: $btnc,
+					progressbar: $btnc.nextAll('.progressbar-container').find('.bar'),
+					upcontainer: $btnc.nextAll('.upload-container'),
+					alertcontainer: $btnc.nextAll('.alerts')
+				}
 			},
 			saveOrder: function () {
 				var items = [], self = this, msg, alertclass;
@@ -139,7 +267,7 @@ $(function () {
 					self.createAlert(alertclass, msg);
 				}, 'json');
 			},
-			createAlert: function (classname, msg) {
+			createAlert: function (classname, msg, $context) {
 				var $box = $('<div></div>');
 				var time = new Date();
 				msg = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + ' // ' + msg;
@@ -147,7 +275,11 @@ $(function () {
 					.attr('data-alert', '')
 					.attr('class', 'alert-box radius ' + classname)
 					.html(msg + '<a href="#" class="close">&times;</a>');
-				this.$content.prepend($box);
+				if ($context) {
+					$context.prepend($box);
+				} else {
+					this.$content.prepend($box);
+				}
 			},
 			openConfirm: function (msg) {
 				this.$confirm.find('p').text(msg);
@@ -160,7 +292,10 @@ $(function () {
 				this.$loading.foundation('reveal', 'open');
 			},
 			closeLoading: function () {
-				this.$loading.foundation('reveal', 'close');
+				var self = this;
+				setTimeout(function () {
+					self.$loading.foundation('reveal', 'close');
+				}, 200);
 			},
 			setBaseUrl: function () {
 				var url = document.domain;
@@ -184,18 +319,8 @@ $(function () {
 				$.post(this.baseUrl + "/xhr/togglestarred", {id: id, en: en});
 				*/
 			},
-			deleteFile: function ($elem) {
-				/*
-				var self = this,
-					data = $elem.data();
-				var $msg = $elem.parent();
-				if (confirm(data.confirm)) {
-					$.post(this.baseUrl + "/xhr/deletefile", {en: data.en, prop: data.prop, id: data.id}, function () {
-						$msg.remove();
-						self.$content.find('#' + data.en + data.prop).remove();
-					});
-				}
-				*/
+			deleteFile: function (filename) {
+				$.post(this.baseUrl + "/xhr/deletefile", {filename: filename});
 			},
 			split: function (val) {
 				return val.split(/,\s*/);

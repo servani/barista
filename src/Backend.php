@@ -82,9 +82,6 @@ class BackendController extends DefaultController
 	public function createAction($params = null) {
 		$entity = new $params['slug'];
 		$entity = $this->setFromPost($_POST[$params['slug']], $entity);
-		if (isset($_FILES) && count($_FILES)) {
-			$entity = $this->setFromFiles($_FILES, $entity, $params['slug']);
-		}
 
 		$cm = 'set' . $params['slug'] . 'Action';
 		if (method_exists($this, $cm)) {
@@ -105,10 +102,6 @@ class BackendController extends DefaultController
 		$cm = 'set' . $params['slug'] . 'Action';
 		if (method_exists($this, $cm)) {
 			$entity = $this->$cm($entity);
-		}
-
-		if (isset($_FILES) && count($_FILES)) {
-			$entity = $this->setFromFiles($_FILES, $entity, $params['slug']);
 		}
 		try {
 			$this->em->persist($entity);
@@ -176,6 +169,18 @@ class BackendController extends DefaultController
 		return $res;
 	}
 
+	public function XHRupload() {
+		$res = array('success' => false);
+		if (isset($_FILES) && $_FILES) {
+			$files = $this->uploadFile(@$_POST['filetype']);
+			if ($files) {
+				$res['files'] = $files;
+				$res['success'] = true;
+			}
+		}
+		return $res;
+	}
+
 	public function XHRtogglestate() {
 		/*
 		if (isset($_POST['en'], $_POST['id'])) {
@@ -203,17 +208,13 @@ class BackendController extends DefaultController
 	}
 
 	public function XHRdeletefile() {
-		/*
-		if (isset($_POST['en'], $_POST['prop'], $_POST['id'])) {
-			$entity = $this->em->getRepository($_POST['en'])->find($_POST['id']);
-			$property = 'set' . $_POST['prop'];
-			$entity->$property(null);
-			$this->em->persist($entity);
-			$this->em->flush();
-			return true;
+		if (isset($_POST['filename'])) {
+			$fullname = $this->getUploadDir() . $_POST['filename'];
+			if (unlink($fullname) !== FALSE) {
+				return true;
+			}
 		}
 		return false;
-		*/
 	}
 
 	/* Custom Delete Methods */
@@ -224,6 +225,14 @@ class BackendController extends DefaultController
 		return 'sort';
 	}
 
+	public function listImageAction() {
+		return 'sort';
+	}
+
+	public function listFileAction() {
+		return 'sort';
+	}
+
 	/* Custom New Methods */
 
 	public function newTagAction($id = null) {
@@ -231,6 +240,15 @@ class BackendController extends DefaultController
 			->getRepository('TagType')
 			->createQueryBuilder('q')
 			->orderBy('q.name', 'ASC')
+			->getQuery()
+			->getResult(2); // Number 2 is for fetching an array instead of a motherfucker object
+	}
+
+	public function newImageAction($id = null) {
+		return $this->em
+			->getRepository('Post')
+			->createQueryBuilder('q')
+			->orderBy('q.title', 'ASC')
 			->getQuery()
 			->getResult(2); // Number 2 is for fetching an array instead of a motherfucker object
 	}
@@ -273,6 +291,32 @@ class BackendController extends DefaultController
 			$type = $c->getCfType() ? $c->getCfType()->getId() : 0;
 			$ccf[$type][] = $c;
 		}
+		// Images
+		$img = array();
+		if ($id) {
+			$img = $this->em
+				->getRepository('Image')
+				->createQueryBuilder('q')
+				->join('q.post', 'p')
+				->where('p.id = :id')
+				->setParameter('id', $id)
+				->orderBy('q.src', 'ASC')
+				->getQuery()
+				->getResult(2);
+		}
+		// Files
+		$file = array();
+		if ($id) {
+			$file = $this->em
+				->getRepository('File')
+				->createQueryBuilder('q')
+				->join('q.post', 'p')
+				->where('p.id = :id')
+				->setParameter('id', $id)
+				->orderBy('q.src', 'ASC')
+				->getQuery()
+				->getResult(2);
+		}
 		// Custom Fields Types
 		$cftype = $this->em
 			->getRepository('CfType')
@@ -293,7 +337,9 @@ class BackendController extends DefaultController
 			'categories' => $category,
 			'tags' => $tags,
 			'cf' => $ccf,
-			'cftype' => $cftype
+			'cftype' => $cftype,
+			'img' => $img,
+			'file' => $file
 		);
 	}
 
@@ -437,6 +483,40 @@ class BackendController extends DefaultController
 					}
 					$entity->addTag($tag);
 				}
+			// Multiple images / files
+			} elseif (strpos($key, 'Images') !== FALSE || strpos($key, 'Files') !== FALSE) {
+				$en = strpos($key, 'Images') !== FALSE ? 'Image' : 'File';
+				$asset = explode(', ', $value);
+				// If edit remove all from db first
+				if ($entity->getId()) {
+					$e = $this->em
+						->getRepository($en)
+						->createQueryBuilder('q')
+						->where('q.post = :id')
+						->setParameter('id', $entity->getId())
+						->getQuery()
+						->getResult();
+					foreach ($e as $d) {
+						if (($k = array_search($d->getSrc(), $asset)) !== FALSE) {
+							// If img is in insert array, ignore (unset)
+							unset($asset[$k]);
+						} else {
+							// Otherwise, remove the obsolete img
+							$this->em->remove($d);
+						}
+					}
+				}
+				// Add
+				foreach ($asset as $a) {
+					if ($a) {
+						$i = new $en;
+						$i->setSrc($a);
+						$i->setPost($entity);
+						$now = new DateTime();
+						$i->setSort(time());
+						$this->em->persist($i);
+					}
+				}
 			} else {
 				$property = 'set' . $key;
 				if (strpos($property, 'setId') !== FALSE) {
@@ -461,38 +541,48 @@ class BackendController extends DefaultController
 		return $entity;
 	}
 
-	public function setFromFiles($files, $entity, $en) {
-		$path = $this->getUploadDir() . $entity->getUploadDir();
+	public function uploadFile($filetype) {
+		$image = $filetype === 'image' ? true : false;
+		if ($image) {
+			$validator = new FileUpload\Validator\Simple(1024 * 1024 * 2, array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'));
+		}
+		$res = array();
+		$path = $this->getUploadDir();
 		$pathresolver = new FileUpload\PathResolver\Simple($path);
 		$filesystem = new FileUpload\FileSystem\Simple();
-		$validator = new FileUpload\Validator\Simple(1024 * 1024 * 2, array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'));
-		foreach ($files as $key => $f) {
+		foreach ($_FILES as $key => $f) {
+			$arr = explode('-', $key);
+			$en = $arr[0];
+			$prop = $arr[1];
 			if ($f['error']) { continue; }
 			// Upload
 			$fileupload = new FileUpload\FileUpload($f, $_SERVER);
 			$fileupload->setPathResolver($pathresolver);
 			$fileupload->setFileSystem($filesystem);
-			$fileupload->addValidator($validator);
+			if ($image) {
+				$fileupload->addValidator($validator);
+			}
 			$file = $fileupload->processAll();
 			$file = $file[0][0]; // arr(error, type, name, size, path)
 			if ($file->error) { continue; }
-			// Rename + chmod
-			$filename = $this->rename($file->path, $path);
-			// Handle Image
-			if ($this->isImage($file->type)) {
-				$this->handleImage($path, $filename, $key, $en);
+			// Rename
+			$filename = $this->rename($file->path);
+			if ($image) {
+				// Handle Image
+				if ($this->isImage($file->type)) {
+					$this->handleImage($path, $filename, $key, $en);
+				}
 			}
-			// Persist
-			$property = 'set' . $key;
-			$entity->$property($filename);
+			$res[] = $filename;
 		}
-		return $entity;
+		return $res;
 	}
 
 	public function isImage($filetype) {
 		return in_array($filetype, array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'));
 	}
 
+	// Esto no está andando bien, siempre le agrega un -1 por más que no exista el file (ver str2slug)
 	public function rename($filename) {
 		$path = pathinfo($filename);
 		$nicename = $this->str2slug($path['filename'], false, $path['dirname'], $path['extension']);

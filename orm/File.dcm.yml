@@ -12,6 +12,8 @@ File:
             unsigned: false
             comment: ''
             id: true
+            generator:
+                strategy: IDENTITY
     fields:
         src:
             type: string

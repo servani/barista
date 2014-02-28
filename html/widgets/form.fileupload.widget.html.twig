@@ -1,0 +1,34 @@
+
+{% if value and value is not iterable %}
+	{% set value = [{'src':value}] %}
+{% endif %}
+{% set hv = [] %}
+{% for v in value %}
+	{% set hv = hv|merge([v.src]) %}
+{% endfor %}
+{% set hv = hv|join(', ') %}
+{% if label %}
+	<label>{{ label }}</label>
+{% endif %}
+{% set filetype = filetype|default('image') %}
+<div class="file-upload-module">
+	<div class="btn-container">
+		<span class="button small radius fake {{ value and not multiple ? 'secondary' : '' }}">{{ value and not multiple ? 'Reemplazar' : 'Cargar +' }}</span>
+		<input {{ filetype == 'image' ? ' accept="image/png"' : '' }} class="button small fileupload {{ multiple|default('single') }} {{ filetype }}" type="file" name="{{ entityName }}-{{ name }}" {{ multiple|default('') }}/>
+		<input type="hidden" name="{{ entityName }}[{{ name }}]" value="{{ hv|default('')}}" />
+	</div>
+	<div class="progressbar-container">
+		<div class="bar"></div>
+	</div>
+	<div class="upload-container {{ multiple|default('single') }}">
+		{% if value %}
+			{% if value is not iterable %}
+				{% set value = [{'src':value}] %}
+			{% endif %}
+			{% for v in value %}
+				<div class="radius label upload"><a href="{{ asset('content/' ~ v.src) }}" target="_blank" title="{{ v.src }}">{{ v.src }}</a><span class="remove">&times;</span></div>
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div class="alerts"></div>
+</div>

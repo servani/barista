@@ -1,6 +1,7 @@
 $baristacolor1: #FFCB8B;
 $linkcolor: #008cba;
 $linkhovercolor: #0078a0;
+$red: #FF6C6C;
 
 textarea { height: auto; }
 .bbcontainer {
@@ -58,8 +59,10 @@ span.example {
 	.row {
 		table {
 			tbody {
+				&.sortable {
+					tr { cursor: move; }
+				}
 				tr {
-					cursor: move;
 					&.ui-sortable-helper {
 						background-color: #ccc;
 					}
@@ -88,6 +91,78 @@ span.example {
 				}
 			}
 		}
+	}
+	.btn-container {
+		position: relative;
+		width: 12em;
+		overflow: hidden;
+		.fake, .fileupload {
+			cursor: pointer;
+			width: 12em;
+			margin-bottom: 0;
+		}
+		.fileupload {
+			position: absolute;
+			top: 0;
+			right: 0;
+			opacity: 0;
+			font-size: 200em;
+			width: auto;
+		}
+	}
+	.progressbar-container {
+		.bar {
+			display: none;
+			margin-top: 10px;
+			width: 0%;
+			height: 20px;
+			background-color: $baristacolor1;
+		}
+	}
+	.upload-container {
+		padding-top: 10px;
+		.upload {
+			font-size: 1em;
+			margin-right: 5px;
+			margin-bottom: 5px;
+			.remove {
+				font-weight: bold;
+				padding-left: 10px;
+				cursor: pointer;
+			}
+			a {
+				color: white;
+				text-decoration: underline;
+			}
+		}
+		.filetitle {
+			width: 20em;
+		}
+	}
+	.alerts {
+		margin-bottom: 10px;
+	}
+	.form-buttons {
+		position: fixed;
+		top: 45px;
+		left: 16.67%;
+		padding: 10px 0;
+		border-bottom: 1px solid #d3d3d3;
+		padding-left: 0.9375rem;
+		z-index: 99;
+		width: 100%;
+		background-color: #f3f3f3;
+		@media only screen and (max-width: 40em) {
+			padding-right: 0;
+			left: 0;
+		}
+		.button {
+			margin-bottom: 0;
+			margin-right: 5px;
+		}
+	}
+	#form {
+		padding-top: 80px;
 	}
 }
 

@@ -58,7 +58,17 @@
 			</div>
 			<!-- # -->
 			<div class="row">
-				<div class="large-2 small-5 columns">
+				<div class="large-8 small-9 columns">
+					{% include 'form.fileupload.widget.html.twig' with {
+							label: 'Cover', value: entity.cover,
+							name: 'Cover'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-3 small-5 columns">
 					{% include 'form.input.widget.html.twig' with {
 							label: 'Fecha', class: 'datetimepicker',
 							value: entity.publicdate|date('d-m-Y H:i'), name: 'PublicDate',
@@ -66,12 +76,22 @@
 						}
 					%}
 				</div>
-				<div class="large-6 large-pull-4 small-7 columns">
+				<div class="large-6 large-pull-3 small-7 columns">
 					{% include 'form.select.widget.html.twig' with {
 							label: 'Categoría',
 							options: data.categories, selected: entity.category.id,
 							optionname: 'name',
 							value: entity.category, name: 'IdCategory'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="large-8 small-9 columns">
+					{% include 'form.fileupload.widget.html.twig' with {
+							label: 'Imágenes', value: data.img,
+							name: 'Images', multiple: 'multiple'
 						}
 					%}
 				</div>
@@ -104,6 +124,17 @@
 			</div>
 			<!-- # -->
 			<div class="row">
+				<div class="large-8 small-9 columns">
+					{% include 'form.fileupload.widget.html.twig' with {
+							label: 'Documentos', value: data.file,
+							name: 'Files', multiple: 'multiple',
+							filetype: 'doc'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
 				<div class="large-5 small-8 columns">
 					{% include 'form.input.widget.html.twig' with {
 							label: 'Video (código)',
@@ -115,9 +146,6 @@
 						}
 					%}
 				</div>
-			</div>
-			<!-- # -->
-			<div class="row">
 			</div>
 			<!-- # -->
 			<div class="row">
@@ -185,7 +213,7 @@
 						</div>
 					</div>
 				{% endfor %}
-				<a href="#" class="addcf button radius tiny" data-index="{{ data.cf[0]|length }}">Agregar</a>
+				<a href="#" class="addcf button radius secondary tiny" data-index="{{ data.cf[0]|length }}">Agregar</a>
 			</fieldset>
 			<!-- # -->
 			<fieldset>
@@ -230,7 +258,7 @@
 						<input type="hidden" name="{{ entityName }}[CustomFieldLink][{{ loop.index }}][Type]" value="1">
 					</div>
 				{% endfor %}
-				<a href="#" class="addcf button radius tiny" data-index="{{ data.cf[1]|length }}">Agregar</a>
+				<a href="#" class="addcf button radius secondary tiny" data-index="{{ data.cf[1]|length }}">Agregar</a>
 			</fieldset>
 			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.title } %}
 		</form>

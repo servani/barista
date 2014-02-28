@@ -1,0 +1,41 @@
+{% extends 'base.backend.html.twig' %}
+
+{% block section %}
+	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
+	{% include 'form.header.widget.html.twig' with { title: 'Post' } %}
+	<div id="form">
+		<form action="{{ url(action) }}" method="POST" data-abide>
+			<!-- # -->
+			<div class="row">
+				<div class="large-8 small-9 columns">
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Título',
+							value: entity.title, name: 'Title'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="small-7 columns">
+					{% include 'form.select.widget.html.twig' with {
+							label: 'Post',
+							options: data, selected: entity.post.id,
+							optionname: 'title',
+							value: entity.post, name: 'IdPost'
+						}
+					%}
+				</div>
+			</div>
+			<!-- # -->
+			<div class="row">
+				<div class="small-8 columns">
+					<label>Imagen</label>
+					<img src="{{ asset('/content/' ~ entity.src) }}" alt="{{ entity.src }}" />
+				</div>
+			</div>
+			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.title } %}
+		</form>
+	</div>
+{% endblock %}
+

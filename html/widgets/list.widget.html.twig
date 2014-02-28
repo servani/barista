@@ -1,6 +1,8 @@
 <h1>{{ title }}</h1>
 <div id="entityName" class="hide">{{ en }}</div>
-<a class="button radius" href="{{ url('admin/new/' ~ en) }}" title="Crear">Crear</a>
+{% if not nocreate %}
+	<a class="button radius" href="{{ url('admin/new/' ~ en) }}" title="Crear">Crear</a>
+{% endif %}
 {% if pagenav.results %}
 	{% if sort %}
 		{% if pagenav.order == 'sort' %}
