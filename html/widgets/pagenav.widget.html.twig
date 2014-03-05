@@ -19,5 +19,18 @@
 				{% endif %}
 			</li>
 		</ul>
-	</div
+	</div>
 {% endif %}
+<p class="results-page">Cantidad de resultados por página</p>
+<div class="row">
+	<div class="small-4 medium-3 large-2 small-centered columns">
+		<div class="row collapse" id="results-page">
+			<div class="small-5 medium-4 columns">
+				<input type="text" placeholder="{{ pagenav.max }}">
+			</div>
+			<div class="small-7 medium-8 columns">
+				<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;n=" class="postfix button">Listar</a>
+			</div>
+		</div>
+	</div>
+</div>

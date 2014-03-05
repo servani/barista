@@ -9,7 +9,7 @@ class BackendController extends DefaultController
 	public function listAction($params = null) {
 		try {
 			// Query conditions
-			$results_x_page = 10;
+			$results_x_page = $this->getResultsPerPage(10);
 			$current_offset = isset($this->get['p']) ? ($this->get['p'] - 1) * $results_x_page : 0;
 			$cm = 'list' . $params['slug'] . 'Action';
 			if (method_exists($this, $cm) && !isset($this->get['o'])) {
@@ -380,6 +380,22 @@ class BackendController extends DefaultController
 	/* Custom Image Handlers */
 
 	/* Helpers */
+
+	public function getResultsPerPage($default) {
+		$max = 100;
+		$min = 1;
+		if (isset($this->get['n'])) {
+			$n = abs(intval($this->get['n']));
+			$n = $n <= $max ? $n : $max;
+			$n = $n < $min ? $default : $n;
+		} elseif (isset($this->session['results_x_page'])) {
+			$n = $this->session['results_x_page'];
+		} else {
+			$n = $default;
+		}
+		$_SESSION['results_x_page'] = $n;
+		return $n;
+	}
 
 	public function setFromPost($post, $entity) {
 		foreach ($post as $key => $value) {

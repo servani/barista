@@ -32,6 +32,15 @@ $(function () {
 					self.toogleEntityStarred($(this));
 					return false;
 				});
+				// Items x page
+				this.$content.find('#results-page').on('click', 'a', function (e) {
+					e.preventDefault();
+					var $input = $(e.delegateTarget).find('input');
+					if ($input.val()) {
+						var href = $(this).attr('href') + $input.val();
+						window.location = href;
+					}
+				});
 				// Delete File
 				this.$content.on('click', '.delete-file', function () {
 					self.deleteFile($(this));

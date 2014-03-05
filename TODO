@@ -1,35 +1,29 @@
--- Log 2.0 --
+---------- Log 2.0 ----------
 
-* login form
-
+* Login form
 * Backend
 	- Estilos
 	- Buscador
-	- Ver N por página
 	- Distintos formatos de lista (ej: tags)
 	- Flags en listado
 	- Drag and drop archivos
-
-* Módulos de posts, tags y categorías por defecto
-	+ Retomar punto anterior a la par (estilos)
-	- acciones masivas
-
-* handle exception errors with a nice function
-
-* Frontend
-	- Base template
-
+	- Acciones masivas
+* Base template (frontend)
 * Documentación
-
 * TO DO's
 
--- Log 2.1 --
+---------- Log 2.1 ----------
 
 * Comprimir JS (idem sass quizas, con algun script ubuntu)
 * Script autocreate sitemap
 * Ordenar /js/ y separar para todo lo que es backend
 * Script clean cache
 * Tests php
+* Manejo de errores y excepciones más visual
+
+---------- Log 2.2 ----------
+
+* Papelera
 
 -- Log 2.n --
 
