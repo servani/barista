@@ -1,39 +1,35 @@
 -- Log 2.0 --
 
-* SASS
-* Foundation
+* login form
 
-* https://github.com/blueimp/jQuery-File-Upload
-
-* Meterle fuerza al backend
+* Backend
 	- Estilos
 	- Buscador
-	. Ver N por página
-	+ Etc
+	- Ver N por página
+	- Distintos formatos de lista (ej: tags)
+	- Flags en listado
+	- Drag and drop archivos
 
 * Módulos de posts, tags y categorías por defecto
-	- Documentos adjuntos (más de uno)
 	+ Retomar punto anterior a la par (estilos)
 	- acciones masivas
 
 * handle exception errors with a nice function
 
-* Meterle fuerza al frontend
-* Remover LESS
-* Comprimir JS
+* Frontend
+	- Base template
+
+* Remover LESS por completo
+* Comprimir JS (idem sass quizas, con algun script ubuntu)
 * Documentación
 * Script clean cache
 * Script autocreate sitemap
-
 * TO DO's
-
 * Limpiar ckeditor
-
 * Nombrar framework: Barista Framework
 * baristaframework.com
-
 * Poder borrar Entity por defecto (Post Tag Category)
-* Dummy post preloaded
+* Dummy data preloaded
 * script autocreate db
 * User fields must be not null
 
