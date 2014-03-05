@@ -30,7 +30,7 @@ Descripción
 --------------------
 Framework MVC basado en Symfony 2.x para la realización de sitios webs.
 Uso de Doctrine para optimizar y facilitar la interacción con la base de datos.
-LESS para optimizar los estilos del sitio (css).
+SASS para optimizar los estilos del sitio (css).
 TWIG para aplicar técnicas de templating, esto es separar las vistas de los controladores de manera efectiva y limpia, y además aprovechar (e implementar) el uso de caché.
 jQuery para potenciar el motor de JavaScript.
 GIT como sistema de repositorios para versionar el trabajo y generar backups.
