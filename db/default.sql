@@ -177,9 +177,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `barista`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(100) NULL ,
-  `username` VARCHAR(100) NULL ,
-  `password` VARCHAR(100) NULL ,
+  `name` VARCHAR(100) NOT NULL ,
+  `username` VARCHAR(100) NOT NULL ,
+  `password` VARCHAR(100) NOT NULL ,
+  `email` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 

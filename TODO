@@ -19,18 +19,18 @@
 * Frontend
 	- Base template
 
-* Remover LESS por completo
-* Comprimir JS (idem sass quizas, con algun script ubuntu)
 * Documentación
-* Script clean cache
-* Script autocreate sitemap
+
 * TO DO's
-* Limpiar ckeditor
-* Nombrar framework: Barista Framework
-* baristaframework.com
-* Poder borrar Entity por defecto (Post Tag Category)
-* Dummy data preloaded
-* script autocreate db
-* User fields must be not null
 
 -- Log 2.1 --
+
+* Comprimir JS (idem sass quizas, con algun script ubuntu)
+* Script autocreate sitemap
+* Ordenar /js/ y separar para todo lo que es backend
+* Script clean cache
+* Tests php
+
+-- Log 2.n --
+
+* baristaframework.com

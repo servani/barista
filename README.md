@@ -1,8 +1,7 @@
-NSNC Web Framework
+Barista Framework by NSNC
 =====================
 
-Framework MVC basado en Symfony 2.x para la realización de sitios webs
-
+Framework MVC basado en Symfony 2.x para la realización de sitios webs medianos y complejos.
 
 Tecnologías
 -----------
@@ -12,7 +11,7 @@ Tecnologías
 * HTML (TWIG)
 * JavaScript (jQuery)
 
-Frameworks
+Vendors
 ----------
 
 * CKEditor http://ckeditor.com
