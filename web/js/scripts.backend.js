@@ -22,20 +22,16 @@ $(function () {
 			},
 			bindEvents: function () {
 				var self = this;
-				// Toggle state
-				this.$content.find('.toggle-state').on('click', 'span', function () {
-					self.toogleEntityState($(this));
-					return false;
-				});
-				// Toggle starred
-				this.$content.find('.toggle-starred').on('click', 'span', function () {
-					self.toogleEntityStarred($(this));
+				// Toggle Flag
+				this.$content.find('.toggleflag').on('click', 'span', function (e) {
+					e.preventDefault();
+					self.toggleEntityFlag($(this));
 					return false;
 				});
 				// Items x page
 				this.$content.find('#results-page').on('click', 'a', function (e) {
 					e.preventDefault();
-					var $input = $(e.delegateTarget).find('input');
+					var $input = $('input', e.delegateTarget);
 					if ($input.val()) {
 						var href = $(this).attr('href') + $input.val();
 						window.location = href;
@@ -310,23 +306,20 @@ $(function () {
 				var url = document.domain;
 				this.baseUrl = 'http://' + url + '/admin';
 			},
-			toogleEntityState: function ($elem) {
-				/*
-				var id = $elem.data('id'),
-					en = $elem.data('en');
-				// Toogle state
-				$elem.toggleClass('hidden');
-				$.post(this.baseUrl + "/xhr/togglestate", {id: id, en: en});
-				*/
-			},
-			toogleEntityStarred: function ($elem) {
-				/*
-				var id = $elem.data('id'),
-					en = $elem.data('en');
-				// Toogle state
-				$elem.toggleClass('starred');
-				$.post(this.baseUrl + "/xhr/togglestarred", {id: id, en: en});
-				*/
+			toggleEntityFlag: function ($elem) {
+				var data = $elem.data(),
+					self = this, msg, alertclass;
+				$elem.toggleClass('null');
+				$.post(this.baseUrl + "/xhr/toggleflag", {id: data.id, prop: data.prop, en: data.en}, function (res) {
+					if (res.success) {
+						msg = 'Los cambios fueron guardados exitosamente.';
+						alertclass = 'success';
+					} else {
+						msg = 'Error inesperado. Los cambios no fueron guardados. Por favor, recargue la página y vuelva a intentarlo.';
+						alertclass = 'warning';
+					}
+					self.createAlert(alertclass, msg);
+				}, 'json');
 			},
 			deleteFile: function (filename) {
 				$.post(this.baseUrl + "/xhr/deletefile", {filename: filename});

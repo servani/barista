@@ -1,16 +1,30 @@
-{% extends 'base.html.twig' %}
-
-{% block section %}
-	<form action="{{ url('login') }}" method="POST" novalidate>
-		<label>User:</label>
-		<br />
-		<input type="text" name="username" />
-		<br />
-		<br />
-		<label>Pass:</label>
-		<br />
-		<input type="password" name="password" />
-		<br />
-		<input type="submit" />
-	</form>
-{% endblock %}
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="Grupo NSNC">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Login</title>
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3" />
+	<link rel="stylesheet" href="{{ asset('css/foundation.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/styles.backend.css') }}" />
+	<script src="{{ asset('js/vendor/modernizr.js') }}"></script>
+</head>
+<body>
+	<div class="row" id="login">
+		<div class="small-8 medium-6 large-4 columns small-centered panel radius">
+			<form action="{{ url('login') }}" method="POST" novalidate>
+				<input type="text" name="username" placeholder="Nombre de Usuario" required />
+				<input type="password" name="password" placeholder="Contraseña" required />
+				<input type="submit" class="button radius small" value="Ingresar" />
+			</form>
+		</div>
+	</div>
+	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
+	<script src="{{ asset('js/vendor/fastclick.js') }}"></script>
+	<script src="{{ asset('js/foundation.min.js') }}"></script>
+	<script>
+		$(document).foundation();
+	</script>
+</body>
+</html>

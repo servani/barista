@@ -1,18 +1,16 @@
----------- Log 2.0 ----------
+---------- 2.1 ----------
 
-* Login form
-* Backend
-	- Estilos
-	- Buscador
-	- Distintos formatos de lista (ej: tags)
-	- Flags en listado
-	- Drag and drop archivos
-	- Acciones masivas
 * Base template (frontend)
 * Documentación
 * TO DO's
+* Backend
+	- Distintos formatos de lista (ej: minimalista en tags)
+	- Acciones masivas
+	- Drag and drop archivos
+	- Buscador
+	- Index
 
----------- Log 2.1 ----------
+---------- 2.2 ----------
 
 * Comprimir JS (idem sass quizas, con algun script ubuntu)
 * Script autocreate sitemap
@@ -21,10 +19,10 @@
 * Tests php
 * Manejo de errores y excepciones más visual
 
----------- Log 2.2 ----------
+---------- 2.3 ----------
 
 * Papelera
 
--- Log 2.n --
+---------- 2.n ----------
 
 * baristaframework.com

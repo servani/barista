@@ -1,16 +1,31 @@
-<h1>{{ title }}</h1>
-<div id="entityName" class="hide">{{ en }}</div>
-{% if not nocreate %}
-	<a class="button radius" href="{{ url('admin/new/' ~ en) }}" title="Crear">Crear</a>
+<h1 class="hide">{{ title }}</h1>
+<div class="row">
+	<div class="small-12 columns list-header">
+		<div id="entityName" class="hide">{{ en }}</div>
+		{% if not nocreate %}
+			<a class="button radius" href="{{ url('admin/new/' ~ en) }}" title="Crear">Crear</a>
+		{% endif %}
+	</div>
+</div>
+{% if filters %}
+	<div class="row">
+		<div class="filters small-12 columns">
+			{% for h,u in filters %}
+				{% if u.active %}
+					<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;" class="button tiny secondary radius">Remover filtro {{ u.title }} <span class="remove">&times;</span></a>
+				{% else %}
+					<a href="#" data-dropdown="drop-{{ u.title }}" data-options="is_hover:true" class="button dropdown tiny secondary radius">Filtrar por {{ u.title }}</a><br>
+					<ul id="drop-{{ u.title }}" data-dropdown-content class="f-dropdown small">
+						{% for k,v in u.values %}
+							<li><a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;w={{ h }}:{{ k }}" title="Filtrar por: {{ v }}">{{ v }}</a></li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
 {% endif %}
 {% if pagenav.results %}
-	{% if sort %}
-		{% if pagenav.order == 'sort' %}
-			<span class="example">Para ordenar mueva los elementos utilizando drag and drop.</span>
-		{% else %}
-			<a class="button secondary radius" href="{{ url('admin/list/' ~ en) }}?o=sort">Ordenar</a>
-		{% endif %}
-	{% endif %}
 	<div class="row">
 		<table width="100%">
 			<thead>
@@ -21,8 +36,10 @@
 							{% set arr = k|split('.') %}
 							{% set order = arr[0] %}
 						{% endif %}
-						<th><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ q.dir ? 0 : 1 }}">{{ v }}</a></th>
+						<th><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;w={{ pagenav.where }}">{{ v }}</a></th>
 					{% endfor %}
+					{% if starred %}<th>&nbsp;</th>{% endif %}
+					{% if visible %}<th>&nbsp;</th>{% endif %}
 				</tr>
 			</thead>
 			<tbody class="{{ pagenav.order == 'sort' ? 'sortable' : '' }}">
@@ -39,11 +56,28 @@
 								{% endif %}
 							</td>
 						{% endfor %}
+						{% if starred %}
+							<td class="toggleflag">
+								<span data-id="{{ e.id }}" data-prop="starred" data-en="{{ entityName }}" class="starred {{ e.starred ? '' : 'null' }}"></span>
+							</td>
+						{% endif %}
+						{% if visible %}
+							<td class="toggleflag">
+								<span data-id="{{ e.id }}" data-prop="visible" data-en="{{ entityName }}" class="visible {{ e.visible ? '' : 'null' }}"></span>
+							</td>
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
+	{% if sort %}
+		{% if pagenav.order == 'sort' %}
+			<span class="example">Para ordenar mueva los elementos utilizando drag and drop.</span>
+		{% else %}
+			<a class="button secondary radius" href="{{ url('admin/list/' ~ en) }}?o=sort&amp;w={{ pagenav.where }}">Ordenar</a>
+		{% endif %}
+	{% endif %}
 {% else %}
-	<h4>No se encontraron resultados</h4>
+	<p class="noresults">No se encontraron resultados</p>
 {% endif %}

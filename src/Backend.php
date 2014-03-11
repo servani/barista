@@ -11,17 +11,22 @@ class BackendController extends DefaultController
 			// Query conditions
 			$results_x_page = $this->getResultsPerPage(10);
 			$current_offset = isset($this->get['p']) ? ($this->get['p'] - 1) * $results_x_page : 0;
+			// Custom Order
 			$cm = 'list' . $params['slug'] . 'Action';
 			if (method_exists($this, $cm) && !isset($this->get['o'])) {
 				$order = $this->$cm();
 			} else {
 				$order = isset($this->get['o']) ? $this->get['o'] : 'id';
 			}
-			$dir = isset($this->get['d']) && $this->get['d'] == 1 ? 'ASC' : 'DESC';
+			$dir = isset($this->get['d']) && $this->get['d'] == 1 && $order !== 'sort' ? 'ASC' : 'DESC';
 			// Basic Query
 			$entity = $this->em
 				->getRepository($params['slug'])
 				->createQueryBuilder('q');
+			// Where manager
+			if (isset($this->get['w'])) {
+				$entity = $this->whereManager($entity);
+			}
 			// Number of items
 			$n = count($entity->getQuery()->getResult());
 			// Query requested
@@ -33,6 +38,12 @@ class BackendController extends DefaultController
 		} catch (Exception $e) {
 			echo "Entity not found \n"; die();
 		}
+		// Available Filters
+		$filters = array();
+		$cm = 'get' . $params['slug'] . 'Filters';
+		if (method_exists($this, $cm)) {
+			$filters = $this->$cm($entity);
+		}
 		$this->render($params['slug'] . ".list.html.twig", array(
 			'entity' => $entity,
 			'entityName' => $params['slug'],
@@ -42,8 +53,10 @@ class BackendController extends DefaultController
 				'nofpages' => ceil($n / $results_x_page),
 				'page' => $current_offset / $results_x_page + 1,
 				'order' => $order,
-				'dir' => $dir === 'ASC' ? 1 : 0
-			)
+				'dir' => $dir === 'ASC' ? 1 : 0,
+				'where' => @$this->get['w']
+			),
+			'filters' => $filters
 		));
 	}
 
@@ -81,7 +94,7 @@ class BackendController extends DefaultController
 
 	public function createAction($params = null) {
 		$entity = new $params['slug'];
-		$entity = $this->setFromPost($_POST[$params['slug']], $entity);
+		$entity = $this->setFromPost($this->post[$params['slug']], $entity);
 
 		$cm = 'set' . $params['slug'] . 'Action';
 		if (method_exists($this, $cm)) {
@@ -98,7 +111,7 @@ class BackendController extends DefaultController
 
 	public function updateAction($params = null) {
 		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
-		$entity = $this->setFromPost($_POST[$params['slug']], $entity);
+		$entity = $this->setFromPost($this->post[$params['slug']], $entity);
 		$cm = 'set' . $params['slug'] . 'Action';
 		if (method_exists($this, $cm)) {
 			$entity = $this->$cm($entity);
@@ -172,7 +185,7 @@ class BackendController extends DefaultController
 	public function XHRupload() {
 		$res = array('success' => false);
 		if (isset($_FILES) && $_FILES) {
-			$files = $this->uploadFile(@$_POST['filetype']);
+			$files = $this->uploadFile(@$this->post['filetype']);
 			if ($files) {
 				$res['files'] = $files;
 				$res['success'] = true;
@@ -181,40 +194,47 @@ class BackendController extends DefaultController
 		return $res;
 	}
 
-	public function XHRtogglestate() {
-		/*
-		if (isset($_POST['en'], $_POST['id'])) {
-			$entity = $this->em->getRepository($_POST['en'])->find($_POST['id']);
-			$entity->setVisible(!$entity->getVisible());
-			$this->em->persist($entity);
-			$this->em->flush();
-			return true;
+	public function XHRtoggleflag() {
+		$res['success'] = false;
+		if (isset($this->post['en'], $this->post['id'], $this->post['prop'])) {
+			$entity = $this->em->getRepository($this->post['en'])->find($this->post['id']);
+			$setProp = 'set' . $this->post['prop'];
+			$getProp = 'get' . $this->post['prop'];
+			if (method_exists($entity, $setProp)) {
+				$entity->$setProp(!$entity->$getProp());
+				$this->em->persist($entity);
+				$this->em->flush();
+				$res['success'] = true;
+			}
 		}
-		return false;
-		*/
-	}
-
-	public function XHRtogglestarred() {
-		/*
-		if (isset($_POST['en'], $_POST['id'])) {
-			$entity = $this->em->getRepository($_POST['en'])->find($_POST['id']);
-			$entity->setStarred(!$entity->getStarred());
-			$this->em->persist($entity);
-			$this->em->flush();
-			return true;
-		}
-		return false;
-		*/
+		return $res;
 	}
 
 	public function XHRdeletefile() {
-		if (isset($_POST['filename'])) {
-			$fullname = $this->getUploadDir() . $_POST['filename'];
+		if (isset($this->post['filename'])) {
+			$fullname = $this->getUploadDir() . $this->post['filename'];
 			if (unlink($fullname) !== FALSE) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	/* Custom Filters Methods */
+
+	public function getImageFilters($entity) {
+		$filters = array();
+		$filters = array(
+			'post' => array(
+				'title' => 'Post',
+				'values' => array(),
+				'active' => $this->isActiveFilter('post')
+			)
+		);
+		foreach ($entity as $e) {
+			$filters['post']['values'][$e->getPost()->getId()] = $e->getPost()->getTitle();
+		}
+		return $filters;
 	}
 
 	/* Custom Delete Methods */
@@ -380,6 +400,35 @@ class BackendController extends DefaultController
 	/* Custom Image Handlers */
 
 	/* Helpers */
+
+	public function whereManager($entity) {
+		$allowed = array('post', 'category');
+		$wheres = explode(';', $this->get['w']);
+		foreach ($wheres as $w) {
+			$aux = explode(':', $w);
+			$key = $aux[0];
+			if (isset($aux[1])) {
+				$value = $aux[1];
+				if (in_array($key, $allowed)) {
+					$entity->andWhere('q.' . $key . ' = :' . $key);
+					$entity->setParameter($key, $value);
+				}
+			}
+		}
+		return $entity;
+	}
+
+	public function isActiveFilter($filter) {
+		$filters = explode(';', @$this->get['w']);
+		foreach ($filters as $f) {
+			$aux = explode(':', $f);
+			$key = $aux[0];
+			if (isset($aux[1]) && $filter === $key) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public function getResultsPerPage($default) {
 		$max = 100;
@@ -598,7 +647,7 @@ class BackendController extends DefaultController
 		return in_array($filetype, array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'));
 	}
 
-	// Esto no está andando bien, siempre le agrega un -1 por más que no exista el file (ver str2slug)
+	// TO DO Esto no está andando bien, siempre le agrega un -1 por más que no exista el file (ver str2slug)
 	public function rename($filename) {
 		$path = pathinfo($filename);
 		$nicename = $this->str2slug($path['filename'], false, $path['dirname'], $path['extension']);

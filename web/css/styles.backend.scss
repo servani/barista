@@ -1,4 +1,4 @@
-$baristacolor1: #FFCB8B;
+$baristacolor1: #eee;
 $linkcolor: #008cba;
 $linkhovercolor: #0078a0;
 $red: #FF6C6C;
@@ -32,32 +32,90 @@ span.example {
 					color: white;
 				}
 			}
+			&.title-area {
+				padding-left: 10px;
+			}
 		}
 	}
+}
+
+#login {
+	margin-top: 40px;
 }
 
 #sidebar {
 	position: fixed;
 	top: 45px;
 	left: 0;
+	z-index: 1;
 	height: 100%;
 	background-color: $baristacolor1;
+	padding: 0;
 	ul.side-nav {
 		li {
+			padding: 4px 10px;
+			border-bottom: 1px solid #ddd;
+			margin: 0;
+			font-size: 0.8em;
+			&.alone {
+				border: none;
+			}
 			a {
-				display: inline-block;
+				display: block;
+			}
+			&.divider {
+				margin: 0;
+				padding: 0;
+				height: 20px;
+				border: none;
+			}
+			&.title {
+				font-weight: bold;
+				color: black;
+				text-transform: uppercase;
+				font-size: 0.7em;
+			}
+			&.mod:hover:not(.active) {
+				a {
+					color: white;
+				}
+				background-color: $linkcolor;
+				border-color: $linkcolor;
+			}
+			&.active {
+				background-color: $linkhovercolor;
+				border-color: $linkhovercolor;
+				position: relative;
+				a {
+					color: white;
+				}
+				.active-pitito {
+					position: absolute;
+					right: -6px;
+					top: 0;
+					z-index: 2;
+					width: 10px;
+					height: 100%;
+					background: url(../img/5.png) no-repeat right 1px;
+				}
 			}
 		}
 	}
 	#copy {
-		bottom: 45px;
+		bottom: 50px;
 		position: absolute;
+		font-size: 0.8em;
+		padding-left: 10px;
 	}
 }
 
 #content {
+	.list-header {
+		margin-top: 20px;
+	}
 	.row {
 		table {
+			border: none;
 			tbody {
 				&.sortable {
 					tr { cursor: move; }
@@ -84,6 +142,27 @@ span.example {
 								color: #FF7676;
 								&:hover {
 									color: red;
+								}
+							}
+						}
+						&.toggleflag {
+							padding: 0;
+							width: 32px;
+							height: 32px;
+							cursor: pointer;
+							span {
+								display: block;
+								width: 32px;
+								height: 32px;
+								opacity: 0.7;
+								&.visible {
+									background: url(../img/65.png) no-repeat center center;
+								}
+								&.starred {
+									background: url(../img/26.png) no-repeat center center;
+								}
+								&.null {
+									opacity: 0.2;
 								}
 							}
 						}

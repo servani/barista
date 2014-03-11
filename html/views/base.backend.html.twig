@@ -58,12 +58,18 @@
 						<li class="divider"></li>
 					{% else %}
 						{% if mod is iterable %}
-							<li>{{ key }}</li>
+							<li class="title">{{ key }}</li>
 							{% for slug,name in mod %}
-								<li class="{{ active(slug) }}"><a href="{{ url('admin/list/' ~ slug) }}">{{ name }}</a></li>
+								<li class="mod {{ active(slug) }}">
+									<a href="{{ url('admin/list/' ~ slug) }}">{{ name }}</a>
+									{% if active(slug) %}<div class="active-pitito"></div>{% endif %}
+								</li>
 							{% endfor %}
 						{% else %}
-							<li class="{{ active(key) }}"><a href="{{ url('admin/list/' ~ key) }}">{{ mod }}</a></li>
+							<li class="mod alone {{ active(key) }}">
+								<a href="{{ url('admin/list/' ~ key) }}">{{ mod }}</a>
+								{% if active(key) %}<div class="active-pitito"></div>{% endif %}
+							</li>
 						{% endif %}
 					{% endif %}
 				{% endfor %}
@@ -74,7 +80,6 @@
 			<section id="content">{% block section %}{% endblock %}</section>
 		</div>
 	</div>
-
 	<div id="modals">
 		<div id="loading" class="reveal-modal tiny text-center" data-reveal data-options="close_on_background_click:false">
 			<p>Cargando...</p>
@@ -85,7 +90,6 @@
 			<a href="#" class="true button alert radius">Si</a>
 		</div>
 	</div>
-
 	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
 	<script src="{{ asset('js/vendor/fastclick.js') }}"></script>
 	<script src="{{ asset('js/foundation.min.js') }}"></script>
