@@ -89,7 +89,7 @@ class DefaultController
 		$this->twig->addExtension(new Twig_Extension_Core());
 		// Set global variables
 		$this->twig->addGlobal('_FRAMEWORK', 'Barista');
-		$this->twig->addGlobal('_VERSION', '2.0');
+		$this->twig->addGlobal('_VERSION', '2.0.1');
 		$this->twig->addGlobal('_MODS', $this->registerMods());
 		$this->twig->addGlobal('_USER', @$this->session['uname']);
 		// Register simple functions

@@ -1,6 +1,6 @@
 ---------- 2.1 ----------
 
-* poder configurar logo y nombre del cliente
+* poder configurar logo y nombre del cliente (twig globlas que vengan del config?)
 * Base template (frontend)
 * Documentación
 * TO DO's
