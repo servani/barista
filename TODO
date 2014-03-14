@@ -1,6 +1,5 @@
 ---------- 2.0.1 --------
 
-* multiple filters en listado que sean inline! (fixed in branson) (sacar el br jejejejeje)
 * bbcode no <p> hecho en branson
 * cambiar la clase de un filtro activo! made in branson
 * el activo se pierde al cambiar de pagina (fixed in branson)

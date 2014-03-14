@@ -197,9 +197,10 @@ class DefaultController
 		 * @ bbcode parser
 		 * name: bbcode
 		 * params: (str) string
+		 * params: (bool)
 		 * return: (str) string
 		 */
-		$fl[] = new Twig_SimpleFilter('bbcode', function ($bbcode) {
+		$fl[] = new Twig_SimpleFilter('bbcode', function ($bbcode, $p = true) {
 			/* Basically remove HTML tag's functionality */
 			$bbcode = htmlspecialchars($bbcode);
 			/* Bold text */
@@ -223,9 +224,14 @@ class DefaultController
 			$replace["ol"] = "<ul class=\"bbcodelist num\">$2</ul>";
 			/* Parse */
 			$bbcode = preg_replace($match, $replace, $bbcode);
-			/* New line to <br> tag and p */
-			$bbcode = nl2br($bbcode);
-			$bbcode = '<p>'.preg_replace(array("/([\n]{1,})/i", "/([^>])\n([^<])/i"), array("</p>\n<p>", '$1<br />$2'), trim($bbcode)).'</p>';
+			if ($p) {
+				// New line to <br> tag and p
+				$bbcode = nl2br($bbcode);
+				$bbcode = '<p>' . preg_replace(array("/([\n]{1,})/i", "/([^>])\n([^<])/i"), array("</p>\n<p>", '$1<br />$2'), trim($bbcode)) . '</p>';
+			} else {
+				// We don't need no paragraphs (8)
+				$bbcode = preg_replace(array("/([^>])\n([^<])/i"), array('$1<br />$2'), trim($bbcode));
+			}
 			/* Return parsed contents */
 			$dc = new DefaultController();
 			return $dc->stripBBtags($bbcode);
