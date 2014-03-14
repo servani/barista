@@ -199,7 +199,7 @@ class DefaultController
 		 * params: (str) string
 		 * return: (str) string
 		 */
-		$filter[] = new Twig_SimpleFilter('bbcode', function ($bbcode) {
+		$fl[] = new Twig_SimpleFilter('bbcode', function ($bbcode) {
 			/* Basically remove HTML tag's functionality */
 			$bbcode = htmlspecialchars($bbcode);
 			/* Bold text */

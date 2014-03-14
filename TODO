@@ -1,3 +1,15 @@
+---------- 2.0.1 --------
+
+* fixear sort, si no tenia timestamp, generarlo (made in branson)
+* fixear el loop de redirect de login (que no caiga en /admin/login)
+* fix image uploader (solo admite png? me paso en branson)
+* multiple filters en listado que sean inline! (fixed in branson) (sacar el br jejejejeje)
+* bbcode no <p> hecho en branson
+* cambiar la clase de un filtro activo! made in branson
+* el activo se pierde al cambiar de pagina (fixed in branson)
+* los filtros estan tomando la entity ya limitada con la query, deberia ser una query especial (fixed in branson?)
+* quedo rota la cantidad de resultados a mostrar por pagina (fixed in branson)
+
 ---------- 2.1 ----------
 
 * Base template (frontend)
@@ -8,7 +20,19 @@
 	- Acciones masivas
 	- Drag and drop archivos
 	- Buscador
-	- Index
+	- Index (hecho en branson)
+* func registerMods que lo tome del config y ademas no anda bien el tema del divider
+* opcion para poder mostrar la imagen en vez del tag en el fileipload.widget (hecho en branson) y ademas el is iterable esta repetido
+* ctrl + s = save
+* poder forzar la cantidad de resultados en un determinado listado
+* poder sacar el delete de un form y un listado (hecho en branson)
+* miniaturas en listados de imagenes (hecho en branson)
+* words filter de twig pasa & a &amp; y se bardea
+* enter en listar cant por pagina submitea
+* optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
+* a veces el topbar tarda en cargar y se mueve todo generando un efecto feo
+* poder poner el sitio en modo mantenimiento desde el admin
+* crear demo, subir a mi servidor
 
 ---------- 2.2 ----------
 
