@@ -1,6 +1,5 @@
 ---------- 2.0.1 --------
 
-* fix image uploader (solo admite png? me paso en branson)
 * multiple filters en listado que sean inline! (fixed in branson) (sacar el br jejejejeje)
 * bbcode no <p> hecho en branson
 * cambiar la clase de un filtro activo! made in branson
