@@ -28,7 +28,14 @@ class BackendController extends DefaultController
 				$entity = $this->whereManager($entity);
 			}
 			// Number of items
-			$n = count($entity->getQuery()->getResult());
+			$aux = $entity->getQuery()->getResult();
+			$n = count($aux);
+			// Available Filters (must be here before fucking the results)
+			$filters = array();
+			$cm = 'get' . $params['slug'] . 'Filters';
+			if (method_exists($this, $cm)) {
+				$filters = $this->$cm($aux);
+			}
 			// Query requested
 			$entity = $entity->setMaxresults($results_x_page)
 				->setFirstResult($current_offset)
@@ -37,12 +44,6 @@ class BackendController extends DefaultController
 				->getResult();
 		} catch (Exception $e) {
 			echo "Entity not found \n"; die();
-		}
-		// Available Filters
-		$filters = array();
-		$cm = 'get' . $params['slug'] . 'Filters';
-		if (method_exists($this, $cm)) {
-			$filters = $this->$cm($entity);
 		}
 		$this->render($params['slug'] . ".list.html.twig", array(
 			'entity' => $entity,
