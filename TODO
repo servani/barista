@@ -1,7 +1,5 @@
 ---------- 2.0.1 --------
 
-* fixear sort, si no tenia timestamp, generarlo (made in branson)
-* fixear el loop de redirect de login (que no caiga en /admin/login)
 * fix image uploader (solo admite png? me paso en branson)
 * multiple filters en listado que sean inline! (fixed in branson) (sacar el br jejejejeje)
 * bbcode no <p> hecho en branson
@@ -12,6 +10,7 @@
 
 ---------- 2.1 ----------
 
+* poder configurar logo y nombre del cliente
 * Base template (frontend)
 * Documentación
 * TO DO's

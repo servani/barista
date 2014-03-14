@@ -47,7 +47,7 @@ class Bootstrap
 					if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {
 						$this->dispatch($callback['controller'], $callback['action'], $params);
 					} else {
-						$this->url = 'login';
+						$this->url = 'http://' . $_SERVER['SERVER_NAME'] . '/login';
 						header('location:' . $this->url);
 					}
 				// Secured (Frontend)
