@@ -12,7 +12,7 @@
 		<div class="filters small-12 columns">
 			{% for h,u in filters %}
 				{% if u.active %}
-					<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;" class="button tiny secondary radius">Remover filtro {{ u.title }} <span class="remove">&times;</span></a>
+					<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;" class="button tiny alert radius">Remover filtro {{ u.title }} <span class="remove">&times;</span></a>
 				{% else %}
 					<a href="#" data-dropdown="drop-{{ u.title }}" data-options="is_hover:true" class="button dropdown tiny secondary radius">Filtrar por {{ u.title }}</a>
 					<ul id="drop-{{ u.title }}" data-dropdown-content class="f-dropdown small">
