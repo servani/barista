@@ -14,7 +14,7 @@
 <div class="file-upload-module">
 	<div class="btn-container">
 		<span class="button small radius fake {{ value and not multiple ? 'secondary' : '' }}">{{ value and not multiple ? 'Reemplazar' : 'Cargar +' }}</span>
-		<input {{ filetype == 'image' ? ' accept="image/png"' : '' }} class="button small fileupload {{ multiple|default('single') }} {{ filetype }}" type="file" name="{{ entityName }}-{{ name }}" {{ multiple|default('') }}/>
+		<input {{ filetype == 'image' ? ' accept="image/*"' : '' }} class="button small fileupload {{ multiple|default('single') }} {{ filetype }}" type="file" name="{{ entityName }}-{{ name }}" {{ multiple|default('') }}/>
 		<input type="hidden" name="{{ entityName }}[{{ name }}]" value="{{ hv|default('')}}" />
 	</div>
 	<div class="progressbar-container">
