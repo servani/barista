@@ -169,6 +169,10 @@ class BackendController extends DefaultController
 			}
 			$values = array();
 			$max = $entity[0]->getSort();
+			if ($max === NULL) {
+				$max = time();
+				$entity[0]->setSort($max);
+			}
 			foreach ($this->post['items'] as $i) {
 				$values[$i] = $max--;
 			}
