@@ -1,10 +1,6 @@
 ---------- 2.0.1 --------
 
-* bbcode no <p> hecho en branson
-* cambiar la clase de un filtro activo! made in branson
-* el activo se pierde al cambiar de pagina (fixed in branson)
 * los filtros estan tomando la entity ya limitada con la query, deberia ser una query especial (fixed in branson?)
-* quedo rota la cantidad de resultados a mostrar por pagina (fixed in branson)
 
 ---------- 2.1 ----------
 
