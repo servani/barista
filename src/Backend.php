@@ -30,7 +30,7 @@ class BackendController extends DefaultController
 			// Number of items
 			$aux = $entity->getQuery()->getResult();
 			$n = count($aux);
-			// Available Filters (must be here before fucking the results)
+			// Available Filters (must be here before fuck with the results)
 			$filters = array();
 			$cm = 'get' . $params['slug'] . 'Filters';
 			if (method_exists($this, $cm)) {

@@ -22,6 +22,15 @@
 * a veces el topbar tarda en cargar y se mueve todo generando un efecto feo
 * poder poner el sitio en modo mantenimiento desde el admin
 * crear demo, subir a mi servidor
+* sacarle http a los links si tienen
+* (pre)visualizar post
+* borrador
+* fixear el espacio que aparece al princpio en los bbcode textareas
+* Avoid doble click en boton y por ende doble submit
+* si hay muchas páginas, hacer algo tipo google << < 1 2 3 ... 98 99 100 > >> (hecho en mnba, ver widget pagenav)
+* que al select no haya q pasarle un objeto siempre
+* agregarle required al select y mensaje de error
+* ver otras cuestiones q le hice al select widget en ma360
 
 ---------- 2.2 ----------
 
