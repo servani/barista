@@ -16,16 +16,20 @@ class BackendController extends DefaultController
 		// 'Nice Name'	=>
 		//		'Entity'	=> 'Nice Name',
 		//		'Entity'	=> 'Nice Name'
+		// dividers: N (number) => null
 		return array(
 			'User' => 'Usuarios',
 			'Blog' => array(
 				'Post'		=> 'Posts',
+				1			=> null,
 				'Image'		=> 'Imágenes',
 				'File'		=> 'Documentos',
+				2			=> null,
 				'Category'	=> 'Categorías',
 				'Tag'		=> 'Tags',
-				'TagType'	=> 'Tipos de Tag',
-				'CfType'	=> 'Tipos de Campos Pers.',
+				'TagType'	=> 'Grupos de tags',
+				3			=> null,
+				'CfType'	=> 'Campos personalizados',
 			)
 		);
 	}

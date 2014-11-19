@@ -38,12 +38,20 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ n }}<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
 										{% for e,f in m %}
-											<li class="{{ active(e) }}"><a href="{{ url('admin/list/' ~ e) }}">{{ f }}</a></li>
+											{% if f is null %}
+												<li class="divider"></li>
+											{% else %}
+												<li class="{{ active(e) }}"><a href="{{ url('admin/list/' ~ e) }}">{{ f }}</a></li>
+											{% endif %}
 										{% endfor %}
 									</ul>
 								</li>
 							{% else %}
-								<li class="{{ active(n) }}"><a href="{{ url('admin/list/' ~ n) }}">{{ m }}</a></li>
+								{% if m is null %}
+									<li class="divider"></li>
+								{% else %}
+									<li class="{{ active(n) }}"><a href="{{ url('admin/list/' ~ n) }}">{{ m }}</a></li>
+								{% endif %}
 							{% endif %}
 						{% endfor %}
 					</ul>
