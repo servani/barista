@@ -1,4 +1,4 @@
-<div class="bbcontainer">
+<div class="form-group bbcontainer">
 	<label>{{ label }}</label>
 	<textarea id="{{ id|default('') }}" name="{{ entityName }}[{{ name }}]" class="ckeditor {{ class|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" {{ required|default('') }}>{{ value|default('')}}</textarea>
 	{% if errormsg or required %}

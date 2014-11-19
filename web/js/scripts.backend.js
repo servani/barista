@@ -7,7 +7,7 @@ $(function () {
 
 	Barista.Backend = (function () {
 		var BaristaBackend = function () {
-			this.$content = $('#content');
+			this.$wrapper = $('#wrapper');
 			this.$loading = $('#loading');
 			this.$confirm = $('#confirm');
 			this.entityName = $('#entityName').text();
@@ -23,13 +23,16 @@ $(function () {
 			bindEvents: function () {
 				var self = this;
 				// Toggle Flag
-				this.$content.find('.toggleflag').on('click', 'span', function (e) {
+				this.$wrapper.find('.toggleflag').on('click', function (e) {
 					e.preventDefault();
 					self.toggleEntityFlag($(this));
 					return false;
 				});
 				// Items x page
-				this.$content.find('#results-page').on('click', 'a', function (e) {
+				this.$wrapper.find('#results-page').on('submit', function (e){
+					e.preventDefault();
+				});
+				this.$wrapper.find('#results-page').on('click', 'a', function (e) {
 					e.preventDefault();
 					var $input = $('input', e.delegateTarget);
 					if ($input.val()) {
@@ -38,17 +41,17 @@ $(function () {
 					}
 				});
 				// Delete File
-				this.$content.on('click', '.delete-file', function () {
+				this.$wrapper.on('click', '.delete-file', function () {
 					self.deleteFile($(this));
 					return false;
 				});
 				// Bind close to new alerts
-				this.$content.on('click', '.alert-box .close', function (e) {
+				this.$wrapper.on('click', '.alert-box .close', function (e) {
 					e.preventDefault();
 					$(this).parent().hide('fade');
 				});
 				// Confirm modal
-				this.$confirm.on('click', 'a', function (e) {
+				this.$confirm.on('click', 'button', function (e) {
 					e.preventDefault();
 					self.closeConfirm();
 					if ($(this).hasClass('true')) {
@@ -61,16 +64,25 @@ $(function () {
 					return false;
 				});
 				// Delete entity
-				this.$content.on('click', '.delen', function (e) {
+				this.$wrapper.on('click', '.delen', function (e) {
 					e.preventDefault();
 					var $btn = $(this);
-					self.openConfirm('Desea borrar ' + $btn.data('value') + '?');
+					self.openConfirm('Confirma que desea borrar ' + $btn.data('value') + '?');
+					self.confirmCallback = function () {
+						window.location = $btn.attr('href');
+					};
+				}),
+				// sendmails
+				this.$wrapper.on('click', '.sendmails', function (e) {
+					e.preventDefault();
+					var $btn = $(this);
+					self.openConfirm('Confirma que desea enviar mails?', 'Enviar');
 					self.confirmCallback = function () {
 						window.location = $btn.attr('href');
 					};
 				}),
 				// Remove CF
-				this.$content.on('click', '.rmcf', function (e) {
+				this.$wrapper.on('click', '.rmcf', function (e) {
 					e.preventDefault();
 					self.openConfirm('Desea borrar el campo personalizado?');
 					var $btn = $(this);
@@ -79,10 +91,10 @@ $(function () {
 					};
 				});
 				// add CF
-				this.$content.on('click', '.addcf', function (e) {
+				this.$wrapper.on('click', '.addcf', function (e) {
 					e.preventDefault();
 					var i = $(this).data('index'),
-						j = i + 1;
+					j = i + 1;
 					$(this).data('index', j);
 					var $ncf = $(this).prev('.cf').clone();
 					$ncf.find('input').each(function() {
@@ -94,39 +106,37 @@ $(function () {
 					$(this).before($ncf);
 				});
 				// Tags
-				this.$content.find('.autocomplete')
-					.on('keydown', function(event) {
-						self.availableTags = $(this).nextAll('.availabletags').text().split(',');
-						if (event.keyCode === $.ui.keyCode.TAB &&
-							$(this).data("ui-autocomplete").menu.active) {
-							event.preventDefault();
-						}
-					})
-					.autocomplete({
-						minLength: 0,
-						source: function(request, response) {
-							// delegate back to autocomplete, but extract the last term
-							response($.ui.autocomplete.filter(
-							self.availableTags, self.extractLast(request.term)));
-						},
-						focus: function() {
-							// prevent value inserted on focus
-							return false;
-						},
-						select: function(event, ui) {
-							var terms = self.split(this.value);
-							// remove the current input
-							terms.pop();
-							// add the selected item
-							terms.push(ui.item.value);
-							// add placeholder to get the comma-and-space at the end
-							terms.push("");
-							this.value = terms.join(", ");
-							return false;
-						}
-					});
+				this.$wrapper.find('.autocomplete')
+				.on('keydown', function(event) {
+					self.availableTags = $(this).nextAll('.availabletags').text().split(',');
+					if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
+						event.preventDefault();
+					}
+				})
+				.autocomplete({
+					minLength: 0,
+					source: function(request, response) {
+						// delegate back to autocomplete, but extract the last term
+						response($.ui.autocomplete.filter(self.availableTags, self.extractLast(request.term)));
+					},
+					focus: function() {
+						// prevent value inserted on focus
+						return false;
+					},
+					select: function(event, ui) {
+						var terms = self.split(this.value);
+						// remove the current input
+						terms.pop();
+						// add the selected item
+						terms.push(ui.item.value);
+						// add placeholder to get the comma-and-space at the end
+						terms.push("");
+						this.value = terms.join(", ");
+						return false;
+					}
+				});
 				// Fileupload Single
-				this.$content.find('.fileupload.single').fileupload({
+				this.$wrapper.find('.fileupload.single').fileupload({
 					url: self.baseUrl + '/xhr/upload',
 					dataType: 'json',
 					add: function (e, data) {
@@ -164,14 +174,13 @@ $(function () {
 					progress: function (e, data) {
 						var progress = parseInt(data.loaded / data.total * 100, 10);
 						self.FUV.progressbar.css({
-								'width': progress + '%',
-								'display': 'block'
-							}
-						);
+							'width': progress + '%',
+							'display': 'block'
+						});
 					}
 				});
 				// Fileupload Multi
-				this.$content.find('.fileupload.multiple').fileupload({
+				this.$wrapper.find('.fileupload.multiple').fileupload({
 					url: self.baseUrl + '/xhr/upload',
 					dataType: 'json',
 					add: function (e, data) {
@@ -208,14 +217,13 @@ $(function () {
 					progress: function (e, data) {
 						var progress = parseInt(data.loaded / data.total * 100, 10);
 						self.FUV.progressbar.css({
-								'width': progress + '%',
-								'display': 'block'
-							}
-						);
+							'width': progress + '%',
+							'display': 'block'
+						});
 					}
 				});
 				// Remove Fileuploaded
-				this.$content.find('.upload-container').on('click', '.remove', function () {
+				this.$wrapper.find('.upload-container').on('click', '.remove', function () {
 					var multiple = $(this).parents('.upload-container').hasClass('multiple');
 					var file = $(this).prevAll('a').text();
 					if (!self.FUV.input) {
@@ -235,6 +243,93 @@ $(function () {
 					}
 					$(this).parent().remove();
 				});
+				// submit prices fv
+				this.$wrapper.find('#prices-submit').on('click', function () {
+					self.submitPrices();
+				});
+				// form
+				this.$wrapper.find('#form form').on('submit', function () {
+					if (self.validate()) {
+						return true;
+					}
+					return false;
+				});
+			},
+			validate: function () {
+				var errors = false,
+					self = this;
+				var $form = this.$wrapper.find('#form'),
+					$pass = $form.find('input#password'),
+					$email = $form.find('input[type="email"]');
+
+				$form.find('[required]').removeClass('error');
+				$form.find('[required]').siblings('.error').hide();
+				$form.find('[required]').siblings('.error').hide();
+
+				$form.find('input, select, textarea').each(function () {
+					if ($(this).is('[required]')) {
+						if (!$(this).val()) {
+							$(this).addClass('error');
+							if ($(this).siblings('.error').size()) {
+								$(this).siblings('.error').show();
+							} else {
+								$(this).parent().siblings('.error').show();
+							}
+							errors = true;
+						}
+					}
+				});
+				if ($email.size() && !this.isEmail($email.val())) {
+					$email.addClass('error');
+					$email.siblings('.error').show();
+					errors = true;
+				}
+				if ($pass.size() && $pass.val()) {
+					var $passr = $form.find('input#passwordr');
+					if ($pass.val() !== $passr.val()) {
+						$passr.addClass('error');
+						$passr.siblings('.error').show();
+						errors = true;
+					}
+				}
+
+				return !errors;
+			},
+			isEmail: function (email) {
+				var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				return regex.test(email);
+			},
+			submitPrices: function () {
+				var $fields = this.$wrapper.find('.price'),
+				$combos = this.$wrapper.find('.combo-price'),
+				update_str = "",
+				update_combos_str = "",
+				update_arr = [],
+				update_combos_arr = [],
+				id, price,
+				self = this, msg, alertclass;
+				$fields.each(function () {
+					id = parseFloat($(this).data('uid'));
+					price = parseFloat($(this).text());
+					update_arr.push(id + ':' + price);
+				});
+				update_str = update_arr.join(',');
+				$combos.each(function () {
+					id = parseFloat($(this).data('id'));
+					price = parseFloat($(this).text());
+					update_combos_arr.push(id + ':' + price);
+				});
+				update_combos_str = update_combos_arr.join(',');
+				$.post(this.baseUrl + "/xhr/updatePrices", {values: update_str, combo_values: update_combos_str}, function (res) {
+					if (res.success) {
+						msg = 'Precios actulaizados exitosamente.';
+						alertclass = 'alert-success';
+					} else {
+						msg = 'Error inesperado. Los cambios no fueron guardados. Por favor, vuelva a intentarlo.';
+						alertclass = 'alert-danger';
+					}
+					self.createAlert(alertclass, msg);
+				}, 'json');
 			},
 			appendFile: function (file) {
 				this.FUV.upcontainer.append('<div class="radius label upload"><a href="http://' + document.domain + '/content/' + file + '" target="_blank" title="' + file + '">' + file + '</a><span class="remove">&times;</span></div>');
@@ -256,7 +351,7 @@ $(function () {
 			},
 			saveOrder: function () {
 				var items = [], self = this, msg, alertclass;
-				this.$content.find('.sortable tr').each(function () {
+				this.$wrapper.find('.sortable tr').each(function () {
 					items.push($(this).data('id'));
 				});
 				this.openLoading();
@@ -273,25 +368,28 @@ $(function () {
 				}, 'json');
 			},
 			createAlert: function (classname, msg, $context) {
-				var $box = $('<div></div>');
+				var $box = $('<div role="alert"></div>');
 				var time = new Date();
-				msg = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + ' // ' + msg;
+				msg = '<strong>' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + ' </strong> ' + msg;
 				$box
-					.attr('data-alert', '')
-					.attr('class', 'alert-box radius ' + classname)
-					.html(msg + '<a href="#" class="close">&times;</a>');
+				.attr('data-alert', '')
+				.attr('class', 'alert alert-dismissible ' + classname)
+				.html('<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + msg);
 				if ($context) {
 					$context.prepend($box);
 				} else {
-					this.$content.prepend($box);
+					this.$wrapper.find('#alerts').prepend($box);
 				}
 			},
-			openConfirm: function (msg) {
+			openConfirm: function (msg, button) {
 				this.$confirm.find('p').text(msg);
-				this.$confirm.foundation('reveal', 'open');
+				if (button !== undefined) {
+					this.$confirm.find('.true').text(button);
+				}
+				this.$confirm.modal('show');
 			},
 			closeConfirm: function () {
-				this.$confirm.foundation('reveal', 'close');
+				this.$confirm.modal('hide');
 			},
 			openLoading: function () {
 				this.$loading.foundation('reveal', 'open');
@@ -308,15 +406,15 @@ $(function () {
 			},
 			toggleEntityFlag: function ($elem) {
 				var data = $elem.data(),
-					self = this, msg, alertclass;
+				self = this, msg, alertclass;
 				$elem.toggleClass('null');
 				$.post(this.baseUrl + "/xhr/toggleflag", {id: data.id, prop: data.prop, en: data.en}, function (res) {
 					if (res.success) {
 						msg = 'Los cambios fueron guardados exitosamente.';
-						alertclass = 'success';
+						alertclass = 'alert-info';
 					} else {
 						msg = 'Error inesperado. Los cambios no fueron guardados. Por favor, recargue la página y vuelva a intentarlo.';
-						alertclass = 'warning';
+						alertclass = 'alert-danger';
 					}
 					self.createAlert(alertclass, msg);
 				}, 'json');

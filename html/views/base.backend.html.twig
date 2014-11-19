@@ -1,98 +1,67 @@
 <!doctype html>
-<html class="no-js" lang="es">
+<html lang="es">
 <head>
 	<meta charset="utf-8" />
-	<meta name="author" content="Grupo NSNC">
+	<meta name="author" content="Servani">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>{{ _FRAMEWORK }} {{ _VERSION }}</title>
-	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3" />
-	<link rel="stylesheet" href="{{ asset('css/foundation.min.css') }}" />
+	<title>{{ _PROJECT }}</title>
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2" />
+	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/bootstrapValidator.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/styles.backend.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/jquery-ui-1.10.4.custom.min.css') }}" />
-	<script src="{{ asset('js/vendor/modernizr.js') }}"></script>
 </head>
 <body>
-	<header>
-		<div id="header" class="fixed">
-			<nav class="top-bar" data-topbar data-options="scrolltop:false;back_text:Volver">
-				<ul class="title-area">
-					<li class="name">
-						<h1>{{ _FRAMEWORK }} {{ _VERSION }} <small>Site Admin</small></h1>
-					</li>
-					<li class="toggle-topbar menu-icon"><a href="#"></a></li>
-				</ul>
-				<section class="top-bar-section">
-					<ul class="right">
-						<li><a href="{{ url('') }}" target="_blank">Ir al sitio web</a></li>
-						<li class="has-dropdown">
-						<a href="#">{{ _USER }}</a>
-							<ul class="dropdown">
-								<li><a href="{{ url('logout') }}" title="Logout">Cerrar sesión</a></li>
-							</ul>
-						</li>
-						{% for key,mod in _MODS %}
-							{% if mod is iterable %}
-								<li class="show-for-small-only has-dropdown">
-									<a href="#">{{ key }}</a>
-									<ul class="dropdown">
-										{% for slug,name in mod %}
-											<li><a href="{{ url('admin/list/' ~ slug) }}">{{ name }}</a></li>
+	<div id="wrapper">
+		<div class="container">
+			<div class="row" id="alerts">
+			</div>
+		</div>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{{ url('admin') }}">{{ _PROJECT }}</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						{% for n,m in _MODS %}
+							{% if m is iterable %}
+								<li class="dropdown {{ active(m) }}">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ n }}<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										{% for e,f in m %}
+											<li class="{{ active(e) }}"><a href="{{ url('admin/' ~ e) }}">{{ f }}</a></li>
 										{% endfor %}
 									</ul>
 								</li>
-							{% elseif mod %}
-								<li class="show-for-small-only"><a href="{{ url('admin/list/' ~ key) }}">{{ mod }}</a></li>
+							{% else %}
+								<li class="{{ active(n) }}"><a href="{{ url('admin/' ~ n) }}">{{ m }}</a></li>
 							{% endif %}
 						{% endfor %}
 					</ul>
-				</section>
-			</nav>
-		</div>
-	</header>
-
-	<div class="row fluid">
-		<nav class="medium-2 columns hide-for-small-only" id="sidebar">
-			<ul class="side-nav">
-				{% for key,mod in _MODS %}
-					{% if mod is empty %}
-						<li class="divider"></li>
-					{% else %}
-						{% if mod is iterable %}
-							<li class="title">{{ key }}</li>
-							{% for slug,name in mod %}
-								<li class="mod {{ active(slug) }}">
-									<a href="{{ url('admin/list/' ~ slug) }}">{{ name }}</a>
-									{% if active(slug) %}<div class="active-pitito"></div>{% endif %}
-								</li>
-							{% endfor %}
-						{% else %}
-							<li class="mod alone {{ active(key) }}">
-								<a href="{{ url('admin/list/' ~ key) }}">{{ mod }}</a>
-								{% if active(key) %}<div class="active-pitito"></div>{% endif %}
-							</li>
-						{% endif %}
-					{% endif %}
-				{% endfor %}
-			</ul>
-			<div id="copy">Powered by <a href="http://gruponsnc.com.ar" target="_blank" title="Grupo NSNC">NSNC</a></div>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="{{ active('settings') }}"><a href="{{ url('admin/settings') }}"><span class="glyphicon glyphicon-cog"></span></a></li>
+						<li><a href="{{ url('logout') }}" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+					</ul>
+				</div>
+			</div>
 		</nav>
-		<div class="small-12 medium-10 columns">
-			<section id="content">{% block section %}{% endblock %}</section>
-		</div>
-	</div>
-	<div id="modals">
-		<div id="loading" class="reveal-modal tiny text-center" data-reveal data-options="close_on_background_click:false">
-			<p>Cargando...</p>
-		</div>
-		<div id="confirm" class="reveal-modal small text-center" data-reveal data-options="close_on_background_click:false">
-			<p>Está seguro que desea continuar?</p>
-			<a href="#" class="false button secondary radius">No</a>
-			<a href="#" class="true button alert radius">Si</a>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" id="content">{% block section %}{% endblock %}</div>
+			</div>
 		</div>
 	</div>
 	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
-	<script src="{{ asset('js/vendor/fastclick.js') }}"></script>
-	<script src="{{ asset('js/foundation.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrapValidator.min.js') }}"></script>
 	<script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
 	<script src="{{ asset('js/jquery-ui-1.10.4.custom.min.js') }}"></script>
 	<script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
@@ -100,11 +69,16 @@
 	<script src="{{ asset('js/scripts.backend.js') }}"></script>
 	<script src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
 	<script src="{{ asset('js/jquery.fileupload.js') }}"></script>
+	<script src="{{ asset('js/jquery.printElement.min.js') }}"></script>
+	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+	{% block scripts %}{% endblock %}
 	<script>
-		$(document).foundation();
 		$(function () {
 			Barista.init();
 			$('.datetimepicker').datetimepicker({
+				dateFormat: 'dd-mm-yy'
+			});
+			$('.datepicker').datepicker({
 				dateFormat: 'dd-mm-yy'
 			});
 			$('.sortable').sortable({
@@ -117,5 +91,22 @@
 			$('.sortable').disableSelection();
 		});
 	</script>
+	<div class="modal" tabindex="-1" role="dialog" id="confirm" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4></h4>
+				</div>
+				<div class="modal-body">
+					<p></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-sm btn-danger true">Borrar</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 </body>
 </html>

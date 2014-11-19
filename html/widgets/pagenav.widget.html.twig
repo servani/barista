@@ -1,38 +1,53 @@
 {% if pagenav.results %}
 	{% if pagenav.nofpages > 1 %}
-		<div class="pagination-centered">
-			<ul class="pagination">
-				<li class="arrow {{ pagenav.page == 1 ? 'unavailable' : '' }}">
-					{% if pagenav.page == 1 %}
-						<a href="#">&laquo;</a>
-					{% else %}
-						<a href="{{ url('admin/list/' ~ en) }}?p={{ pagenav.page - 1}}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}">&laquo;</a>
+		<ul class="pagination">
+			<li class="{{ pagenav.page == 1 ? 'disabled' : '' }}">
+				{% if pagenav.page == 1 %}
+					<a href="#">&laquo;</a>
+				{% else %}
+					<a href="{{ url('admin/list/' ~ en) }}?p={{ pagenav.page - 1}}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}">&laquo;</a>
+				{% endif %}
+			</li>
+			{% set aux = true %}
+			{% set aux2 = false %}
+			{% set min = 5 %}
+			{% set max = pagenav.nofpages - 4 %}
+			{% set midmin = pagenav.page - 2 %}
+			{% set midmax = pagenav.page + 2 %}
+			{% if pagenav.nofpages < 10 %}
+				{% set min = 0 %}
+				{% set aux = false %}
+			{% endif %}
+			{% for i in 1..pagenav.nofpages %}
+				{% if not min or i < min or i > max or (i > midmin and i < midmax) %}
+					<li class="{{ pagenav.page == i ? 'active' : '' }}"><a href="{{ url('admin/list/' ~ en) }}?p={{ i }}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}">{{ i }}</a></li>
+					{% if i > min and i < max and (i > midmin and i < midmax) %}
+						{% set aux2 = true %}
 					{% endif %}
-				</li>
-				{% for i in 1..pagenav.nofpages %}
-					<li class="{{ pagenav.page == i ? 'current' : '' }}"><a href="{{ url('admin/list/' ~ en) }}?p={{ i }}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}">{{ i }}</a></li>
-				{% endfor %}
-				<li class="arrow {{ pagenav.page == pagenav.nofpages ? 'unavailable' : '' }}">
-					{% if pagenav.page == pagenav.nofpages %}
-						<a href="#">&raquo;</a>
-					{% else %}
-						<a href="{{ url('admin/list/' ~ en) }}?p={{ pagenav.page + 1}}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}">&raquo;</a>
-					{% endif %}
-				</li>
-			</ul>
-		</div>
+				{% elseif aux or aux2 %}
+					<li><a href="#" class="disabled">...</a></li>
+					{% set aux = false %}
+					{% set aux2 = false %}
+				{% endif %}
+			{% endfor %}
+			<li class="{{ pagenav.page == pagenav.nofpages ? 'disabled' : '' }}">
+				{% if pagenav.page == pagenav.nofpages %}
+					<a href="#">&raquo;</a>
+				{% else %}
+					<a href="{{ url('admin/list/' ~ en) }}?p={{ pagenav.page + 1}}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}">&raquo;</a>
+				{% endif %}
+			</li>
+		</ul>
 	{% endif %}
-	<p class="results-page">Cantidad de resultados por página</p>
-	<div class="row">
-		<div class="small-4 medium-3 large-2 small-centered columns">
-			<div class="row collapse" id="results-page">
-				<div class="small-5 medium-4 columns">
-					<input type="text" placeholder="{{ pagenav.max }}">
-				</div>
-				<div class="small-7 medium-8 columns">
-					<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;n=" class="postfix button">Listar</a>
-				</div>
+	<p>Cantidad de resultados por página:</p>
+	<form id="results-page" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-1">
+				<input type="text" class="form-control" placeholder="{{ pagenav.max }}">
+			</div>
+			<div class="col-sm-2">
+				<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}&amp;n=" class="btn btn-default">Listar</a>
 			</div>
 		</div>
-	</div>
+	</form>
 {% endif %}

@@ -1,16 +1,14 @@
 ---------- 2.1 ----------
 
-* poder configurar logo y nombre del cliente (twig globlas que vengan del config?)
+* mudar a bootstrap
 * Base template (frontend)
 * Documentación
-* TO DO's
 * Backend
 	- Distintos formatos de lista (ej: minimalista en tags)
 	- Acciones masivas
 	- Drag and drop archivos
 	- Buscador
 	- Index (hecho en branson)
-* func registerMods que lo tome del config y ademas no anda bien el tema del divider
 * opcion para poder mostrar la imagen en vez del tag en el fileipload.widget (hecho en branson) y ademas el is iterable esta repetido
 * ctrl + s = save
 * poder forzar la cantidad de resultados en un determinado listado
@@ -19,32 +17,27 @@
 * words filter de twig pasa & a &amp; y se bardea
 * enter en listar cant por pagina submitea
 * optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
-* a veces el topbar tarda en cargar y se mueve todo generando un efecto feo
 * poder poner el sitio en modo mantenimiento desde el admin
-* crear demo, subir a mi servidor
 * sacarle http a los links si tienen
-* (pre)visualizar post
-* borrador
+* borrador y papelera
 * fixear el espacio que aparece al princpio en los bbcode textareas
 * Avoid doble click en boton y por ende doble submit
 * si hay muchas páginas, hacer algo tipo google << < 1 2 3 ... 98 99 100 > >> (hecho en mnba, ver widget pagenav)
 * que al select no haya q pasarle un objeto siempre
 * agregarle required al select y mensaje de error
 * ver otras cuestiones q le hice al select widget en ma360
+* improve error handling, 404, 500, etc hacerlo mas visual
+* deploy, clearcache, map, generate scripts
+* remover default entities
 
 ---------- 2.2 ----------
 
+* angular
 * Comprimir JS (idem sass quizas, con algun script ubuntu)
 * Script autocreate sitemap
 * Ordenar /js/ y separar para todo lo que es backend
-* Script clean cache
-* Tests php
-* Manejo de errores y excepciones más visual
 
----------- 2.3 ----------
 
-* Papelera
-
----------- 2.n ----------
+======================================================================
 
 * baristaframework.com

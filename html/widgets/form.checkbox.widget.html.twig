@@ -1,2 +1,7 @@
-<input type="hidden" name="{{ entityName }}[{{ name }}]" value="0">
-<input class="{{ class|default('')}}" id="{{ id|default('') }}" {{ value ? 'checked' : (checked and not edit ? checked : '') }} type="checkbox" name="{{ entityName }}[{{ name }}]" value="1" /><label>{{ label }}</label>
+<div class="checkbox">
+	<input type="hidden" name="{{ entityName }}[{{ name }}]" value="0">
+	<label>
+		<input class="{{ class|default('')}}" id="{{ id|default('') }}" {{ value ? 'checked' : (checked and not edit ? checked : '') }} type="checkbox" name="{{ entityName }}[{{ name }}]" value="1" />
+		{{ label }}
+	</label>
+</div>

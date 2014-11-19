@@ -84,7 +84,6 @@ class Bootstrap
 
 	/* Handle Errors */
 	public function handleError($code) {
-		// TO DO custom error templates?
 		echo $code; die();
 	}
 }

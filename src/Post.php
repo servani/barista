@@ -105,7 +105,7 @@ class Post
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -128,7 +128,7 @@ class Post
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -151,7 +151,7 @@ class Post
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -174,7 +174,7 @@ class Post
     /**
      * Get subtitle
      *
-     * @return string 
+     * @return string
      */
     public function getSubtitle()
     {
@@ -197,7 +197,7 @@ class Post
     /**
      * Get summary
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -220,7 +220,7 @@ class Post
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -243,7 +243,7 @@ class Post
     /**
      * Get creationDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreationDate()
     {
@@ -266,7 +266,7 @@ class Post
     /**
      * Get publicDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPublicDate()
     {
@@ -289,7 +289,7 @@ class Post
     /**
      * Get cover
      *
-     * @return string 
+     * @return string
      */
     public function getCover()
     {
@@ -312,7 +312,7 @@ class Post
     /**
      * Get video
      *
-     * @return string 
+     * @return string
      */
     public function getVideo()
     {
@@ -335,7 +335,7 @@ class Post
     /**
      * Get map
      *
-     * @return string 
+     * @return string
      */
     public function getMap()
     {
@@ -358,7 +358,7 @@ class Post
     /**
      * Get rating
      *
-     * @return float 
+     * @return float
      */
     public function getRating()
     {
@@ -381,7 +381,7 @@ class Post
     /**
      * Get sort
      *
-     * @return integer 
+     * @return integer
      */
     public function getSort()
     {
@@ -404,7 +404,7 @@ class Post
     /**
      * Get visible
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getVisible()
     {
@@ -427,7 +427,7 @@ class Post
     /**
      * Get starred
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStarred()
     {
@@ -450,7 +450,7 @@ class Post
     /**
      * Get category
      *
-     * @return \Category 
+     * @return \Category
      */
     public function getCategory()
     {
@@ -483,7 +483,7 @@ class Post
     /**
      * Get tag
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTag()
     {

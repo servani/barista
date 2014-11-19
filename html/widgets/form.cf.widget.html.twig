@@ -1,1 +1,3 @@
-<input type="text" name="{{ entityName }}[CustomField{{ type|default('')}}][{{ index }}][{{ name }}]" value="{{ value|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" />
+<div class="form-group">
+	<input type="text" name="{{ entityName }}[CustomField{{ type|default('')}}][{{ index }}][{{ name }}]" value="{{ value|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" />
+</div>

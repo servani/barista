@@ -1,0 +1,88 @@
+{% extends 'base.backend.html.twig' %}
+{% block section %}
+<div class="row" id="comanda">
+	{% for r in result %}
+		{% set item = r.item %}
+		{% set order = r.order %}
+		{% set detail = r.detail %}
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="client-content" contenteditable="true">
+						<div class="clearfix">
+							<div class="c1 pull-left">
+								<h4>Gracias por elegir Fresca Vita!</h4>
+								<p><strong>{{ order.idCliente.nombre }}</strong>, este es el detalle de tu pedido. Si al momento de recibirlo faltó algo o algún producto no llegó en buen estado, no dudes en escribirnos a info@fresca-vita.com</p>
+								<p>Qué lo disfrutes!</p>
+							</div>
+							<div class="c2 pull-left">
+								<img src="{{ asset('img/logo-sm.png') }}" alt="Responsive image">
+							</div>
+						</div>
+						<h3>Pedido número <span class="label label-default">{{ order.getNumeroPedido + 30 }}</span>{% if order.getDineroMail or order.pagado %} <span class="label label-success">Pagado</span>{% endif %}</h3>
+						{% set arr = order.fechaEntrega|split('-') %}
+						{% set entrega = order.fechaEntrega %}
+						<p>
+						{{ entrega }} de {{ order.getFranjaHoraria }} <br>
+						{{ order.getIdDomicilio.getDireccionPrimaria }} {{ order.getIdDomicilio.getDireccionSecundaria }}, {{ order.getIdDomicilio.getIdBarrio.getNombre }} <br>
+						{% if order.getIdDomicilio.getTelefono %}
+							Tel. {{ order.getIdDomicilio.getTelefono }} <br>
+						{% endif %}
+						{% if order.getIdDomicilio.getCelular %}
+							Cel. {{ order.getIdDomicilio.getCelular }} <br />
+						{% endif %}
+						</p>
+						{% if order.getComentario != "" %}
+							<p><strong>Observaciones:</strong> {{ order.getComentario }}</p>
+						{% endif %}
+							<br />
+						<table class="table table-bordered table-responsive table-striped">
+							<thead>
+								<tr>
+									<th>Producto</th>
+									<th>Cantidad</th>
+									<th>Precio*</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for item in detail[order.id] %}
+									<tr>
+										<td>{{ item.producto }}</td>
+										<td>{{ item.cantidad }}</td>
+										<td>$ {{ item.subtotal|number_format(2, ',', '.') }}</td>
+									</tr>
+								{% endfor %}
+								{% if order.descuento %}
+									<tr class="success">
+										<td>Beneficio {{ order.idcliente.idempresa.nombre }} {{ order.descuento }}%</td>
+										<td>&nbsp;</td>
+										<td>-$ {{ ((100 * order.subtotal / (100 - order.descuento)) - order.subtotal)|number_format(2, ',', '.') }}</td>
+									</tr>
+								{% endif %}
+								{% if order.regalo %}
+									<tr class="warning">
+										<td>Regalo Fresca Vita (1 kg Naranja Jugo)</td>
+										<td>&nbsp;</td>
+										<td>$ 0,00</td>
+									</tr>
+								{% endif %}
+								<tr class="info">
+									<td>Envío a {{ order.iddomicilio.idbarrio.nombre }}</td>
+									<td>&nbsp;</td>
+									<td>$ {{ order.costoenvio|number_format(2, ',', '.') }}</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td><strong>Total</strong></td>
+									<td><strong>$ {{ (order.getSubtotal + order.getCostoEnvio)|number_format(2, ',', '.') }}</strong></td>
+								</tr>
+							</tbody>
+						</table>
+						<small>*Los precios individuales por producto pueden haber sido modificados desde el momento que realizó el pedido hasta que fue entregado, sin embargo, el total se mantiene constante desde el momento que el pedido es generado en el sistema.</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pb"></div>
+	{% endfor %}
+{% endblock %}

@@ -1,7 +1,8 @@
-<div class="form-buttons">
-	<a class="button small secondary radius" href="{{ url('admin/list/' ~ entityName) }}" title="Volver">Volver</a>
-	<input type="submit" class="button small success radius submit" value="{% if edit %}Guardar{% else %}Guardar{% endif %}" />
+<hr>
+<div class="form-group form-buttons">
+	<a class="btn btn-default" href="{{ url('admin/list/' ~ entityName) }}" title="Volver">Volver</a>
+	<input type="submit" class="btn btn-success" value="{% if edit %}Guardar{% else %}Guardar{% endif %}" />
 	{% if edit %}
-		<a data-value="{{ deletevalue }}" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ entity.id ) }}" title="Borrar" class="button small alert radius delete delen">Borrar</a>
+		<a data-value="{{ deletevalue }}" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ entity.id ) }}" title="Borrar" class="btn btn-danger delete delen">Borrar</a>
 	{% endif %}
 </div>
