@@ -37,7 +37,12 @@ class BackendController extends DefaultController
 	/* Index */
 
 	public function indexAction($params = null) {
-		$this->render("index.backend.html.twig");
+		$post = $this->em->getRepository('Post')->findAll();
+		$this->render("index.backend.html.twig", array(
+			'post' => array(
+				'total' => count($post)
+			)
+		));
 	}
 
 	/* Custom data methods for lists */

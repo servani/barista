@@ -5,38 +5,17 @@
 	<div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Pedidos</h3>
+				<h3 class="panel-title">Posts</h3>
 			</div>
 			<div class="panel-body">
 				<ul class="list-group">
-					<li class="list-group-item"><a href="{{ url('admin/list/Pedidos') }}">Todos</a> <span class="badge">{{ orders.total }}</span></li>
-					<li class="list-group-item"><a href="{{ url('admin/list/Pedidos') }}?cw=today">Hoy</a> <span class="badge">{{ orders.today }}</span></li>
-					<li class="list-group-item"><a href="{{ url('admin/list/Pedidos') }}?cw=incoming">Próximos ({{ tomorrow }})</a> <span class="badge">{{ orders.tomorrow }}</span></li>
-					<li class="list-group-item"><a href="{{ url('admin/list/Pedidos') }}?cw=future">Futuros</a> <span class="badge">{{ orders.future - orders.tomorrow }}</span></li>
+					<li class="list-group-item">
+						<a href="{{ url('admin/list/Post') }}">Total</a>
+						<span class="badge">{{ post.total }}</span>
+					</li>
 				</ul>
 			</div>
 		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Clientes</h3>
-			</div>
-			<div class="panel-body">
-				<ul class="list-group">
-					<li class="list-group-item">Registrados <span class="badge">{{ customers.total }}</span></li>
-					<li class="list-group-item">Pidieron <span class="badge">{{ customers.order }}</span></li>
-				</ul>
-			</div>
-			<div class="panel-footer">
-				<a href="{{ url('admin/list/Clientes') }}">Administrar Clientes</a>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<a href="{{ url('admin/stats') }}"class="btn btn-info">Ver informe completo</a>
 	</div>
 </div>
 {% endblock %}
