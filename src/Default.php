@@ -121,7 +121,13 @@ class DefaultController
 		 */
 		$fn[] = new Twig_SimpleFunction('active', function ($slug) {
 			$url = explode('?', $_SERVER['REQUEST_URI']);
-			return strpos($url[0] . '/', '/'. $slug . '/') !== FALSE ? 'active' : '';
+			$return = false;
+			if (is_array($slug)) {
+				foreach ($slug as $k => $v) {
+					$return = $return || strpos($url[0] . '/', '/'. $k . '/') !== FALSE ? 'active' : '';
+				}
+			}
+			return $return || strpos($url[0] . '/', '/'. $slug . '/') !== FALSE ? 'active' : '';
 		});
 		return $fn;
 	}
