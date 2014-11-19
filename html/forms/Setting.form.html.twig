@@ -1,0 +1,31 @@
+{% extends 'base.backend.html.twig' %}
+
+{% block section %}
+	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ en %}
+	{% include 'form.header.widget.html.twig' with { title: 'Usuario' } %}
+	<div id="form">
+		<form action="{{ url(action) }}" method="POST" data-abide>
+			<!-- # -->
+			<div class="row">
+				<div class="large-4 small-6 columns">
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Nombre',
+							value: entity.name, name: 'Name',
+							required: 'required'
+						}
+					%}
+				</div>
+				<div class="large-4 small-6 columns">
+					{% include 'form.input.widget.html.twig' with {
+							label: 'Valor',
+							value: entity.value, name: 'Value',
+							required: 'required'
+						}
+					%}
+				</div>
+			</div>
+			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.username } %}
+		</form>
+	</div>
+{% endblock %}
+

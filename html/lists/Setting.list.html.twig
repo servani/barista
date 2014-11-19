@@ -1,0 +1,22 @@
+{% extends 'base.backend.html.twig' %}
+
+{% block section %}
+	{% include 'list.widget.html.twig' with {
+			title: 'Opciones',
+			cols: {
+				'id': 'ID',
+				'name': 'Nombre',
+				'value': 'Valor'
+			},
+			deletekey: 'name',
+			entity: entity,
+			pagenav: q,
+			en: entityName
+		}
+	%}
+	{% include 'pagenav.widget.html.twig' with {
+			pagenav: q,
+			en: entityName
+		}
+	%}
+{% endblock %}
