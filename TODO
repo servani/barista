@@ -1,10 +1,10 @@
 2.1 ==================================================================
 
-* Backend
-	- Distintos formatos de lista (ej: minimalista en tags)
-	- Acciones masivas
-	- Drag and drop archivos
-	- Buscador
+* backend
+	- distintos formatos de lista (ej: minimalista en tags)
+	- acciones masivas
+	- drag and drop archivos
+	- buscador
 * opcion para poder mostrar la imagen en vez del tag en el fileipload.widget (hecho en branson) y ademas el is iterable esta repetido
 * ctrl + s = save
 * poder forzar la cantidad de resultados en un determinado listado
@@ -12,15 +12,14 @@
 * miniaturas en listados de imagenes (hecho en branson)
 * enter en listar cant por pagina submitea
 * optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
-* poder poner el sitio en modo mantenimiento desde el admin
 * sacarle http a los links si tienen
 * borrador y papelera
 * fixear el espacio que aparece al princpio en los bbcode textareas
 * Avoid doble click en boton y por ende doble submit
+
 * si hay muchas páginas, hacer algo tipo google << < 1 2 3 ... 98 99 100 > >> (hecho en mnba, ver widget pagenav)
-* que al select no haya q pasarle un objeto siempre
-* agregarle required al select y mensaje de error
-* ver otras cuestiones q le hice al select widget en ma360
+
+* que al select no haya q pasarle un objeto siempre, agregarle required y mensaje de error y ver otras cuestiones q le hice al widget en ma360
 
 2.2 ==================================================================
 

@@ -22,6 +22,14 @@ $(function () {
 			},
 			bindEvents: function () {
 				var self = this;
+				// ctrl + save
+				$(document).bind('keydown', function(e) {
+					if(e.ctrlKey && (e.which == 83)) {
+						e.preventDefault();
+						self.$wrapper.find('form input#ctrls').click();
+						return false;
+					}
+				});
 				// Toggle Flag
 				this.$wrapper.find('.toggleflag').on('click', function (e) {
 					e.preventDefault();
