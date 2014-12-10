@@ -129,7 +129,9 @@
 								{% if en == 'Pedidos' %}
 									{% set sdel = 'el pedido número ' %}
 								{% endif %}
-								<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen">Borrar</a>
+								{% if deletekey %}
+									<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen">Borrar</a>
+								{% endif %}
 							</td>
 						</tr>
 					{% endfor %}

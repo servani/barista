@@ -463,7 +463,12 @@ class DefaultController
 	public function listAction($params = null) {
 		try {
 			// query conditions
-			$results_x_page = $this->getResultsPerPage(10);
+			$default_results = 10;
+			$cm = 'get' . $params['slug'] . 'DefaultResults';
+			if (method_exists($this, $cm)) {
+				$default_results = $this->$cm();
+			}
+			$results_x_page = $this->getResultsPerPage($default_results);
 			$current_offset = isset($this->get['p']) ? ($this->get['p'] - 1) * $results_x_page : 0;
 			// custom Order
 			$cm = 'get' . $params['slug'] . 'Order';

@@ -1,28 +1,40 @@
 2.1 ==================================================================
 
+* ajustar forms, listados, widgets, form validation etc a bootstrap
+
 * backend
 	- distintos formatos de lista (ej: minimalista en tags)
 	- acciones masivas
 	- drag and drop archivos
 	- buscador
-* opcion para poder mostrar la imagen en vez del tag en el fileipload.widget (hecho en branson) y ademas el is iterable esta repetido
-* ctrl + s = save
-* poder forzar la cantidad de resultados en un determinado listado
-* poder sacar el delete de un form y un listado (hecho en branson)
-* miniaturas en listados de imagenes (hecho en branson)
-* enter en listar cant por pagina submitea
-* optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
-* sacarle http a los links si tienen
-* borrador y papelera
-* fixear el espacio que aparece al princpio en los bbcode textareas
-* Avoid doble click en boton y por ende doble submit
 
-* si hay muchas páginas, hacer algo tipo google << < 1 2 3 ... 98 99 100 > >> (hecho en mnba, ver widget pagenav)
+* opcion para poder mostrar la imagen en vez del tag en el fileipload.widget (hecho en branson) y ademas el is iterable esta repetido
+
+* poder forzar la cantidad de resultados en un determinado listado
+
+* poder sacar el delete de un form y un listado (hecho en branson)
+
+* miniaturas en listados de imagenes (hecho en branson)
+
+* enter en listar cant por pagina submitea
+
+* optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
+
+* sacarle http a los links si tienen
+
+* borrador y papelera
+
+* fixear el espacio que aparece al princpio en los bbcode textareas
+
+* Avoid doble click en boton y por ende doble submit
 
 * que al select no haya q pasarle un objeto siempre, agregarle required y mensaje de error y ver otras cuestiones q le hice al widget en ma360
 
+* ver que puedo robar de frescavita admin
+
 2.2 ==================================================================
 
+* fix cache (is it working?)
 * documentation
 
 2.3 ==================================================================

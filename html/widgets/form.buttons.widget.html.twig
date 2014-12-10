@@ -2,7 +2,7 @@
 <div class="form-group form-buttons">
 	<a class="btn btn-default" href="{{ url('admin/list/' ~ entityName) }}" title="Volver">Volver</a>
 	<input type="submit" id="ctrls" class="btn btn-success" value="{% if edit %}Guardar{% else %}Guardar{% endif %}" />
-	{% if edit %}
+	{% if edit and deletevalue %}
 		<a data-value="{{ deletevalue }}" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ entity.id ) }}" title="Borrar" class="btn btn-danger delete delen">Borrar</a>
 	{% endif %}
 </div>

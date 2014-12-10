@@ -51,6 +51,12 @@ class BackendController extends DefaultController
 		return 'test';
 	}
 
+	/* Custom number of default results for lists */
+
+	public function getTagTypeDefaultResults() {
+		return 1;
+	}
+
 	/* Custom filters methods */
 
 	public function getImageFilters($entity) {
