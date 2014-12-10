@@ -40,6 +40,11 @@ $(function () {
 				this.$wrapper.find('#results-page').on('submit', function (e){
 					e.preventDefault();
 				});
+				this.$wrapper.find('#results-page').on('keypress', 'input', function (e){
+					if (e.keyCode == 13) {
+						self.$wrapper.find('#results-page a.btn').click();
+					}
+				});
 				this.$wrapper.find('#results-page').on('click', 'a', function (e) {
 					e.preventDefault();
 					var $input = $('input', e.delegateTarget);

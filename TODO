@@ -10,13 +10,7 @@
 
 * opcion para poder mostrar la imagen en vez del tag en el fileipload.widget (hecho en branson) y ademas el is iterable esta repetido
 
-* poder forzar la cantidad de resultados en un determinado listado
-
-* poder sacar el delete de un form y un listado (hecho en branson)
-
 * miniaturas en listados de imagenes (hecho en branson)
-
-* enter en listar cant por pagina submitea
 
 * optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
 
