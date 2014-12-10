@@ -26,13 +26,11 @@
 * que al select no haya q pasarle un objeto siempre
 * agregarle required al select y mensaje de error
 * ver otras cuestiones q le hice al select widget en ma360
-* improve error handling, 404, 500, etc hacerlo mas visual
 * deploy, clearcache, map, generate scripts
-* remover default entities
-* login piola
 
 ---------- 2.2 ----------
 
+* remover default entities con script
 * angular
 * Comprimir JS (idem sass quizas, con algun script ubuntu)
 * Script autocreate sitemap

@@ -1,4 +1,5 @@
 <?php
+/* Global config object */
 $config = array(
 	'DB' => array(
 		'driver'	=> 'pdo_mysql',
@@ -25,11 +26,19 @@ $config = array(
 		'_VERSION' => '2.0.1',
 		'_PROJECT' => 'Barista'
 	),
+	'PROJECT' => array(
+		'name' => 'Barista Framework',
+		'nice_name' => 'Barista',
+		'web' => 'https://github.com/servani/barista',
+		'email' => 'fede@nsnc.co',
+	)
 );
-/* Overrides */
+/* Overrides for instances */
 $url = @$_SERVER['SERVER_NAME'];
 if (strpos($url, 'local.') !== FALSE || !$url) {
-	$config['DB']['user'] = 'root'; // local
+	// local
+	$config['DB']['user'] = 'root';
 } elseif (strpos($url, 'dev.') !== FALSE) {
-	$config['DB']['user'] = 'root'; // dev
+	// dev
+	$config['DB']['user'] = 'root';
 }

@@ -19,6 +19,15 @@ body { padding-top: 70px; }
 		margin: 0 auto 40px;
 	}
 }
+.error-template {
+	padding: 0 15px; text-align: center;
+	img {
+		display: block;
+		margin: 0 auto 20px;
+	}
+}
+.error-actions { margin-top:15px; margin-bottom:15px; }
+.error-actions .btn { margin-right:10px; }
 #comanda {
 	.c1 {
 		width: 70%;

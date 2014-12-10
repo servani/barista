@@ -66,7 +66,7 @@ class Bootstrap
 			}
 		}
 		// No match
-		$this->handleError(404);
+		$this->dispatch('Default', 'error', array('code' => 404));
 		return;
 	}
 
@@ -80,10 +80,5 @@ class Bootstrap
 		$c = new $controller();
 		$c->$action($params);
 		return;
-	}
-
-	/* Handle Errors */
-	public function handleError($code) {
-		echo $code; die();
 	}
 }

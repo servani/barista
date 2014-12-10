@@ -74,7 +74,9 @@ class DefaultController
 			$this->twig->addGlobal($k, $v);
 		}
 		// set custom globals
-		$this->setCustomGlobals();
+		if (method_exists($this, 'setCustomGlobals')) {
+			$this->setCustomGlobals();
+		}
 		// register simple functions
 		$fn = $this->registerTwigSimpleFunctions();
 		foreach ($fn as $f) {
@@ -299,6 +301,7 @@ class DefaultController
 
 	/* Login */
 	public function authenticateAction() {
+		$error = false;
 		if (isset($_POST['username']) && isset($_POST['password'])) {
 			$username = $_POST['username'];
 			$password = md5($_POST['password']);
@@ -318,8 +321,9 @@ class DefaultController
 				$this->redirect('admin');
 				return true;
 			}
+			$error = true;
 		}
-		$this->render("login.html.twig");
+		$this->render("login.html.twig", array('error' => $error));
 		return false;
 	}
 
@@ -924,6 +928,15 @@ class DefaultController
 		$cm = 'handle' . $en . $prop;
 		if (method_exists($this, $cm)) {
 			$this->$cm($path, $file);
+		}
+	}
+
+	/* Errors */
+
+	public function errorAction($params) {
+		// not found
+		if ($params['code'] === 404) {
+			$this->render("404.html.twig");
 		}
 	}
 }
