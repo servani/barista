@@ -1,20 +1,15 @@
----------- 2.1 ----------
+2.1 ==================================================================
 
-* mudar a bootstrap
-* Base template (frontend)
-* Documentación
 * Backend
 	- Distintos formatos de lista (ej: minimalista en tags)
 	- Acciones masivas
 	- Drag and drop archivos
 	- Buscador
-	- Index (hecho en branson)
 * opcion para poder mostrar la imagen en vez del tag en el fileipload.widget (hecho en branson) y ademas el is iterable esta repetido
 * ctrl + s = save
 * poder forzar la cantidad de resultados en un determinado listado
 * poder sacar el delete de un form y un listado (hecho en branson)
 * miniaturas en listados de imagenes (hecho en branson)
-* words filter de twig pasa & a &amp; y se bardea
 * enter en listar cant por pagina submitea
 * optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
 * poder poner el sitio en modo mantenimiento desde el admin
@@ -26,17 +21,21 @@
 * que al select no haya q pasarle un objeto siempre
 * agregarle required al select y mensaje de error
 * ver otras cuestiones q le hice al select widget en ma360
+
+2.2 ==================================================================
+
+* documentation
+
+2.3 ==================================================================
+
 * deploy, clearcache, map, generate scripts
-
----------- 2.2 ----------
-
-* remover default entities con script
+* emover default entities con script
 * angular
-* Comprimir JS (idem sass quizas, con algun script ubuntu)
-* Script autocreate sitemap
-* Ordenar /js/ y separar para todo lo que es backend
+* comprimir JS (idem sass quizas, con algun script ubuntu)
+* script autocreate sitemap
+* ordenar /js/ y separar para todo lo que es backend
 
 
-======================================================================
+2.n ==================================================================
 
 * baristaframework.com

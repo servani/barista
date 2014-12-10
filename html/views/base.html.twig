@@ -1,28 +1,27 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="rating" content="General" />
-		<meta name="language" content="Spanish">
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<meta name="fragment" content="!" />
-		<meta name="author" content="Grupo NSNC">
-		<meta name="title" content="" />
-		<title></title>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script>window.jQuery || document.write("<script src=\"{{ asset('js/jquery-1.10.2.min.js') }}\"><\/script>")</script>
-		<script src="{{ asset('js/script.js') }}"></script>
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
-		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-	</head>
-
-	</head>
-	<body>
-		<div id="container">
-			<div id="header"></div>
-			<div id="section">{% block section %}{% endblock %}</div>
-			<div id="footer"></div>
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="Servani">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{{ _PROJECT }}</title>
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2" />
+	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+</head>
+<body>
+	<div id="wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" id="content">{% block section %}{% endblock %}</div>
+			</div>
 		</div>
-	</body>
+	</div>
+	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
+	<script src="{{ asset('js/scripts.js') }}"></script>
+	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+	{% block scripts %}{% endblock %}
+</body>
 </html>
