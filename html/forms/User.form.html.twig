@@ -1,13 +1,12 @@
 {% extends 'base.backend.html.twig' %}
 
 {% block section %}
-	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ en %}
+	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
 	{% include 'form.header.widget.html.twig' with { title: 'Usuario' } %}
 	<div id="form">
-		<form action="{{ url(action) }}" method="POST" data-abide>
-			<!-- # -->
+		<form action="{{ url(action) }}" method="POST" novalidate>
 			<div class="row">
-				<div class="large-4 small-6 columns">
+				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
 							label: 'Nombre',
 							value: entity.name, name: 'Name',
@@ -16,9 +15,8 @@
 					%}
 				</div>
 			</div>
-			<!-- # -->
 			<div class="row">
-				<div class="large-4 small-6 columns">
+				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
 							label: 'Usuario', placeholder: 'Nombre de Usuario',
 							value: entity.username, name: 'Username',
@@ -27,23 +25,21 @@
 					%}
 				</div>
 			</div>
-			<!-- # -->
 			<div class="row">
-				<div class="large-4 small-6 columns">
+				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Contraseña',
+							label: 'Contraseña', autocompleteoff: true,
 							id: 'password', type: 'password',
-							pattern: 'alpha_numeric',
 							value: entity.password, name: 'Password',
 							required: 'required'
 						}
 					%}
 				</div>
-				<div class="large-4 small-6 columns large-pull-4">
+				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
 							label: 'Repetir Contraseña',
+							id: 'passwordr',
 							type: 'password', equalto: 'password',
-							pattern: 'alpha_numeric',
 							value: entity.password, name: 'password-repeat',
 							required: 'required', errormsg: 'Las contraseñas no coinciden'
 						}

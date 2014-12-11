@@ -526,7 +526,7 @@ class DefaultController
 		));
 	}
 
-	public function newAction($params = null) {
+	public function newAction($params = null, $entity = null, $error = false) {
 		$cm = 'new' . $params['slug'] . 'Data';
 		$data = false;
 		if (method_exists($this, $cm)) {
@@ -535,18 +535,20 @@ class DefaultController
 		$this->render($params['slug'] . ".form.html.twig", array(
 			'entityName' => $params['slug'],
 			'edit' => false,
-			'data' => $data
+			'data' => $data,
+			'entity' => $entity,
+			'error' => $error
 		));
 	}
 
 	public function editAction($params = null) {
-		$cm = 'new' . $params['slug'] . 'Action';
-		$data = false;
 		try {
 			$entity = $this->em->getRepository($params['slug'])->find($params['id']);
 		} catch (Exception $e) {
 			echo "Entity or Entry not found \n"; die();
 		}
+		$cm = 'new' . $params['slug'] . 'Action';
+		$data = false;
 		if (method_exists($this, $cm)) {
 			$data = $this->$cm($entity->getId());
 		}
@@ -562,17 +564,27 @@ class DefaultController
 		$entity = new $params['slug'];
 		$entity = $this->setFromPost($this->post[$params['slug']], $entity);
 
-		$cm = 'set' . $params['slug'] . 'Action';
+		$cm = 'validate' . $params['slug'];
+		$error = false;
 		if (method_exists($this, $cm)) {
-			$entity = $this->$cm($entity);
+			$error = $this->$cm($entity);
 		}
-		try {
-			$this->em->persist($entity);
-			$this->em->flush();
-		} catch (Exception $e) {
-			echo "Cannot persist entity to database \n"; die();
+
+		if (!$error) {
+			$cm = 'set' . $params['slug'] . 'Action';
+			if (method_exists($this, $cm)) {
+				$entity = $this->$cm($entity);
+			}
+			try {
+				$this->em->persist($entity);
+				$this->em->flush();
+			} catch (Exception $e) {
+				echo "Cannot persist entity to database \n"; die();
+			}
+			$this->redirect("admin/list/" . $params['slug']);
+		} else {
+			$this->newAction($params, $entity, $error);
 		}
-		$this->redirect("admin/list/" . $params['slug']);
 	}
 
 	public function updateAction($params = null) {
@@ -856,6 +868,8 @@ class DefaultController
 						$this->em->persist($i);
 					}
 				}
+			} elseif (strpos($key, 'password-repeat') !== FALSE) {
+				unset($post[$key]);
 			} else {
 				$property = 'set' . $key;
 				if (strpos($property, 'setId') !== FALSE) {

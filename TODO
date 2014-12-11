@@ -20,8 +20,6 @@
 
 * fixear el espacio que aparece al princpio en los bbcode textareas
 
-* Avoid doble click en boton y por ende doble submit
-
 * que al select no haya q pasarle un objeto siempre, agregarle required y mensaje de error y ver otras cuestiones q le hice al widget en ma360
 
 * ver que puedo robar de frescavita admin

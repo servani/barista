@@ -92,6 +92,23 @@ class BackendController extends DefaultController
 		return 'sort';
 	}
 
+	/* Custom validate methods */
+
+	public function validateUser($entity) {
+		$user = $this->em
+			->getRepository('User')
+			->createQueryBuilder('q')
+			->where('q.username = :username')
+			->setParameter('username', $entity->getUsername())
+			->getQuery()
+			->getResult(2);
+		// if username exists, return error
+		if ($user) {
+			return 'El nombre de usuario ya existe';
+		}
+		return false;
+	}
+
 	/* Custom new methods */
 
 	public function newTagData($id = null) {

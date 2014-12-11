@@ -44,10 +44,8 @@
 	<p>Cantidad de resultados por página:</p>
 	<form id="results-page" class="form-horizontal">
 		<div class="form-group">
-			<div class="col-sm-1">
-				<input type="text" class="form-control" placeholder="{{ pagenav.max }}">
-			</div>
 			<div class="col-sm-2">
+				<input type="text" class="form-control" placeholder="{{ pagenav.max }}">
 				<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}&amp;n=" class="btn btn-default">Listar</a>
 			</div>
 		</div>

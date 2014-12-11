@@ -3,24 +3,7 @@
 <div class="row">
 	<div class="col-md-12 list-header">
 		<div id="entityName" class="hide">{{ en }}</div>
-		<a class="btn btn-warning btn-lg" href="{{ url('admin/new/' ~ en) }}" title="Cargar">Cargar</a>
-	</div>
-</div>
-<hr>
-{% endif %}
-{% if en == 'Domicilios' and q.where.idCliente %}
-<div class="row">
-	<div class="col-md-12 list-header">
-		<a href="{{ url('admin/new/Domicilios/' ~ q.where.idCliente) }}" class="btn btn-success btn" title="Cargar Domicilio">Cargar Domicilio</a>
-	</div>
-</div>
-<hr>
-{% endif %}
-{% if en == 'Pedidos' and q.customWhere %}
-<div class="row">
-	<div class="col-md-12 list-header">
-		<a href="{{ url('admin/export/customers/' ~ q.customWhere) }}" class="btn btn-success btn" title="Exportar pedidos para cliente">Exportar pedidos para cliente</a>
-		<a href="{{ url('admin/export/supplier/' ~ q.customWhere) }}" class="btn btn-warning btn" title="Exportar pedidos para proveedor">Exportar pedidos para proveedor</a>
+		<a class="btn btn-primary btn-lg" href="{{ url('admin/new/' ~ en) }}" title="Cargar">Cargar</a>
 	</div>
 </div>
 <hr>
@@ -76,14 +59,11 @@
 								{% set arr = k|split('.') %}
 								{% set order = arr[0] %}
 							{% endif %}
-							<th><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;cw={{ pagenev.customWhere }}&amp;w={{ pagenav.where }}">{{ v }} <span class="caret"></span></a></th>
+							<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;cw={{ pagenev.customWhere }}&amp;w={{ pagenav.where }}">{{ v }} <span class="caret"></span></a></th>
 						{% endfor %}
 						{% if starred %}<th>&nbsp;</th>{% endif %}
 						{% if visible %}<th>&nbsp;</th>{% endif %}
-						{% if en == 'Clientes' or en == 'Pedidos' %}
-							<th>&nbsp;</th>
-						{% endif %}
-						<th>&nbsp;</th>
+						<th style="width:120px">&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody class="{{ pagenav.order == 'sort' ? 'sortable' : '' }}">
@@ -92,9 +72,6 @@
 							{% for k,v in cols %}
 								<td>
 									<span>{{ e|get(k)|raw }}</span>
-									{% if en == 'Pedidos' and loop.index == 2 %}
-										<span>- {{ e|get('idCliente.mail')|lower }}</span>
-									{% endif %}
 								</td>
 							{% endfor %}
 							{% if starred %}
@@ -107,28 +84,9 @@
 									<span data-id="{{ e.id }}" data-prop="visible" data-en="{{ entityName }}" class="visible {{ e.visible ? '' : 'null' }}"></span>
 								</td>
 							{% endif %}
-							{% if en == 'Clientes' %}
-								<td>
-									{% if customer.qad[e.id] %}
-										<a href="{{ url('admin/list/Domicilios') }}?w=idCliente:{{ e.id }}" class="btn btn-default btn-xs" title="Ver Domicilios">Domicilios ({{ customer.qad[e.id] }})</a>
-									{% endif %}
-									{% if customer.qor[e.id] %}
-										<a href="{{ url('admin/list/Pedidos') }}?w=idCliente:{{ e.id }}" class="btn btn-default btn-xs" title="Ver Pedidos"> Pedidos ({{ customer.qor[e.id] }})</a>
-									{% endif %}
-								</td>
-							{% endif %}
-							{% if en == 'Pedidos' %}
-								<td>
-									<a href="{{ url('admin/preview/order/' ~ e.id) }}" class="btn btn-default btn-xs" title="Ver Comanda">Comanda</a>
-									<a href="{{ url('admin/list/' ~ en) }}?w=idCliente:{{ e.idCliente.id }}" class="btn btn-default btn-xs" title="Filtrar">Filtrar</a>
-								</td>
-							{% endif %}
 							<td>
 								<a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="btn btn-primary btn-xs edit" title="Editar">Editar</a>
 								{% set sdel = '' %}
-								{% if en == 'Pedidos' %}
-									{% set sdel = 'el pedido número ' %}
-								{% endif %}
 								{% if deletekey %}
 									<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen">Borrar</a>
 								{% endif %}
@@ -150,6 +108,4 @@
 			</div>
 		</div>
 	{% endif %}
-{% else %}
-	<p class="noresults">No se encontraron resultados</p>
 {% endif %}
