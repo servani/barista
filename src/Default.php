@@ -896,8 +896,9 @@ class DefaultController
 
 	public function uploadFile($filetype) {
 		$image = $filetype === 'image' ? true : false;
+		$max_size = 2;
 		if ($image) {
-			$validator = new FileUpload\Validator\Simple(1024 * 1024 * 2, array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'));
+			$validator = new FileUpload\Validator\Simple(1024 * 1024 * $max_size, array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'));
 		}
 		$res = array();
 		$path = $this->getUploadDir();
@@ -926,7 +927,10 @@ class DefaultController
 					$this->handleImage($path, $filename, $key, $en);
 				}
 			}
-			$res[] = $filename;
+			$res[] = array(
+				'filename' => $filename,
+				'path' => $this->config['PATHS']['upload_nice']
+			);
 		}
 		return $res;
 	}

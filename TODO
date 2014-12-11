@@ -8,8 +8,6 @@
 	- drag and drop archivos
 	- buscador
 
-* opcion para poder mostrar la imagen en vez del tag en el fileipload.widget (hecho en branson) y ademas el is iterable esta repetido
-
 * miniaturas en listados de imagenes (hecho en branson)
 
 * optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
@@ -18,16 +16,11 @@
 
 * borrador y papelera
 
-* fixear el espacio que aparece al princpio en los bbcode textareas
-
-* que al select no haya q pasarle un objeto siempre, agregarle required y mensaje de error y ver otras cuestiones q le hice al widget en ma360
-
-* ver que puedo robar de frescavita admin
-
 2.2 ==================================================================
 
 * fix cache (is it working?)
 * documentation
+* optimizar file upload func en scripts.backend (multi y single)
 
 2.3 ==================================================================
 

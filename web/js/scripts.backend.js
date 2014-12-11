@@ -160,35 +160,39 @@ $(function () {
 						data.formData = {filetype: $(e.target).hasClass('image') ? 'image' : 'file' };
 					},
 					done: function (e, data) {
-						var msg, classname;
 						if (data.result.success) {
-							var file = data.result.files[0];
+							var file = data.result.files[0].filename,
+								path = data.result.files[0].path;
 							self.FUV.upcontainer.html('');
-							self.appendFile(file);
+							self.appendFile(file, path);
 							self.FUV.button.text('Reemplazar');
 							self.FUV.button.addClass('secondary');
 							self.FUV.hidden.val(file);
-							msg = 'Se subio el archivo ' + file + ' correctamente';
-							classname = 'success';
+							// link file
+							file = '<a href="' + self.frontBaseUrl + '/' + path + '/' + file +'" target="_blank">' + file + '</a>';
+							var msg = 'Se subio el archivo ' + file + ' correctamente',
+								classname = 'alert-success';
 						} else {
-							msg = 'Error en la carga del archivo';
-							classname = 'alert';
+							var msg = 'Error en la carga del archivo',
+								classname = 'alert-danger';
 						}
 						self.createAlert(classname, msg, self.FUV.alertcontainer);
 					},
 					fail: function (e, data) {
 						var msg = 'Error en la carga del archivo';
-						self.createAlert('alert', msg, self.FUV.alertcontainer);
+						self.createAlert('alert-danger', msg, self.FUV.alertcontainer);
 					},
 					always: function (e, data) {
 						console.log(data.result);
-						self.FUV.progressbar.css('display', 'none');
+						self.FUV.progressbarContainer.css('display', 'none');
 					},
 					progress: function (e, data) {
 						var progress = parseInt(data.loaded / data.total * 100, 10);
-						self.FUV.progressbar.css({
-							'width': progress + '%',
+						self.FUV.progressbarContainer.css({
 							'display': 'block'
+						});
+						self.FUV.progressbar.css({
+							'width': progress + '%'
 						});
 					}
 				});
@@ -206,32 +210,37 @@ $(function () {
 					done: function (e, data) {
 						var msg, classname;
 						if (data.result.success) {
-							var file = data.result.files[0];
-							self.appendFile(file);
+							var file = data.result.files[0].filename,
+								path = data.result.files[0].path;
+							self.appendFile(file, path);
 							var files = self.FUV.hidden.val().split(', ');
 							files.push(file);
 							self.FUV.hidden.val(files.join(', '));
-							msg = 'Se subio el archivo ' + file + ' correctamente';
-							classname = 'success';
+							// link file
+							file = '<a href="' + self.frontBaseUrl + '/' + path + '/' + file +'" target="_blank">' + file + '</a>';
+							var msg = 'Se subio el archivo ' + file + ' correctamente',
+								classname = 'alert-success';
 						} else {
-							msg = 'Error en la carga del archivo';
-							classname = 'alert';
+							var msg = 'Error en la carga del archivo',
+								classname = 'alert-danger';
 						}
 						self.createAlert(classname, msg, self.FUV.alertcontainer);
 					},
 					fail: function (e, data) {
 						var msg = 'Error en la carga del archivo';
-						self.createAlert('alert', msg, self.FUV.alertcontainer);
+						self.createAlert('alert-danger', msg, self.FUV.alertcontainer);
 					},
 					always: function (e, data) {
 						console.log(data.result);
-						self.FUV.progressbar.css('display', 'none');
+						self.FUV.progressbarContainer.css('display', 'none');
 					},
 					progress: function (e, data) {
 						var progress = parseInt(data.loaded / data.total * 100, 10);
-						self.FUV.progressbar.css({
-							'width': progress + '%',
+						self.FUV.progressbarContainer.css({
 							'display': 'block'
+						});
+						self.FUV.progressbar.css({
+							'width': progress + '%'
 						});
 					}
 				});
@@ -333,6 +342,7 @@ $(function () {
 					update_combos_arr.push(id + ':' + price);
 				});
 				update_combos_str = update_combos_arr.join(',');
+				alertclass = 'alert-danger';
 				$.post(this.baseUrl + "/xhr/updatePrices", {values: update_str, combo_values: update_combos_str}, function (res) {
 					if (res.success) {
 						msg = 'Precios actulaizados exitosamente.';
@@ -344,8 +354,8 @@ $(function () {
 					self.createAlert(alertclass, msg);
 				}, 'json');
 			},
-			appendFile: function (file) {
-				this.FUV.upcontainer.append('<div class="radius label upload"><a href="http://' + document.domain + '/content/' + file + '" target="_blank" title="' + file + '">' + file + '</a><span class="remove">&times;</span></div>');
+			appendFile: function (file, path) {
+				this.FUV.upcontainer.append('<span class="label label-info"><a href="http://' + this.frontBaseUrl + '/' + path + '/' + file + '" target="_blank" title="' + file + '">' + file + '</a><span class="remove">&times;</span></span>');
 			},
 			setFileUploadVars: function ($target) {
 				var $btnc = $target.parents('.file-upload-module').find('.btn-container');
@@ -357,7 +367,8 @@ $(function () {
 					hidden: $target.nextAll('input'),
 					button: $target.prevAll('.button'),
 					btncontainer: $btnc,
-					progressbar: $btnc.nextAll('.progressbar-container').find('.bar'),
+					progressbar: $btnc.nextAll('.progress').find('.progress-bar'),
+					progressbarContainer: $btnc.nextAll('.progress'),
 					upcontainer: $btnc.nextAll('.upload-container'),
 					alertcontainer: $btnc.nextAll('.alerts')
 				}
@@ -383,7 +394,6 @@ $(function () {
 			createAlert: function (classname, msg, $context) {
 				var $box = $('<div role="alert"></div>');
 				var time = new Date();
-				msg = '<strong>' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + ' </strong> ' + msg;
 				$box
 				.attr('data-alert', '')
 				.attr('class', 'alert alert-dismissible ' + classname)
@@ -416,6 +426,7 @@ $(function () {
 			setBaseUrl: function () {
 				var url = document.domain;
 				this.baseUrl = 'http://' + url + '/admin';
+				this.frontBaseUrl = 'http://' + url;
 			},
 			toggleEntityFlag: function ($elem) {
 				var data = $elem.data(),

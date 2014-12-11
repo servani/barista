@@ -59,7 +59,11 @@
 								{% set arr = k|split('.') %}
 								{% set order = arr[0] %}
 							{% endif %}
-							<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;cw={{ pagenev.customWhere }}&amp;w={{ pagenav.where }}">{{ v }} <span class="caret"></span></a></th>
+							{% if k == 'loop' %}
+								<th {{ loop.first ? 'style="width:50px"' : '' }}>{{ v }} </th>
+							{% else %}
+								<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;cw={{ pagenev.customWhere }}&amp;w={{ pagenav.where }}">{{ v }} <span class="caret"></span></a></th>
+							{% endif %}
 						{% endfor %}
 						{% if starred %}<th>&nbsp;</th>{% endif %}
 						{% if visible %}<th>&nbsp;</th>{% endif %}
@@ -68,10 +72,15 @@
 				</thead>
 				<tbody class="{{ pagenav.order == 'sort' ? 'sortable' : '' }}">
 					{% for e in entity %}
+						{% set i = loop.index %}
 						<tr data-id="{{ e.id }}" class="{{ loop.index % 2 ? '' : 'even' }}">
 							{% for k,v in cols %}
 								<td>
-									<span>{{ e|get(k)|raw }}</span>
+									{% if k == 'loop' %}
+										{{ i }}
+									{% else %}
+										<span>{{ e|get(k)|raw }}</span>
+									{% endif %}
 								</td>
 							{% endfor %}
 							{% if starred %}

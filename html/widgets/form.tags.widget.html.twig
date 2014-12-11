@@ -1,21 +1,23 @@
-{% set pvalue = [] %}
-{% if value %}
-	{% for v in value %}
-		{% if (tagtype and v.tagtype.id == tagtype) or
-			 not (tagtype or v.tagtype) %}
-			{% set pvalue = pvalue|merge([v.name]) %}
-		{% endif %}
-	{% endfor %}
-	{% set value = pvalue|sort|join(', ') %}
-{% endif %}
-{% if label %}
-	<label>{{ label }}</label>
-{% endif %}
-<input class="autocomplete {{ class|default('')}}" id="{{ id|default('') }}" {{ required|default('') }} {{ autofocus|default('') }} type="{{ type|default('text') }}" name="{{ entityName }}[{{ name }}]" value="{{ value|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" />
-<div class="hide availabletags">{{ tags|join(',') }}</div>
-{% if errormsg or required %}
-	<small class="error">{{ errormsg|default('Campo Requerido') }}</small>
-{% endif %}
-{% if example %}
-	<span class="example">{{ example }}</span>
-{% endif %}
+<div class="form-group">
+	{% set pvalue = [] %}
+	{% if value %}
+		{% for v in value %}
+			{% if (tagtype and v.tagtype.id == tagtype) or
+				 not (tagtype or v.tagtype) %}
+				{% set pvalue = pvalue|merge([v.name]) %}
+			{% endif %}
+		{% endfor %}
+		{% set value = pvalue|sort|join(', ') %}
+	{% endif %}
+	{% if label %}
+		<label>{{ label }}</label>
+	{% endif %}
+	<input class="autocomplete form-control {{ class|default('')}}" id="{{ id|default('') }}" {{ required|default('') }} {{ autofocus|default('') }} type="{{ type|default('text') }}" name="{{ entityName }}[{{ name }}]" value="{{ value|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" />
+	<div class="hide availabletags">{{ tags|join(',') }}</div>
+	{% if errormsg or required %}
+		<small class="error">{{ errormsg|default('Campo Requerido') }}</small>
+	{% endif %}
+	{% if example %}
+		<p class="help-block">{{ example }}</p>
+	{% endif %}
+</div>

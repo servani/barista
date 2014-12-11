@@ -82,6 +82,7 @@
 	{% block scripts %}{% endblock %}
 	<script>
 		$(function () {
+			CKEDITOR.timestamp='ABCD';
 			Barista.init();
 			$('.datetimepicker').datetimepicker({
 				dateFormat: 'dd-mm-yy'

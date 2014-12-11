@@ -2,13 +2,32 @@
 	{% if label %}
 		<label>{{ label }}</label>
 	{% endif %}
-	<select {{ required|default('') }} class="form-control {{ class|default('')}}" id="{{ id|default('') }}" name="{{ entityName }}[{{ name }}]">
-		<option value="" {{ edit and selected ? '' : 'selected'}} disabled>Seleccionar</option>
-		{% for o in options %}
-			<option {{ edit and selected == o.id ? 'selected' : '' }} value="{{ o.id }}">{{ o[optionname] }}</option>
+	<select {{ required|default('') }} class="form-control {{ class|default('')}}" id="{{ id|default('') }}" name="{{ entityName }}[{{ name }}]" {{ edit and disabled ? disabled : '' }}>
+		{% if not nodefault %}
+			<option value="" {{ edit and selected ? '' : 'selected'}} {{ required ? 'disabled' : '' }}>{{ defaultvalue ? defaultvalue : 'Seleccionar' }}</option>
+		{% endif %}
+		{% for k,v in options %}
+			{% set optsel = '' %}
+			{% if key is defined %}
+				{% set k = v[key] %}
+				{% set v = v[prop] %}
+			{% endif %}
+			{% if edit %}
+				{% if k == selected %}
+					{% set optsel = 'selected' %}
+				{% endif %}
+			{% else %}
+				{% if nodefault is defined and k == nodefault%}
+					{% set optsel = 'selected' %}
+				{% endif %}
+			{% endif %}
+			<option {{ optsel }} value="{{ k }}">{{ v }}</option>
 		{% endfor %}
 	</select>
 	{% if errormsg or required %}
-		<div class="alert alert-danger error">{{ errormsg|default('Campo Requerido') }}</div>
+		<small class="error">{{ errormsg|default('Campo Requerido') }}</small>
+	{% endif %}
+	{% if example %}
+		<p class="help-block">{{ example }}</p>
 	{% endif %}
 </div>

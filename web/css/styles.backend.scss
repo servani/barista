@@ -167,3 +167,54 @@ body { padding-top: 70px; }
 		left: 80px;
 	}
 }
+
+.file-upload-module {
+	.btn-container {
+		position: relative;
+		overflow: hidden;
+		.fake, .fileupload {
+			cursor: pointer;
+			margin-bottom: 5px;
+		}
+		.fileupload {
+			position: absolute;
+			top: 0;
+			right: 0;
+			opacity: 0;
+			font-size: 200em;
+			width: auto;
+		}
+	}
+	.progress {
+		margin-top: 10px;
+		display: none;
+		.progress-bar {
+			width: 0%;
+		}
+	}
+	.upload-container {
+		padding-top: 10px;
+		.label {
+			margin-right: 5px;
+			margin-bottom: 5px;
+			display: inline-block;
+			font-size: 0.9em;
+			.remove {
+				font-weight: bold;
+				padding-left: 10px;
+				cursor: pointer;
+			}
+			a {
+				color: white;
+				text-decoration: underline;
+				font-weight: normal;
+			}
+		}
+		img {
+			margin-bottom: 20px;
+		}
+		.filetitle {
+			width: 20em;
+		}
+	}
+}

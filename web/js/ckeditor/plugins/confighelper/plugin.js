@@ -1,6 +1,6 @@
 /*
  * @file Configuration helper plugin for CKEditor
- * Copyright (C) 2012 Alfonso Martínez de Lizarrondo
+ * Copyright (C) 2012 Alfonso Mart?ez de Lizarrondo
  *
  */
 (function() {
@@ -8,7 +8,6 @@
 
 // Check if the browser supports the placeholder attribute on textareas natively.
 var supportsPlaceholder = ('placeholder' in document.createElement( 'textarea' ) );
-
 // If the data is "empty" (BR, P) or the placeholder then return an empty string.
 // Otherwise return the original data
 function dataIsEmpty( data )
@@ -17,7 +16,7 @@ function dataIsEmpty( data )
 		return false;
 
 	var value = data.replace( /[\n|\t]*/g, '' ).toLowerCase();
-	if ( !value || value == '<br>' || value == '<p>&nbsp;<br></p>' || value == '<p><br></p>' || value == '<p>&nbsp;</p>' || value == '&nbsp;' || value == ' ' || value == '&nbsp;<br>' || value == ' <br>' )
+	if ( !value || value == '<br>' || value == '<p>&nbsp;<br></p>' || value == '<p><br></p>' || value == '<p>&nbsp;</p>' || value == '<p>&zwnj;</p>' || value == '&zwnj;' || value == '&nbsp;' || value == ' ' || value == '&nbsp;<br>' || value == ' <br>' )
 		return true;
 
 	return false;
@@ -73,7 +72,7 @@ function removePlaceholder(ev) {
 
 		root.removeClass( 'placeholder' );
 		// fill it properly
-		root.setHtml( (CKEDITOR.dtd[ root.getName() ]['p'] ? '<p>&nbsp;</p>' : ' ') );
+		root.setHtml( (CKEDITOR.dtd[ root.getName() ]['p'] ? '<p>&zwnj;</p>' : '&zwnj;') );
 	}
 	else
 	{
