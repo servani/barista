@@ -553,13 +553,13 @@ class DefaultController
 		));
 	}
 
-	public function editAction($params = null) {
+	public function editAction($params = null, $entity = null, $error = false) {
 		try {
 			$entity = $this->em->getRepository($params['slug'])->find($params['id']);
 		} catch (Exception $e) {
 			echo "Entity or Entry not found \n"; die();
 		}
-		$cm = 'new' . $params['slug'] . 'Action';
+		$cm = 'new' . $params['slug'] . 'Data';
 		$data = false;
 		if (method_exists($this, $cm)) {
 			$data = $this->$cm($entity->getId());
@@ -568,7 +568,8 @@ class DefaultController
 			'entity' => $entity,
 			'entityName' => $params['slug'],
 			'edit' => true,
-			'data' => $data
+			'data' => $data,
+			'error' => $error
 		));
 	}
 
@@ -602,17 +603,28 @@ class DefaultController
 	public function updateAction($params = null) {
 		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
 		$entity = $this->setFromPost($this->post[$params['slug']], $entity);
-		$cm = 'set' . $params['slug'] . 'Action';
+
+		$cm = 'validate' . $params['slug'];
+		$error = false;
 		if (method_exists($this, $cm)) {
-			$entity = $this->$cm($entity);
+			$error = $this->$cm($entity);
 		}
-		try {
-			$this->em->persist($entity);
-			$this->em->flush();
-		} catch (Exception $e) {
-			echo "Cannot persist entity to database. <br> Error: <pre>" . $e . "</pre>"; die();
+
+		if (!$error) {
+			$cm = 'set' . $params['slug'] . 'Action';
+			if (method_exists($this, $cm)) {
+				$entity = $this->$cm($entity);
+			}
+			try {
+				$this->em->persist($entity);
+				$this->em->flush();
+			} catch (Exception $e) {
+				echo "Cannot persist entity to database \n"; die();
+			}
+			$this->redirect("admin/list/" . $params['slug']);
+		} else {
+			$this->editAction($params, $entity, $error);
 		}
-		$this->redirect("admin/list/" . $params['slug']);
 	}
 
 	public function deleteAction($params = null) {

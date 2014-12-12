@@ -5,14 +5,11 @@
 * backend
 	- distintos formatos de lista (ej: minimalista en tags)
 	- acciones masivas
-	- drag and drop archivos
 	- buscador
 
 * miniaturas en listados de imagenes (hecho en branson)
 
 * optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
-
-* sacarle http a los links si tienen
 
 * borrador y papelera
 
@@ -21,6 +18,7 @@
 * fix cache (is it working?)
 * documentation
 * optimizar file upload func en scripts.backend (multi y single)
+* drag and drop files backend
 
 2.3 ==================================================================
 

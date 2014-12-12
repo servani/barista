@@ -125,13 +125,14 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-8">
 					{% include 'form.fileupload.widget.html.twig' with {
-							label: 'Documentos', value: data.file,
-							name: 'Files', multiple: 'multiple',
-							filetype: 'doc'
-						}
-					%}
+						filetype: 'doc',
+						label: 'Documentos',
+						multiple: 'multiple',
+						name: 'Files',
+						value: data.file,
+					} %}
 				</div>
 			</div>
 			<div class="row">
