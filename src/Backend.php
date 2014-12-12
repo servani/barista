@@ -121,6 +121,22 @@ class BackendController extends DefaultController
 		return false;
 	}
 
+	/* Custom Search Methods */
+
+	public function getPostSearch($entity) {
+		$search = array(
+			'title' => array(
+				'title' => 'título',
+				'value' => @$this->post['search']['title']
+			),
+			'subtitle' => array(
+				'title' => 'subtítulo',
+				'value' => @$this->post['search']['subtitle']
+			),
+		);
+		return $search;
+	}
+
 	/* Custom new methods */
 
 	public function newTagData($id = null) {

@@ -498,6 +498,10 @@ class DefaultController
 			if (isset($this->get['w'])) {
 				$entity = $this->whereManager($entity);
 			}
+			// search manager
+			if (isset($this->post['search'])) {
+				$entity = $this->searchManager($entity);
+			}
 			// number of items
 			$aux = $entity->getQuery()->getResult();
 			$n = count($aux);
@@ -506,6 +510,12 @@ class DefaultController
 			$cm = 'get' . $params['slug'] . 'Filters';
 			if (method_exists($this, $cm)) {
 				$filters = $this->$cm($aux);
+			}
+			// custom search
+			$search = array();
+			$cm = 'get' . $params['slug'] . 'Search';
+			if (method_exists($this, $cm)) {
+				$search = $this->$cm($aux);
 			}
 			// query requested
 			$entity = $entity->setMaxresults($results_x_page)
@@ -531,8 +541,10 @@ class DefaultController
 				'page' => $current_offset / $results_x_page + 1,
 				'order' => $order,
 				'dir' => $dir === 'ASC' ? 1 : 0,
-				'where' => @$this->get['w']
+				'where' => @$this->get['w'],
+				'customWhere' => @$this->get['cw'],
 			),
+			'search' => $search,
 			'filters' => $filters,
 			'data' => @$data
 		));
@@ -725,6 +737,25 @@ class DefaultController
 				$entity->setParameter($key, $value);
 			}
 		}
+		return $entity;
+	}
+
+	public function searchManager($entity) {
+		$searchs = $this->post['search'];
+		foreach ($searchs as $k => $v) {
+			$value = '%' . $v . '%';
+			$entity->andWhere('q.' . $k . ' LIKE :' . $k);
+			$entity->setParameter($k, $value);
+		}
+		return $entity;
+	}
+
+	public function customWhereManager($entity, $cw = false) {
+		// $where = $cw ? $cw : $this->get['cw'];
+		// if ($where === 'foo') {
+		// 	$entity->andWhere('q.foo > :bar');
+		// 	$entity->setParameter('bar', $foo);
+		// }
 		return $entity;
 	}
 

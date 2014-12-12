@@ -5,8 +5,6 @@
 	- acciones masivas
 	- buscador
 
-* optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
-
 2.2 ==================================================================
 
 * mejorar urls en backend, armar un url builder (filtros, pagenav, etc)
