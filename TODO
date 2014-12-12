@@ -1,13 +1,9 @@
 2.1 ==================================================================
 
-* ajustar forms, listados, widgets, form validation etc a bootstrap
-
 * backend
 	- distintos formatos de lista (ej: minimalista en tags)
 	- acciones masivas
 	- buscador
-
-* miniaturas en listados de imagenes (hecho en branson)
 
 * optimizar funciones custom de getFilters, ordenar con asort, hacer una funcion que arme el $filter solo en base a parametaros q se le pasen
 
@@ -19,6 +15,7 @@
 * documentation
 * optimizar file upload func en scripts.backend (multi y single)
 * drag and drop files backend
+* papelera (ver y restaurar elementos "borrados")
 
 2.3 ==================================================================
 

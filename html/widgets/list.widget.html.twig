@@ -75,9 +75,11 @@
 						{% set i = loop.index %}
 						<tr data-id="{{ e.id }}" class="{{ loop.index % 2 ? '' : 'even' }}">
 							{% for k,v in cols %}
-								<td>
+								<td {{ k in ['src','cover','image'] ? 'style="width:60px;"' : '' }}>
 									{% if k == 'loop' %}
 										{{ i }}
+									{% elseif k in ['src','cover','image'] %}
+										<img style="width: 60px;" src="{{ asset(_UPLOAD_DIR_NICE ~ '/' ~ e|get(k)) }}" /><br>
 									{% else %}
 										<span>{{ e|get(k)|raw }}</span>
 									{% endif %}
