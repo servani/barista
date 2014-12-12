@@ -1,3 +1,10 @@
 <div class="form-group">
-	<input type="text" name="{{ entityName }}[CustomField{{ type|default('')}}][{{ index }}][{{ name }}]" value="{{ value|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" />
+	{% if input_group %}
+		<div class="input-group">
+			<div class="input-group-addon">{{ input_group }}</div>
+	{% endif %}
+	<input class="form-control" type="text" name="{{ entityName }}[CustomField{{ type|default('')}}][{{ index }}][{{ name }}]" value="{{ value|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" />
+	{% if input_group %}
+		</div>
+	{% endif %}
 </div>

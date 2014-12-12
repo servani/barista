@@ -172,82 +172,79 @@
 					} %}
 				</div>
 			</div>
-				<legend>Campos Personalizados (sin tipo)</legend>
-				{% for cf in data.cf[0] %}
-					<div class="cf row">
-						<div class="small-4 columns">
-							<div class="row collapse">
-								<div class="small-2 medium-1 columns">
-									<a href="#" class="button alert postfix rmcf">&times;</a>
-								</div>
-								<div class="small-10 medium-11 columns">
-									{% include 'form.cf.widget.html.twig' with {
-											placeholder: 'Título', name: 'Title',
-											value: cf.title, index: loop.index
-										}
-									%}
-								</div>
-							</div>
-						</div>
-						<div class="small-4 columns">
-							{% include 'form.cf.widget.html.twig' with {
-									placeholder: 'Valor', name: 'Value',
-									value: cf.value, index: loop.index
-								}
-							%}
-						</div>
-						<div class="small-4 columns">
-							{% include 'form.cf.widget.html.twig' with {
-									placeholder: 'Atributos', name: 'Attr',
-									value: cf.attribute, index: loop.index
-								}
-							%}
-						</div>
+			<hr>
+			<label>Campos Personalizados (sin tipo)</label>
+			{% for cf in data.cf[0] %}
+				<div class="cf row">
+					<div class="col-md-3">
+						{% include 'form.cf.widget.html.twig' with {
+							index: loop.index,
+							name: 'Title',
+							placeholder: 'Título',
+							value: cf.title,
+						} %}
 					</div>
-				{% endfor %}
-				<a href="#" class="addcf button radius secondary tiny" data-index="{{ data.cf[0]|length }}">Agregar</a>
-				<legend>Links (campos personalizados con tipo)</legend>
-				{% for cf in data.cf[1] %}
-					<div class="cf row">
-						<div class="small-4 columns">
-							<div class="row collapse">
-								<div class="small-2 medium-1 columns">
-									<a href="#" class="button alert postfix rmcf">&times;</a>
-								</div>
-								<div class="small-10 medium-11 columns">
-									{% include 'form.cf.widget.html.twig' with {
-											placeholder: 'Título', name: 'Title',
-											value: cf.title, index: loop.index, type: 'Link'
-										}
-									%}
-								</div>
-							</div>
-						</div>
-						<div class="small-5 columns">
-							<div class="row collapse">
-								<div class="small-3 large-2 columns">
-									<span class="prefix">http://</span>
-								</div>
-								<div class="small-9 large-10 columns">
-									{% include 'form.cf.widget.html.twig' with {
-											placeholder: 'Url', name: 'Value',
-											value: cf.value, index: loop.index, type: 'Link'
-										}
-									%}
-								</div>
-							</div>
-						</div>
-						<div class="small-3 columns">
-							{% include 'form.cf.widget.html.twig' with {
-									placeholder: 'Target', name: 'Attr',
-									value: cf.attribute, index: loop.index, type: 'Link'
-								}
-							%}
-						</div>
-						<input type="hidden" name="{{ entityName }}[CustomFieldLink][{{ loop.index }}][Type]" value="1">
+					<div class="col-md-3">
+						{% include 'form.cf.widget.html.twig' with {
+							index: loop.index,
+							name: 'Value',
+							placeholder: 'Valor',
+							value: cf.value,
+						} %}
 					</div>
-				{% endfor %}
-				<a href="#" class="addcf button radius secondary tiny" data-index="{{ data.cf[1]|length }}">Agregar</a>
+					<div class="col-md-5">
+						{% include 'form.cf.widget.html.twig' with {
+							index: loop.index,
+							name: 'Attr',
+							placeholder: 'Atributos',
+							value: cf.attribute,
+						} %}
+					</div>
+					<div class="col-md-1">
+						<a href="#" class="btn btn-danger btn-sm rmcf">&times;</a>
+					</div>
+				</div>
+			{% endfor %}
+			<a href="#" class="addcf btn btn-primary small" data-index="{{ data.cf[0]|length }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Agregar</a>
+			<hr>
+			<label>Links (campos personalizados con tipo)</label>
+			{% for cf in data.cf[1] %}
+				<div class="cf row">
+					<div class="col-md-4">
+						{% include 'form.cf.widget.html.twig' with {
+							index: loop.index,
+							name: 'Title',
+							placeholder: 'Título',
+							type: 'Link',
+							value: cf.title,
+						} %}
+					</div>
+					<div class="col-md-5">
+						{% include 'form.cf.widget.html.twig' with {
+							index: loop.index,
+							input_group: 'http://',
+							name: 'Value',
+							placeholder: 'www.ejemplo.com',
+							type: 'Link',
+							value: cf.value,
+						} %}
+					</div>
+					<div class="col-md-2">
+						{% include 'form.cf.widget.html.twig' with {
+							index: loop.index,
+							name: 'Attr',
+							placeholder: 'Target',
+							type: 'Link',
+							value: cf.attribute,
+						} %}
+					</div>
+					<div class="col-md-1">
+						<a href="#" class="btn btn-danger btn-sm rmcf">&times;</a>
+					</div>
+					<input type="hidden" name="{{ entityName }}[CustomFieldLink][{{ loop.index }}][Type]" value="1">
+				</div>
+			{% endfor %}
+			<a href="#" class="addcf btn btn-primary small" data-index="{{ data.cf[1]|length }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Agregar</a>
 			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.title } %}
 		</form>
 	</div>
