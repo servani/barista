@@ -442,6 +442,18 @@ class DefaultController
 		return "prod";
 	}
 
+	/* Validate url */
+
+	public function validUrl($url) {
+		if (!strstr($url, 'http://') && !strstr($url, 'https://')) {
+			$url = 'http://' . $url;
+		}
+		if(filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
+			return false;
+		}
+		return $url;
+	}
+
 	/* XHR */
 
 	public function xhrAction($params = null) {
