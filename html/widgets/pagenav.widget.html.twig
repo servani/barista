@@ -39,6 +39,8 @@
 			</li>
 		</ul>
 	{% endif %}
+	<br>
+	<small>Mostrando {{ pagenav.max > pagenav.results ? pagenav.results : pagenav.max }} de {{ pagenav.results }} resultados</small>
 	<p>Cantidad de resultados por página:</p>
 	<form id="results-page" class="form-horizontal">
 		<div class="form-group">

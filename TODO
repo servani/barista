@@ -1,18 +1,16 @@
 2.1 ==================================================================
 
-* backend
-	- distintos formatos de lista (ej: minimalista en tags)
-	- acciones masivas
-	- buscador
+* adjust default entities lists and forms
 
 2.2 ==================================================================
 
+* distintos formatos de lista (ej: minimalista en tags)
+* acciones masivas
 * mejorar urls en backend, armar un url builder (filtros, pagenav, etc)
 * ajustar grid responsive
 * fix cache (is it working?)
-* documentation
 * optimizar file upload func en scripts.backend (multi y single)
-* drag and drop files backend
+
 * papelera (ver y restaurar elementos "borrados")
 
 2.3 ==================================================================
@@ -23,8 +21,10 @@
 * comprimir JS (idem sass quizas, con algun script ubuntu)
 * script autocreate sitemap
 * ordenar /js/ y separar para todo lo que es backend
+* drag and drop files backend
 
 
 2.n ==================================================================
 
 * baristaframework.com
+* documentation
