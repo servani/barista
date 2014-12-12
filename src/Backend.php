@@ -59,19 +59,31 @@ class BackendController extends DefaultController
 
 	/* Custom filters methods */
 
-	public function getImageFilters($entity) {
-		$filters = array();
-		$filters = array(
-			'post' => array(
-				'title' => 'Post',
+	public function getPostFilters($entity) {
+		$filter = array(
+			'starred' => array(
+				'title' => 'relevancia',
+				'values' => array('Sin destacar', 'Destacado'),
+				'active' => $this->isActiveFilter('starred'),
+			),
+			'visible' => array(
+				'title' => 'estado',
+				'values' => array('Oculto', 'Visible'),
+				'active' => $this->isActiveFilter('visible'),
+			),
+			'category' => array(
+				'title' => 'categoría',
 				'values' => array(),
-				'active' => $this->isActiveFilter('post')
-			)
+				'active' => $this->isActiveFilter('category'),
+			),
 		);
 		foreach ($entity as $e) {
-			$filters['post']['values'][$e->getPost()->getId()] = $e->getPost()->getTitle();
+			if ($e->getCategory()) {
+				$filter['category']['values'][$e->getCategory()->getId()] = $e->getCategory()->getName();
+			}
 		}
-		return $filters;
+		arsort($filter['category']['values']);
+		return $filter;
 	}
 
 	/* Custom delete methods */

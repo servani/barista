@@ -155,7 +155,7 @@ class DefaultController
 			$prop = 'get' . $prop;
 			if (strpos($prop, 'Date') !== FALSE) {
 				try {
-					$res = $obj->$prop()->format('d-m-Y H:i');
+					$res = $obj->$prop()->format('H:i - d/m/Y');
 				} catch(Exception $e) {
 					$res = $empty;
 				}
@@ -715,7 +715,7 @@ class DefaultController
 	/* Backend helpers */
 
 	public function whereManager($entity) {
-		$wheres = explode(';', $this->get['w']);
+		$wheres = explode('|', $this->get['w']);
 		foreach ($wheres as $w) {
 			$aux = explode(':', $w);
 			$key = $aux[0];
@@ -729,12 +729,12 @@ class DefaultController
 	}
 
 	public function isActiveFilter($filter) {
-		$filters = explode(';', @$this->get['w']);
+		$filters = explode('|', @$this->get['w']);
 		foreach ($filters as $f) {
 			$aux = explode(':', $f);
 			$key = $aux[0];
 			if (isset($aux[1]) && $filter === $key) {
-				return true;
+				return array('active' => true, 'value' => $aux[1]);
 			}
 		}
 		return false;

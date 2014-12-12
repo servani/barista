@@ -10,6 +10,7 @@ $(function () {
 			this.$wrapper = $('#wrapper');
 			this.$loading = $('#loading');
 			this.$confirm = $('#confirm');
+			this.$loading = $('#loading');
 			this.entityName = $('#entityName').text();
 			this.confirmCallback = function () {};
 			this.availableTags = [];
@@ -31,7 +32,7 @@ $(function () {
 					}
 				});
 				// Toggle Flag
-				this.$wrapper.find('.toggleflag').on('click', function (e) {
+				this.$wrapper.find('.toggleflag').on('click', 'span', function (e) {
 					e.preventDefault();
 					self.toggleEntityFlag($(this));
 					return false;
@@ -382,10 +383,10 @@ $(function () {
 				$.post(this.baseUrl + "/xhr/saveorder", {items: items, en: self.entityName}, function (res) {
 					if (res.success) {
 						msg = 'Los cambios fueron guardados exitosamente.';
-						alertclass = 'success';
+						alertclass = 'alert-success';
 					} else {
 						msg = 'Error inesperado. Los cambios no fueron guardados. Por favor, recargue la página y vuelva a intentarlo.';
-						alertclass = 'warning';
+						alertclass = 'alert-danger';
 					}
 					self.closeLoading();
 					self.createAlert(alertclass, msg);
@@ -415,13 +416,11 @@ $(function () {
 				this.$confirm.modal('hide');
 			},
 			openLoading: function () {
-				this.$loading.foundation('reveal', 'open');
+				this.$loading.modal('show');
 			},
 			closeLoading: function () {
 				var self = this;
-				setTimeout(function () {
-					self.$loading.foundation('reveal', 'close');
-				}, 200);
+				self.$loading.modal('hide');
 			},
 			setBaseUrl: function () {
 				var url = document.domain;
@@ -435,7 +434,7 @@ $(function () {
 				$.post(this.baseUrl + "/xhr/toggleflag", {id: data.id, prop: data.prop, en: data.en}, function (res) {
 					if (res.success) {
 						msg = 'Los cambios fueron guardados exitosamente.';
-						alertclass = 'alert-info';
+						alertclass = 'alert-success';
 					} else {
 						msg = 'Error inesperado. Los cambios no fueron guardados. Por favor, recargue la página y vuelva a intentarlo.';
 						alertclass = 'alert-danger';

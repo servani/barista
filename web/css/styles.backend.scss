@@ -60,11 +60,10 @@ body { padding-top: 70px; }
 		}
 	}
 }
-#alerts, #form {
-	.alert {
-		padding: 5px 35px 5px 15px;
-		font-size: 12px;
-	}
+.alert {
+	padding: 5px 35px 5px 15px;
+	font-size: 0.8em;
+	margin-bottom: 10px;
 }
 #form {
 	.alert.error {
@@ -215,6 +214,30 @@ body { padding-top: 70px; }
 		}
 		.filetitle {
 			width: 20em;
+		}
+	}
+}
+
+.toggleflag {
+	cursor: pointer;
+	span.null {
+		color: #dedede;
+	}
+}
+table {
+	border: none;
+	tbody {
+		&.sortable {
+			tr { cursor: move; }
+		}
+		tr {
+			&.ui-sortable-helper {
+				width: 100%;
+				td {
+					background: #333 !important;
+					color: #fff !important;
+				}
+			}
 		}
 	}
 }
