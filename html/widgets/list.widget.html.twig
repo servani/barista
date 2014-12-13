@@ -65,7 +65,7 @@
 							{% endif %}
 							{% if k == 'loop' %}
 								<th {{ loop.first ? 'style="width:50px"' : '' }}>{{ v }} </th>
-							{% elseif k in ['src','cover','image'] %}
+							{% elseif k in ['src','cover','image'] and not isfile %}
 								<th>&nbsp;</th>
 							{% else %}
 								<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;cw={{ pagenev.customWhere }}&amp;w={{ pagenav.where }}">{{ v }} <span class="caret"></span></a></th>
@@ -81,10 +81,10 @@
 						{% set i = loop.index %}
 						<tr data-id="{{ e.id }}" class="{{ loop.index % 2 ? '' : 'even' }}">
 							{% for k,v in cols %}
-								<td {{ k in ['src','cover','image'] ? 'style="width:60px;"' : '' }}>
+								<td {{ k in ['src','cover','image'] and not isfile ? 'style="width:60px;"' : '' }}>
 									{% if k == 'loop' %}
 										{{ i }}
-									{% elseif k in ['src','cover','image'] %}
+									{% elseif k in ['src','cover','image'] and not isfile %}
 										<a href="{{ asset(_UPLOAD_DIR_NICE ~ '/' ~ e|get(k)) }}" target="_blank"><img style="width: 60px;" src="{{ asset(_UPLOAD_DIR_NICE ~ '/' ~ e|get(k)) }}" /></a>
 									{% else %}
 										<span>{{ e|get(k)|raw }}</span>

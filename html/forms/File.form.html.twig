@@ -4,34 +4,36 @@
 	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
 	{% include 'form.header.widget.html.twig' with { title: 'Post' } %}
 	<div id="form">
-		<form action="{{ url(action) }}" method="POST" data-abide>
-			<!-- # -->
+		<form action="{{ url(action) }}" method="POST" novalidate>
 			<div class="row">
-				<div class="large-8 small-9 columns">
+				<div class="col-md-6">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Título',
-							value: entity.title, name: 'Title'
-						}
-					%}
+						label: 'Título',
+						name: 'Title',
+						value: entity.title,
+					} %}
 				</div>
 			</div>
-			<!-- # -->
 			<div class="row">
-				<div class="small-7 columns">
+				<div class="col-md-6">
 					{% include 'form.select.widget.html.twig' with {
-							label: 'Post',
-							options: data, selected: entity.post.id,
-							optionname: 'title',
-							value: entity.post, name: 'IdPost'
-						}
-					%}
+						key: 'id',
+						label: 'Post',
+						name: 'IdPost',
+						options: data,
+						prop: 'title',
+						selected: entity.post.id,
+						value: entity.post,
+					} %}
 				</div>
 			</div>
-			<!-- # -->
 			<div class="row">
-				<div class="small-8 columns">
-					<label>Imagen</label>
-					<img src="{{ asset('/content/' ~ entity.src) }}" alt="{{ entity.src }}" />
+				<div class="col-md-8">
+					{% include 'form.fileupload.widget.html.twig' with {
+						label: 'Archivo',
+						name: 'Src',
+						value: entity.src,
+					} %}
 				</div>
 			</div>
 			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.title } %}

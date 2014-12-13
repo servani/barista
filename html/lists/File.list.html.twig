@@ -4,6 +4,7 @@
 	{% include 'list.widget.html.twig' with {
 			title: 'Documentos',
 			cols: {
+				'loop': '#',
 				'src': 'Nombre de archivo',
 				'title': 'Título',
 				'post.title': 'Post'
@@ -13,7 +14,8 @@
 			pagenav: q,
 			en: entityName,
 			sort: true,
-			nocreate: true
+			nocreate: true,
+			isfile: true
 		}
 	%}
 	{% include 'pagenav.widget.html.twig' with {

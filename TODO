@@ -1,7 +1,6 @@
 2.1 ==================================================================
 
-* adjust default entities lists and forms
-* test urls (params, where, cwhere, page, etc)
+* test urls (params, where, cwhere, page, list order, etc)
 
 2.2 ==================================================================
 

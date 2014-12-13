@@ -29,7 +29,7 @@ class BackendController extends DefaultController
 				'Tag'		=> 'Tags',
 				'TagType'	=> 'Grupos de tags',
 				3			=> null,
-				'CfType'	=> 'Campos personalizados',
+				'CfType'	=> 'Tipos de campos personalizados',
 			)
 		);
 	}
@@ -103,6 +103,40 @@ class BackendController extends DefaultController
 		return $filter;
 	}
 
+	public function getFileFilters($entity) {
+		$filter = array(
+			'post' => array(
+				'title' => 'post',
+				'values' => array(),
+				'active' => $this->isActiveFilter('post'),
+			),
+		);
+		foreach ($entity as $e) {
+			if ($e->getPost()) {
+				$filter['post']['values'][$e->getPost()->getId()] = $e->getPost()->getTitle();
+			}
+		}
+		arsort($filter['post']['values']);
+		return $filter;
+	}
+
+	public function getTagFilters($entity) {
+		$filter = array(
+			'tagType' => array(
+				'title' => 'tipo',
+				'values' => array(),
+				'active' => $this->isActiveFilter('tagType'),
+			),
+		);
+		foreach ($entity as $e) {
+			if ($e->getTagType()) {
+				$filter['tagType']['values'][$e->getTagType()->getId()] = $e->getTagType()->getName();
+			}
+		}
+		arsort($filter['tagType']['values']);
+		return $filter;
+	}
+
 	/* Custom delete methods */
 
 	// ...
@@ -172,7 +206,15 @@ class BackendController extends DefaultController
 			->orderBy('q.title', 'ASC')
 			->getQuery()
 			->getResult(2); // number 2 is for fetching an array instead of a motherfucker object
+	}
 
+	public function newFileData($id = null) {
+		return $this->em
+			->getRepository('Post')
+			->createQueryBuilder('q')
+			->orderBy('q.title', 'ASC')
+			->getQuery()
+			->getResult(2); // number 2 is for fetching an array instead of a motherfucker object
 	}
 
 	public function newPostData($id = null) {

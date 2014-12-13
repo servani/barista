@@ -4,17 +4,16 @@
 	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
 	{% include 'form.header.widget.html.twig' with { title: 'Tipo de Tag' } %}
 	<div id="form">
-		<form action="{{ url(action) }}" method="POST" data-abide>
-			<!-- # -->
+		<form action="{{ url(action) }}" method="POST" novalidate>
 			<div class="row">
-				<div class="large-4 small-6 columns">
+				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Nombre',
-							value: entity.name, name: 'Name',
-							required: 'required',
-							autofocus: 'autofocus'
-						}
-					%}
+						autofocus: 'autofocus',
+						label: 'Nombre',
+						name: 'Name',
+						required: 'required',
+						value: entity.name,
+					} %}
 				</div>
 			</div>
 			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.name } %}

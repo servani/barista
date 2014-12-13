@@ -4,26 +4,25 @@
 	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
 	{% include 'form.header.widget.html.twig' with { title: 'Categoría' } %}
 	<div id="form">
-		<form action="{{ url(action) }}" method="POST" data-abide>
-			<!-- # -->
+		<form action="{{ url(action) }}" method="POST" novalidate>
 			<div class="row">
-				<div class="large-4 small-6 columns">
+				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Nombre', placeholder: 'Nombre de la Categoría',
-							value: entity.name, name: 'Name',
-							required: 'required'
-						}
-					%}
+						label: 'Nombre',
+						name: 'Name',
+						placeholder: 'Nombre de la Categoría',
+						required: 'required',
+						value: entity.name,
+					} %}
 				</div>
 			</div>
-			<!-- # -->
 			<div class="row">
-				<div class="small-12 columns">
+				<div class="col-md-12">
 					{% include 'form.bbcode.widget.html.twig' with {
-							label: 'Descripción',
-							value: entity.description, name: 'Description'
-						}
-					%}
+						label: 'Descripción',
+						name: 'Description',
+						value: entity.description,
+					} %}
 				</div>
 			</div>
 			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.name } %}
