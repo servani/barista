@@ -113,9 +113,9 @@ class BackendController extends DefaultController
 			->where('q.username = :username')
 			->setParameter('username', $entity->getUsername())
 			->getQuery()
-			->getResult(2);
+			->getOneOrNullResult();
 		// if username exists, return error
-		if ($user) {
+		if ($user && $user->getId() !== $entity->getId()) {
 			return 'El nombre de usuario ya existe';
 		}
 		return false;

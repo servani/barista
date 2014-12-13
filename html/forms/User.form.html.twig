@@ -8,42 +8,56 @@
 			<div class="row">
 				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Nombre',
-							value: entity.name, name: 'Name',
-							required: 'required'
-						}
-					%}
+						label: 'Nombre',
+						value: entity.name,
+						name: 'Name',
+						required: 'required',
+					} %}
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Usuario', placeholder: 'Nombre de Usuario',
-							value: entity.username, name: 'Username',
-							autocompleteoff: true, required: 'required'
-						}
-					%}
+						autocompleteoff: true,
+						label: 'Usuario',
+						name: 'Username',
+						placeholder: 'Nombre de Usuario',
+						required: 'required',
+						value: entity.username,
+					} %}
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Contraseña', autocompleteoff: true,
-							id: 'password', type: 'password',
-							value: entity.password, name: 'Password',
-							required: 'required'
-						}
-					%}
+						autocompleteoff: true,
+						errormsg: 'Email inválido',
+						name: 'Email',
+						label: 'Email',
+						type: 'email',
+						value: entity.email,
+					} %}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					{% include 'form.input.widget.html.twig' with {
+						autocompleteoff: true,
+						id: 'password',
+						label: 'Contraseña',
+						name: 'Password',
+						type: 'password',
+					} %}
 				</div>
 				<div class="col-md-4">
 					{% include 'form.input.widget.html.twig' with {
-							label: 'Repetir Contraseña',
-							id: 'passwordr',
-							type: 'password', equalto: 'password',
-							value: entity.password, name: 'password-repeat',
-							required: 'required', errormsg: 'Las contraseñas no coinciden'
-						}
-					%}
+						equalto: 'password',
+						errormsg: 'Las contraseñas no coinciden',
+						id: 'passwordr',
+						label: 'Repetir Contraseña',
+						name: 'password-repeat',
+						type: 'password',
+					} %}
 				</div>
 			</div>
 			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.username } %}

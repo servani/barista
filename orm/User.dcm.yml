@@ -17,6 +17,12 @@ User:
             length: 100
             fixed: false
             comment: ''
+        email:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
         username:
             type: string
             nullable: true

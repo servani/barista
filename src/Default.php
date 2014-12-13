@@ -925,6 +925,9 @@ class DefaultController
 				}
 			} elseif (strpos($key, 'password-repeat') !== FALSE) {
 				unset($post[$key]);
+			} elseif (strpos($key, 'Password') !== FALSE && $value === '') {
+				// unset empty password
+				unset($post[$key]);
 			} else {
 				$property = 'set' . $key;
 				if (strpos($property, 'setId') !== FALSE) {

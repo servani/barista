@@ -1,3 +1,7 @@
+{% if not edit and type == 'password' %}
+	{# force required password for new entity #}
+	{% set required = 'required' %}
+{% endif %}
 <div class="form-group">
 	{% if label %}
 		<label>{{ label }}</label>

@@ -1,30 +1,35 @@
 2.1 ==================================================================
 
 * adjust default entities lists and forms
+* test urls (params, where, cwhere, page, etc)
 
 2.2 ==================================================================
 
-* distintos formatos de lista (ej: minimalista en tags)
 * acciones masivas
-* mejorar urls en backend, armar un url builder (filtros, pagenav, etc)
-* ajustar grid responsive
 * fix cache (is it working?)
-* optimizar file upload func en scripts.backend (multi y single)
-
 * papelera (ver y restaurar elementos "borrados")
+* ordenar /js/ y separar para todo lo que es backend
 
 2.3 ==================================================================
 
+* optimizar file upload func en scripts.backend (multi y single)
+* distintos formatos de lista (ej: minimalista en tags)
 * deploy, clearcache, map, generate scripts
-* emover default entities con script
-* angular
 * comprimir JS (idem sass quizas, con algun script ubuntu)
-* script autocreate sitemap
-* ordenar /js/ y separar para todo lo que es backend
-* drag and drop files backend
+* autocreate sitemap func
+* mejorar urls en backend, armar un url builder (filtros, pagenav, etc)
 
+2.4 ==================================================================
+
+* drag and drop files backend
+* ajustar grid responsive
 
 2.n ==================================================================
 
 * baristaframework.com
 * documentation
+
+3.0 ==================================================================
+
+* angular
+* nodejs
