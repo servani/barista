@@ -4,9 +4,10 @@
 	{% include 'list.widget.html.twig' with {
 			title: 'Imágenes',
 			cols: {
-				'src': 'Nombre de archivo',
+				'loop': '#',
+				'src': '',
+				'post.title': 'Post',
 				'title': 'Título',
-				'post.title': 'Post'
 			},
 			deletekey: 'src',
 			entity: entity,

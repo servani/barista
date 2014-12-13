@@ -655,6 +655,7 @@ class DefaultController
 	public function XHRsaveorder() {
 		$res = array('success' => false);
 		if (isset($this->post['items'])) {
+			// get items to change order
 			try {
 				$entity = $this->em
 					->getRepository($this->post['en'])
@@ -668,11 +669,13 @@ class DefaultController
 				return $res;
 			}
 			$values = array();
+			// get (or manual set) max current value
 			$max = $entity[0]->getSort();
 			if ($max === NULL) {
 				$max = time();
 				$entity[0]->setSort($max);
 			}
+			// reorer items
 			foreach ($this->post['items'] as $i) {
 				$values[$i] = $max--;
 			}
