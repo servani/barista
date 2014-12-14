@@ -50,7 +50,7 @@ $(function () {
 					e.preventDefault();
 					var $input = $('input', e.delegateTarget);
 					if ($input.val()) {
-						var href = $(this).attr('href') + $input.val();
+						var href = $(this).attr('href') + '&n=' + $input.val();
 						window.location = href;
 					}
 				});

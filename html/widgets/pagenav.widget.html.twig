@@ -5,7 +5,7 @@
 				{% if pagenav.page == 1 %}
 					<a href="#">&laquo;</a>
 				{% else %}
-					<a href="{{ url('admin/list/' ~ en) }}?p={{ pagenav.page - 1}}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}">&laquo;</a>
+					<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'p': (pagenav.page - 1)}) }}">&laquo;</a>
 				{% endif %}
 			</li>
 			{% set aux = true %}
@@ -20,7 +20,7 @@
 			{% endif %}
 			{% for i in 1..pagenav.nofpages %}
 				{% if not min or i < min or i > max or (i > midmin and i < midmax) %}
-					<li class="{{ pagenav.page == i ? 'active' : '' }}"><a href="{{ url('admin/list/' ~ en) }}?p={{ i }}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}">{{ i }}</a></li>
+					<li class="{{ pagenav.page == i ? 'active' : '' }}"><a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'p': i}) }}">{{ i }}</a></li>
 					{% if i > min and i < max and (i > midmin and i < midmax) %}
 						{% set aux2 = true %}
 					{% endif %}
@@ -34,7 +34,7 @@
 				{% if pagenav.page == pagenav.nofpages %}
 					<a href="#">&raquo;</a>
 				{% else %}
-					<a href="{{ url('admin/list/' ~ en) }}?p={{ pagenav.page + 1}}&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}">&raquo;</a>
+					<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'p': (pagenav.page + 1) }) }}">&raquo;</a>
 				{% endif %}
 			</li>
 		</ul>
@@ -46,7 +46,7 @@
 		<div class="form-group">
 			<div class="col-sm-2">
 				<input type="text" class="form-control" placeholder="{{ pagenav.max }}">
-				<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}&amp;n=" class="btn btn-default">Listar</a>
+				<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params) }}" class="btn btn-default">Listar</a>
 			</div>
 		</div>
 	</form>

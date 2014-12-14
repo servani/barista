@@ -16,12 +16,12 @@
 					<div class="btn-group">
 						{% if u.active %}
 							{% set pair = h ~ ':' ~ u.active.value ~ '|' %}
-							<a href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;w={{ pagenav.where|replace({(pair): ''}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> {{ u.title|title }}: {{ u.values[u.active.value] }}</a>
+							<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'w': pagenav.where|replace({(pair): ''})}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> {{ u.title|title }}: {{ u.values[u.active.value] }}</a>
 						{% else %}
 							<button class="btn btn-default dropdown-toggle" type="button" id="drop{{ u.title }}" data-toggle="dropdown" aria-expanded="true">Filtrar por {{ u.title }} <span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="drop{{ u.title }}">
 								{% for k,v in u.values %}
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('admin/list/' ~ en) }}?o={{ pagenav.order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;cw={{ pagenev.customWhere }}&amp;w={{ h }}:{{ k }}|{{ pagenav.where }}" title="Filtrar por: {{ v }}">{{ v }}</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'w': h ~ ':' ~ k ~ '|' ~ pagenav.where }) }}" title="Filtrar por: {{ v }}">{{ v }}</a></li>
 								{% endfor %}
 							</ul>
 						{% endif %}
@@ -68,7 +68,7 @@
 							{% elseif k in ['src','cover','image'] and not isfile %}
 								<th>&nbsp;</th>
 							{% else %}
-								<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ en) }}?o={{ order }}&amp;d={{ pagenav.dir ? 0 : 1 }}&amp;cw={{ pagenev.customWhere }}&amp;w={{ pagenav.where }}">{{ v }} <span class="caret"></span></a></th>
+								<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'o': order, 'd': (pagenav.dir ? 0 : 1) }) }}">{{ v }} <span class="caret"></span></a></th>
 							{% endif %}
 						{% endfor %}
 						<th style="width:105px">&nbsp;</th>
@@ -120,7 +120,7 @@
 				{% if pagenav.order == 'sort' %}
 					<p class="help-block">Para ordenar mueva los elementos utilizando drag and drop.</p>
 				{% else %}
-					<a class="btn btn-info btn/sm" href="{{ url('admin/list/' ~ en) }}?o=sort&amp;cw={{ pagenev.customWhere }}&amp;w={{ pagenav.where }}">Ordenar</a>
+					<a class="btn btn-info btn/sm" href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'o': 'sort'}) }}">Ordenar</a>
 				{% endif %}
 			</div>
 		</div>

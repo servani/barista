@@ -92,6 +92,19 @@ class DefaultController
 	public function registerTwigSimpleFunctions() {
 		$fn = array();
 		/*
+		 * name: url_params
+		 * params: (arr) params
+		 * params: (arr) params to replace
+		 * return: (str) params
+		 */
+		$fn[] = new Twig_SimpleFunction('url_params', function ($params, $params2replace = array()) {
+			$params = array_replace($params, $params2replace);
+			foreach ($params as $k => $v) {
+				$params[$k] = $k . '=' . $v;
+			}
+			return '?' . implode('&', $params);
+		});
+		/*
 		 * name: asset
 		 * params: (str) path
 		 * return: (str) absolute url to path
@@ -546,7 +559,14 @@ class DefaultController
 			),
 			'search' => $search,
 			'filters' => $filters,
-			'data' => @$data
+			'data' => @$data,
+			'params' => array(
+				'o' => $order,
+				'w' => @$this->get['w'],
+				'cw' => @$this->get['cw'],
+				'd' => $dir === 'ASC' ? 1 : 0,
+				'p' => $current_offset / $results_x_page + 1,
+			)
 		));
 	}
 
