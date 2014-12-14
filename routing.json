@@ -89,6 +89,24 @@
 		},
 		"secured": true
 	},
+	"admin/massive/delete/{slug}/{slug}": {
+		"controller": "Backend",
+		"action": "massiveDelete",
+		"params": {
+			"slug": null,
+			"ids": null
+		},
+		"secured": true
+	},
+	"admin/massive/restore/{slug}/{slug}": {
+		"controller": "Backend",
+		"action": "massiveRestore",
+		"params": {
+			"slug": null,
+			"ids": null
+		},
+		"secured": true
+	},
 	"admin/delete/{slug}/{id}": {
 		"controller": "Backend",
 		"action": "delete",

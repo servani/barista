@@ -60,6 +60,7 @@
 			<table class="table table-responsive table-striped">
 				<thead>
 					<tr>
+						<th style="width:10px"><input id="msAll" type="checkbox"></th>
 						{% for k,v in cols %}
 							{% set order = k %}
 							{% if '.' in k %}
@@ -83,6 +84,7 @@
 					{% for e in entity %}
 						{% set i = loop.index %}
 						<tr data-id="{{ e.id }}" class="{{ loop.index % 2 ? '' : 'even' }}">
+							<td class="ms"><input data-id="{{ e.id }}" type="checkbox"></td>
 							{% for k,v in cols %}
 								<td {{ k in ['src','cover','image'] and not isfile ? 'style="width:60px;"' : '' }}>
 									{% if k == 'loop' %}
@@ -119,6 +121,17 @@
 					{% endfor %}
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="row" id="massive-actions">
+		<div class="col-md-8">
+			{% if params.bin %}
+				<a href="{{ url('admin/massive/restore/' ~ en ~ '/') }}" title="Restaurar" class="action restore green"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Restaurar los elementos seleccionados</a>
+			{% else %}
+				<a href="{{ url('admin/massive/delete/' ~ en ~ '/') }}" class="action del red"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar los elementos seleccionados</a>
+			{% endif %}
+			<br>
+			<a href="#" class="rmsel"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Borrar selección</a>
 		</div>
 	</div>
 	{% if sort %}

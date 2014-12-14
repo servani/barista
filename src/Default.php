@@ -717,6 +717,37 @@ class DefaultController
 		$this->redirect("admin/list/" . $params['slug']);
 	}
 
+	public function massiveDeleteAction($params = null) {
+		$ids = explode('-', $params['ids']);
+		$entity = $this->em->getRepository($params['slug'])->findById($ids);
+		$cm = 'delete' . $params['slug'];
+		if (method_exists($this, $cm)) {
+			// custom delete (e.g move to bin)
+			foreach ($entity as $e) {
+				$e = $this->$cm($e);
+				$this->em->persist($e);
+			}
+		} else {
+			// simple delete
+			foreach ($entity as $e) {
+				$this->em->remove($e);
+			}
+		}
+		$this->em->flush();
+		$this->redirect("admin/list/" . $params['slug']);
+	}
+
+	public function massiveRestoreAction($params = null) {
+		$ids = explode('-', $params['ids']);
+		$entity = $this->em->getRepository($params['slug'])->findById($ids);
+		foreach ($entity as $e) {
+			$e->setBin(0);
+			$this->em->persist($e);
+		}
+		$this->em->flush();
+		$this->redirect("admin/list/" . $params['slug']);
+	}
+
 	public function restoreAction($params = null) {
 		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
 		$entity->setBin(0);

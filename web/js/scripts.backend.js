@@ -31,6 +31,37 @@ $(function () {
 						return false;
 					}
 				});
+				// massive actions
+				this.$wrapper.on('click', '#msAll', function (){
+					self.$wrapper.find('.ms input').prop('checked', false);
+					if ($(this).is(':checked')) {
+						self.$wrapper.find('.ms input').prop('checked', true);
+					}
+				}),
+				this.$wrapper.on('click', '.rmsel', function (e) {
+					e.preventDefault();
+					self.$wrapper.find('.ms input').prop('checked', false);
+					self.$wrapper.find('#msAll').prop('checked', false);
+				}),
+				this.$wrapper.find('#massive-actions').on('click', '.action', function (e) {
+					e.preventDefault();
+					var $items = self.$wrapper.find('.ms input:checked');
+					if ($items.size()) {
+						var $btn = $(this);
+						if ($(this).hasClass('restore')) {
+							self.openConfirm('Confirma que desea restaurar los elementos seleccionados?', 'Restaurar', 'btn-success');
+						} else {
+							self.openConfirm('Confirma que desea borrar los elementos seleccionados?');
+						}
+						self.confirmCallback = function () {
+							var ids = [];
+							$items.each(function () {
+								ids.push($(this).data('id'));
+							});
+							window.location = $btn.attr('href') + ids.join('-');
+						};
+					}
+				}),
 				// Toggle Flag
 				this.$wrapper.find('.toggleflag').on('click', 'span', function (e) {
 					e.preventDefault();
@@ -405,10 +436,13 @@ $(function () {
 					this.$wrapper.find('#alerts').prepend($box);
 				}
 			},
-			openConfirm: function (msg, button) {
+			openConfirm: function (msg, button, classname) {
 				this.$confirm.find('p').text(msg);
 				if (button !== undefined) {
 					this.$confirm.find('.true').text(button);
+				}
+				if (classname !== undefined) {
+					this.$confirm.find('.true').removeClass('btn-danger').addClass(classname);
 				}
 				this.$confirm.modal('show');
 			},
