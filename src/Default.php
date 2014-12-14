@@ -64,11 +64,12 @@ class DefaultController
 		// load templates
 		$dirs = array("../html/forms","../html/lists","../html/views","../html/widgets");
 		$loader = new Twig_Loader_Filesystem($dirs);
-		// set up environment
+		// enable cache
 		$auto_reload = false;
 		if ($this->whereTheFuckAmI() !== 'prod') {
 			$auto_reload = true;
 		}
+		// set up environment
 		$params = array('cache' => $this->config['PATHS']['cache'], 'auto_reload' => $auto_reload, 'autoescape' => true );
 		$this->twig = new Twig_Environment($loader, $params);
 		// add Extension Core (some basic functions)
@@ -249,10 +250,22 @@ class DefaultController
 	}
 
 	/* Doctrine */
-	public function loadDoctrine() {
+	public function loadDoctrine($clearcache = false) {
 		$driver = new YamlDriver(array("../orm"));
 		$config = Setup::createAnnotationMetadataConfiguration(array("../src"), true);
 		$config->setMetadataDriverImpl($driver);
+		// enable cache with php apc
+		$cacheDriver = new \Doctrine\Common\Cache\ApcCache();
+		$cacheDriver->save('cache_id', 'my_data');
+		if ($clearcache) {
+			$cacheDriver->deleteAll();
+		}
+		if($this->whereTheFuckAmI() === 'prod' &&
+			extension_loaded('apc') && ini_get('apc.enabled')) {
+			$config->setQueryCacheImpl($cacheDriver);
+			$config->setResultCacheImpl($cacheDriver);
+			$config->setMetadataCacheImpl($cacheDriver);
+		}
 		// the incredible Entity Manager
 		$this->em = EntityManager::create($this->config['DB'], $config);
 		// everything is ok?
@@ -469,6 +482,22 @@ class DefaultController
 			return false;
 		}
 		return $url;
+	}
+
+	/* Clear Cache */
+
+	public function clearcacheAction($params = null) {
+		// doctrine
+		$this->loadDoctrine(true);
+		// twig
+		$dir_iterator = new RecursiveDirectoryIterator($this->config['PATHS']['cache']);
+		$iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
+		foreach ($iterator as $file) {
+			if (is_file($file) && strpos($file, '.gitignore') === FALSE) {
+				unlink($file);
+			}
+		}
+		$this->redirect("admin?cc=1");
 	}
 
 	/* XHR */

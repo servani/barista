@@ -84,6 +84,11 @@ Post:
             nullable: true
             unsigned: false
             comment: ''
+        abc:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
         visible:
             type: boolean
             nullable: true

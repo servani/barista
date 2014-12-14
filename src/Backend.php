@@ -39,6 +39,7 @@ class BackendController extends DefaultController
 	public function indexAction($params = null) {
 		$post = $this->em->getRepository('Post')->findAll();
 		$this->render("index.backend.html.twig", array(
+			'cc' => @$this->get['cc'],
 			'post' => array(
 				'total' => count($post)
 			)

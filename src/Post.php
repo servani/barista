@@ -73,6 +73,7 @@ class Post
      * @var integer
      */
     private $sort;
+    private $abc;
 
     /**
      * @var boolean
@@ -386,6 +387,29 @@ class Post
     public function getSort()
     {
         return $this->sort;
+    }
+
+    /**
+     * Set abc
+     *
+     * @param integer $abc
+     * @return Post
+     */
+    public function setAbc($abc)
+    {
+        $this->abc = $abc;
+
+        return $this;
+    }
+
+    /**
+     * Get abc
+     *
+     * @return integer
+     */
+    public function getAbc()
+    {
+        return $this->abc;
     }
 
     /**

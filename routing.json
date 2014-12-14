@@ -19,6 +19,11 @@
 		"action": "index",
 		"secured": true
 	},
+	"admin/clearcache": {
+		"controller": "Default",
+		"action": "clearcache",
+		"secured": true
+	},
 	"admin/xhr/{slug}": {
 		"controller": "Backend",
 		"action": "xhr",
