@@ -8,26 +8,29 @@
 </div>
 <hr>
 {% endif %}
-{% if filters %}
+{% if filters or bin %}
 	<div class="row">
 		<div class="filters col-md-12">
-			{% for h,u in filters %}
-				{% if u.values %}
-					<div class="btn-group">
-						{% if u.active %}
-							{% set pair = h ~ ':' ~ u.active.value ~ '|' %}
-							<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'w': pagenav.where|replace({(pair): ''})}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> {{ u.title|title }}: {{ u.values[u.active.value] }}</a>
-						{% else %}
-							<button class="btn btn-default dropdown-toggle" type="button" id="drop{{ u.title }}" data-toggle="dropdown" aria-expanded="true">Filtrar por {{ u.title }} <span class="caret"></span></button>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="drop{{ u.title }}">
-								{% for k,v in u.values %}
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'w': h ~ ':' ~ k ~ '|' ~ pagenav.where }) }}" title="Filtrar por: {{ v }}">{{ v }}</a></li>
-								{% endfor %}
-							</ul>
-						{% endif %}
-					</div>
-				{% endif %}
-			{% endfor %}
+			<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'bin': (params.bin ? 0 : 1)}) }}" class="btn {{ params.bin ? 'btn-info' : 'btn-default' }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Elementos eliminados</a>
+			{% if filters %}
+				{% for h,u in filters %}
+					{% if u.values %}
+						<div class="btn-group">
+							{% if u.active %}
+								{% set pair = h ~ ':' ~ u.active.value ~ '|' %}
+								<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'w': pagenav.where|replace({(pair): ''})}) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> {{ u.title|title }}: {{ u.values[u.active.value] }}</a>
+							{% else %}
+								<button class="btn btn-default dropdown-toggle" type="button" id="drop{{ u.title }}" data-toggle="dropdown" aria-expanded="true">Filtrar por {{ u.title }} <span class="caret"></span></button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="drop{{ u.title }}">
+									{% for k,v in u.values %}
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'w': h ~ ':' ~ k ~ '|' ~ pagenav.where }) }}" title="Filtrar por: {{ v }}">{{ v }}</a></li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
 		</div>
 	</div>
 	<hr>
@@ -94,8 +97,12 @@
 							<td>
 								<a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="btn btn-primary btn-xs edit" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
 								{% set sdel = '' %}
-								{% if deletekey %}
-										<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+								{% if params.bin %}
+									<a href="{{ url('admin/restore/' ~ en ~ '/' ~ e.id) }}" title="Restaurar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+								{% else %}
+									{% if deletekey %}
+											<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+									{% endif %}
 								{% endif %}
 							</td>
 							{% if starred %}

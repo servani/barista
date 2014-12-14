@@ -37,7 +37,11 @@ class BackendController extends DefaultController
 	/* Index */
 
 	public function indexAction($params = null) {
-		$post = $this->em->getRepository('Post')->findAll();
+		$post = $this->em->getRepository('Post')
+			->createQueryBuilder('p')
+			->where('p.bin = 0 OR p.bin IS NULL')
+			->getQuery()
+			->getResult(2);
 		$this->render("index.backend.html.twig", array(
 			'cc' => @$this->get['cc'],
 			'post' => array(
@@ -140,7 +144,9 @@ class BackendController extends DefaultController
 
 	/* Custom delete methods */
 
-	// ...
+	public function deletePost($entity) {
+		return $entity->setBin(1);
+	}
 
 	/* Custom list order */
 

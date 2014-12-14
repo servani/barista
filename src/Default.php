@@ -540,6 +540,14 @@ class DefaultController
 			$entity = $this->em
 				->getRepository($params['slug'])
 				->createQueryBuilder('q');
+			// don't show trashed elements unless it's requested
+			if (method_exists(new $params['slug'], 'getBin')) {
+				if (@$this->get['bin']) {
+					$entity = $entity->andWhere('q.bin = 1');
+				} else {
+					$entity = $entity->andWhere('(q.bin = 0 OR q.bin IS NULL)');
+				}
+			}
 			// where manager
 			if (isset($this->get['w'])) {
 				$entity = $this->whereManager($entity);
@@ -599,7 +607,9 @@ class DefaultController
 				'cw' => @$this->get['cw'],
 				'd' => $dir === 'ASC' ? 1 : 0,
 				'p' => $current_offset / $results_x_page + 1,
-			)
+				'bin' => @$this->get['bin'],
+			),
+			'bin_numb' => @$bin_numb
 		));
 	}
 
@@ -694,11 +704,23 @@ class DefaultController
 
 	public function deleteAction($params = null) {
 		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
-		$cm = 'delete' . $params['slug'] . 'Action';
+		$cm = 'delete' . $params['slug'];
 		if (method_exists($this, $cm)) {
+			// custom delete (e.g move to bin)
 			$entity = $this->$cm($entity);
+			$this->em->persist($entity);
+		} else {
+			// simple delete
+			$this->em->remove($entity);
 		}
-		$this->em->remove($entity);
+		$this->em->flush();
+		$this->redirect("admin/list/" . $params['slug']);
+	}
+
+	public function restoreAction($params = null) {
+		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
+		$entity->setBin(0);
+		$this->em->persist($entity);
 		$this->em->flush();
 		$this->redirect("admin/list/" . $params['slug']);
 	}

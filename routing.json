@@ -97,5 +97,14 @@
 			"id": null
 		},
 		"secured": true
+	},
+	"admin/restore/{slug}/{id}": {
+		"controller": "Backend",
+		"action": "restore",
+		"params": {
+			"slug": null,
+			"id": null
+		},
+		"secured": true
 	}
 }

@@ -1,7 +1,6 @@
 2.2 ==================================================================
 
 * acciones masivas
-* papelera (ver y restaurar elementos "borrados")
 * ordenar /js/ y separar para todo lo que es backend
 * search que no sea por post (se pierde la paginacion)
 

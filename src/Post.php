@@ -73,12 +73,16 @@ class Post
      * @var integer
      */
     private $sort;
-    private $abc;
 
     /**
      * @var boolean
      */
     private $visible;
+
+    /**
+     * @var boolean
+     */
+    private $bin;
 
     /**
      * @var boolean
@@ -390,29 +394,6 @@ class Post
     }
 
     /**
-     * Set abc
-     *
-     * @param integer $abc
-     * @return Post
-     */
-    public function setAbc($abc)
-    {
-        $this->abc = $abc;
-
-        return $this;
-    }
-
-    /**
-     * Get abc
-     *
-     * @return integer
-     */
-    public function getAbc()
-    {
-        return $this->abc;
-    }
-
-    /**
      * Set visible
      *
      * @param boolean $visible
@@ -433,6 +414,29 @@ class Post
     public function getVisible()
     {
         return $this->visible;
+    }
+
+    /**
+     * Set bin
+     *
+     * @param boolean $bin
+     * @return Post
+     */
+    public function setBin($bin)
+    {
+        $this->bin = $bin;
+
+        return $this;
+    }
+
+    /**
+     * Get bin
+     *
+     * @return boolean
+     */
+    public function getBin()
+    {
+        return $this->bin;
     }
 
     /**

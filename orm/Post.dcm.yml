@@ -84,16 +84,15 @@ Post:
             nullable: true
             unsigned: false
             comment: ''
-        abc:
-            type: integer
-            nullable: false
-            unsigned: false
-            comment: ''
         visible:
             type: boolean
             nullable: true
             comment: ''
             default: '1'
+        bin:
+            type: boolean
+            nullable: true
+            comment: ''
         starred:
             type: boolean
             nullable: true
