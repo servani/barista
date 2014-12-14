@@ -1,9 +1,9 @@
 2.2 ==================================================================
 
 * acciones masivas
-* fix cache (is it working?)
 * papelera (ver y restaurar elementos "borrados")
 * ordenar /js/ y separar para todo lo que es backend
+* search que no sea por post (se pierde la paginacion)
 
 2.3 ==================================================================
 

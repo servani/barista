@@ -65,7 +65,11 @@ class DefaultController
 		$dirs = array("../html/forms","../html/lists","../html/views","../html/widgets");
 		$loader = new Twig_Loader_Filesystem($dirs);
 		// set up environment
-		$params = array('cache' => $this->config['PATHS']['cache'], 'auto_reload' => true, 'autoescape' => true );
+		$auto_reload = false;
+		if ($this->whereTheFuckAmI() !== 'prod') {
+			$auto_reload = true;
+		}
+		$params = array('cache' => $this->config['PATHS']['cache'], 'auto_reload' => $auto_reload, 'autoescape' => true );
 		$this->twig = new Twig_Environment($loader, $params);
 		// add Extension Core (some basic functions)
 		$this->twig->addExtension(new Twig_Extension_Core());
