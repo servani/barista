@@ -1,6 +1,5 @@
 2.2 ==================================================================
 
-* acciones masivas
 * ordenar /js/ y separar para todo lo que es backend
 * search que no sea por post (se pierde la paginacion)
 
