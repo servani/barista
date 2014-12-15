@@ -32,6 +32,16 @@ class User
     /**
      * @var string
      */
+    private $role;
+
+    /**
+     * @var string
+     */
+    private $IP;
+
+    /**
+     * @var string
+     */
     private $password;
 
 
@@ -112,6 +122,52 @@ class User
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set IP
+     *
+     * @param string $IP
+     * @return User
+     */
+    public function setIP($IP)
+    {
+        $this->IP = $IP;
+
+        return $this;
+    }
+
+    /**
+     * Get IP
+     *
+     * @return string
+     */
+    public function getIP()
+    {
+        return $this->IP;
     }
 
     /**

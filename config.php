@@ -33,7 +33,11 @@ $config = array(
 		'nice_name' => 'Barista',
 		'web' => 'https://github.com/servani/barista',
 		'email' => 'fede@nsnc.co',
-	)
+	),
+	'ROLES' => array(
+		'ADMIN' => '*', // all modules
+		'EDITOR' => 'User, Setting, Log', // block this modules
+	),
 );
 /* Overrides for instances */
 $url = @$_SERVER['SERVER_NAME'];

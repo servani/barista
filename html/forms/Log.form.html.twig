@@ -60,18 +60,6 @@
 					} %}
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-4">
-					{% include 'form.select.widget.html.twig' with {
-						name: 'role',
-						label: 'Rol',
-						options: data,
-						required: 'required',
-						selected: entity.role,
-						value: entity.role,
-					} %}
-				</div>
-			</div>
 			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.username } %}
 		</form>
 	</div>

@@ -78,6 +78,7 @@
 						<th style="width:105px">&nbsp;</th>
 						{% if starred %}<th style="width:20px">&nbsp;</th>{% endif %}
 						{% if visible %}<th style="width:20px">&nbsp;</th>{% endif %}
+						{% if en == 'User' %}<th style="width:20px">&nbsp;</th>{% endif %}
 					</tr>
 				</thead>
 				<tbody class="{{ pagenav.order == 'sort' ? 'sortable' : '' }}">
@@ -103,7 +104,7 @@
 									<a href="{{ url('admin/restore/' ~ en ~ '/' ~ e.id) }}" title="Restaurar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
 								{% else %}
 									{% if deletekey %}
-											<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+										<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 									{% endif %}
 								{% endif %}
 							</td>
@@ -115,6 +116,11 @@
 							{% if visible %}
 								<td class="toggleflag">
 									<span data-id="{{ e.id }}" data-prop="visible" data-en="{{ entityName }}" class="visible {{ e.visible ? '' : 'null' }} glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+								</td>
+							{% endif %}
+							{% if en == 'User' %}
+								<td>
+									<a href="{{ url('admin/list/Log') }}?w=user:{{ e.id }}" title="Ver log" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Log</a>
 								</td>
 							{% endif %}
 						</tr>

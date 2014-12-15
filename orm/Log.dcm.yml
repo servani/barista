@@ -1,0 +1,51 @@
+Log:
+    type: entity
+    table: log
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        action:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        date:
+            type: datetime
+            nullable: false
+            comment: ''
+        query:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        ip:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: IP
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

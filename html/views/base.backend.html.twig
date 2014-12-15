@@ -36,7 +36,7 @@
 						{% for n,m in _MODS %}
 							{% if m is iterable %}
 								<li class="dropdown {{ active(m) }}">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ n }}<span class="caret"></span></a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ n }} <span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
 										{% for e,f in m %}
 											{% if f is null %}

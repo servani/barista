@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 14, 2014 at 10:58 PM
+-- Generation Time: Dec 15, 2014 at 09:37 AM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `description` text,
   `slug` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `cf_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `cf_type`
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `custom_field` (
   PRIMARY KEY (`id`,`post_id`),
   KEY `fk_custom_field_post` (`post_id`),
   KEY `fk_custom_field_cf_type` (`cf_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `file` (
   `post_id` int(11) NOT NULL,
   PRIMARY KEY (`id`,`post_id`),
   KEY `fk_file_post` (`post_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,24 @@ CREATE TABLE IF NOT EXISTS `image` (
   `post_id` int(11) NOT NULL,
   PRIMARY KEY (`id`,`post_id`),
   KEY `fk_image_post` (`post_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log`
+--
+
+CREATE TABLE IF NOT EXISTS `log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `action` varchar(50) NOT NULL,
+  `date` datetime NOT NULL,
+  `query` text,
+  `IP` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -130,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `bin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_post_category` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -179,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `tag_type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tag_tag_type` (`tag_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -212,16 +229,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `IP` varchar(50) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `username`, `password`, `email`) VALUES
-(1, 'Grupo NSNC', 'nsnc', '56033133c25d5177814d93a651f99450', ''),
-(20, 'Federico A. Viarnés', 'fede', '7d11810cf99c74a1f3fa22c3879ea39d', 'fede@nsnc.co');
+INSERT INTO `user` (`id`, `name`, `username`, `password`, `email`, `IP`, `role`) VALUES
+(1, 'Grupo NSNC', 'nsnc', '56033133c25d5177814d93a651f99450', '', NULL, NULL),
+(20, 'Federico A. Viarnés', 'fede', '7d11810cf99c74a1f3fa22c3879ea39d', 'fede@nsnc.co', NULL, NULL);
 
 --
 -- Constraints for dumped tables
@@ -247,6 +266,12 @@ ALTER TABLE `image`
   ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `log`
+--
+ALTER TABLE `log`
+  ADD CONSTRAINT `fk_log_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
@@ -256,8 +281,8 @@ ALTER TABLE `post`
 -- Constraints for table `post_has_tag`
 --
 ALTER TABLE `post_has_tag`
-  ADD CONSTRAINT `fk_post_has_tag_tag` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_post_has_tag_post` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_post_has_tag_post` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_post_has_tag_tag` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `tag`

@@ -17,8 +17,7 @@ class BackendController extends DefaultController
 		//		'Entity'	=> 'Nice Name',
 		//		'Entity'	=> 'Nice Name'
 		// dividers: N (number) => null
-		return array(
-			'User' => 'Usuarios',
+		$mods = array(
 			'Blog' => array(
 				'Post'		=> 'Posts',
 				1			=> null,
@@ -32,6 +31,14 @@ class BackendController extends DefaultController
 				'CfType'	=> 'Tipos de campos personalizados',
 			)
 		);
+		if ($this->getUser()->getRole() === 'ADMIN') {
+			$mods['Admin'] = array(
+				'User' => 'Usuarios',
+				'Log' => 'Registro de acciones',
+			);
+		}
+		ksort($mods);
+		return $mods;
 	}
 
 	/* Index */
@@ -215,6 +222,13 @@ class BackendController extends DefaultController
 			->getResult(2); // number 2 is for fetching an array instead of a motherfucker object
 	}
 
+	public function newUserData($id = null) {
+		return array(
+			'ADMIN' => 'Administrador',
+			'EDITOR' => 'Editor',
+		);
+	}
+
 	public function newFileData($id = null) {
 		return $this->em
 			->getRepository('Post')
@@ -317,6 +331,10 @@ class BackendController extends DefaultController
 	/* Custom set (create and update) methods */
 
 	public function setUserAction($entity) {
+		// set IP once
+		if (!$entity->getIP()) {
+			$entity->setIP($_SERVER['REMOTE_ADDR']);
+		}
 		// don't set password if already is a md5 hash
 		if (!preg_match('/^[a-f0-9]{32}$/', $entity->getPassword())) {
 			$entity->setPassword(md5($entity->getPassword()));

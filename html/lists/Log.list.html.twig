@@ -2,18 +2,20 @@
 
 {% block section %}
 	{% include 'list.widget.html.twig' with {
-			title: 'Usuarios',
+			title: 'Registro de Acciones',
 			cols: {
 				'id': 'ID',
-				'name': 'Nombre',
-				'username': 'Usuario',
-				'email': 'Email',
+				'user.username': 'Usuario',
+				'action': 'Acción',
+				'query': 'Detalle',
+				'Date': 'Fecha',
 				'IP': 'IP',
 			},
-			deletekey: 'username',
+			deletekey: 'id',
 			entity: entity,
 			pagenav: q,
-			en: entityName
+			en: entityName,
+			nocreate: true
 		}
 	%}
 	{% include 'pagenav.widget.html.twig' with {

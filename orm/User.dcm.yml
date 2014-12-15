@@ -29,6 +29,18 @@ User:
             length: 100
             fixed: false
             comment: ''
+        role:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        IP:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
         password:
             type: string
             nullable: true

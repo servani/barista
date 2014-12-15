@@ -7,7 +7,7 @@ use Gregwar\Image\Image;
 
 class DefaultController
 {
-	public function __construct() {
+	public function __construct($action, $params) {
 		// in case of a motherfucker phpini configuration
 		$this->fuckMagicQuotes();
 		// prepare the magic session
@@ -24,13 +24,28 @@ class DefaultController
 		if ($this->get) {
 			$this->setGet(); // we need to manipulate the get param a little bit
 		}
+		// where the fuck am I?
+		$this->instance = $this->whereTheFuckAmI();
 		// load the awesome vendors
 		$this->loadDoctrine(); // database
 		$this->loadTwig(); // hTML templating
 		$this->loadImageHandler(); // image manipulation
 		$this->loadMailer(); // mailer transport agent
-		// where the fuck am I?
-		$this->instance = $this->whereTheFuckAmI();
+		// get logged user
+		$this->user = $this->getUser();
+		// restrict backend by user role
+		if (isset($params['slug'])) {
+			$permissions = $this->config['ROLES'][$this->user->getRole()];
+			if ($permissions !== '*') {
+				$permissions = explode(', ', $permissions);
+				foreach ($permissions as $p) {
+					if ($p === $params['slug']) {
+						$this->errorAction(array('code' => 403));
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	/*
@@ -66,7 +81,7 @@ class DefaultController
 		$loader = new Twig_Loader_Filesystem($dirs);
 		// enable cache
 		$auto_reload = false;
-		if ($this->whereTheFuckAmI() !== 'prod') {
+		if ($this->instance !== 'prod') {
 			$auto_reload = true;
 		}
 		// set up environment
@@ -180,6 +195,13 @@ class DefaultController
 				return $res;
 			}
 			if (method_exists($obj, $prop)) {
+				if ($prop === 'getquery') {
+					$res = substr($obj->$prop(), 0, 15);
+					if (strlen($res) === 15) {
+						$res .= '...';
+					}
+					return $res;
+				}
 				return $obj->$prop();
 			}
 			return $empty;
@@ -260,7 +282,7 @@ class DefaultController
 		if ($clearcache) {
 			$cacheDriver->deleteAll();
 		}
-		if($this->whereTheFuckAmI() === 'prod' &&
+		if($this->instance === 'prod' &&
 			extension_loaded('apc') && ini_get('apc.enabled')) {
 			$config->setQueryCacheImpl($cacheDriver);
 			$config->setResultCacheImpl($cacheDriver);
@@ -317,6 +339,13 @@ class DefaultController
 		return null;
 	}
 
+	public function getUser() {
+		if ($this->isAuthenticated()) {
+			return $user = $this->em->getRepository('User')->findOneById($_SESSION['uid']);
+		}
+		return null;
+	}
+
 	public function getAuthenthicatedClient() {
 		if ($this->isAuthenticatedClient()) {
 			return array('id' => $_SESSION['fuid'], 'name' => $_SESSION['funame']);
@@ -348,6 +377,10 @@ class DefaultController
 				$_SESSION['auth'] = true;
 				$_SESSION['uid'] = $user->getId();
 				$_SESSION['uname'] = $user->getName();
+				$user->setIP($_SERVER['REMOTE_ADDR']);
+				$this->em->persist($user);
+				$this->em->flush();
+				$this->logAction('login');
 				$this->redirect('admin');
 				return true;
 			}
@@ -359,6 +392,7 @@ class DefaultController
 
 	/* Logout */
 	public function logoutAction() {
+		$this->logAction('logout');
 		$_SESSION['auth'] = false;
 		$this->redirect('login');
 	}
@@ -575,8 +609,9 @@ class DefaultController
 			$entity = $entity->setMaxresults($results_x_page)
 				->setFirstResult($current_offset)
 				->orderBy('q.' . $order, $dir)
-				->getQuery()
-				->getResult();
+				->getQuery();
+			$query = $entity->getDQL();
+			$entity = $entity->getResult();
 		} catch (Exception $e) {
 			echo "Entity not found \n"; die();
 		}
@@ -585,6 +620,7 @@ class DefaultController
 		if (method_exists($this, $cm) && !isset($this->get['o'])) {
 			$data = $this->$cm();
 		}
+		$this->logAction('list', $query);
 		$this->render($params['slug'] . ".list.html.twig", array(
 			'entity' => $entity,
 			'entityName' => $params['slug'],
@@ -619,6 +655,7 @@ class DefaultController
 		if (method_exists($this, $cm)) {
 			$data = $this->$cm();
 		}
+		$this->logAction('new', $params['slug']);
 		$this->render($params['slug'] . ".form.html.twig", array(
 			'entityName' => $params['slug'],
 			'edit' => false,
@@ -639,6 +676,7 @@ class DefaultController
 		if (method_exists($this, $cm)) {
 			$data = $this->$cm($entity->getId());
 		}
+		$this->logAction('edit', $params['slug'] . ':' . $params['id']);
 		$this->render($params['slug'] . ".form.html.twig", array(
 			'entity' => $entity,
 			'entityName' => $params['slug'],
@@ -669,6 +707,7 @@ class DefaultController
 			} catch (Exception $e) {
 				echo "Cannot persist entity to database \n"; die();
 			}
+			$this->logAction('create', $params['slug'] . ':' . $entity->getId());
 			$this->redirect("admin/list/" . $params['slug']);
 		} else {
 			$this->newAction($params, $entity, $error);
@@ -696,6 +735,7 @@ class DefaultController
 			} catch (Exception $e) {
 				echo "Cannot persist entity to database \n"; die();
 			}
+			$this->logAction('update', $params['slug'] . ':' . $params['id']);
 			$this->redirect("admin/list/" . $params['slug']);
 		} else {
 			$this->editAction($params, $entity, $error);
@@ -713,6 +753,7 @@ class DefaultController
 			// simple delete
 			$this->em->remove($entity);
 		}
+		$this->logAction('delete', $params['slug'] . ':' . $params['id']);
 		$this->em->flush();
 		$this->redirect("admin/list/" . $params['slug']);
 	}
@@ -733,6 +774,7 @@ class DefaultController
 				$this->em->remove($e);
 			}
 		}
+		$this->logAction('massive-delete', $params['slug'] . ':' . $params['ids']);
 		$this->em->flush();
 		$this->redirect("admin/list/" . $params['slug']);
 	}
@@ -744,6 +786,7 @@ class DefaultController
 			$e->setBin(0);
 			$this->em->persist($e);
 		}
+		$this->logAction('massive-restore', $params['slug'] . ':' . $params['ids']);
 		$this->em->flush();
 		$this->redirect("admin/list/" . $params['slug']);
 	}
@@ -753,6 +796,7 @@ class DefaultController
 		$entity->setBin(0);
 		$this->em->persist($entity);
 		$this->em->flush();
+		$this->logAction('restore', $params['slug'] . ':' . $params['id']);
 		$this->redirect("admin/list/" . $params['slug']);
 	}
 
@@ -790,6 +834,7 @@ class DefaultController
 				$this->em->persist($e);
 			}
 			$this->em->flush();
+			$this->logAction('saver-order', $this->post['en'] . ':' . implode('-', $this->post['items']));
 			$res['success'] = true;
 		}
 		return $res;
@@ -817,6 +862,7 @@ class DefaultController
 				$entity->$setProp(!$entity->$getProp());
 				$this->em->persist($entity);
 				$this->em->flush();
+				$this->logAction('toggle-flag-' . $this->post['prop'], $this->post['en'] . ':' . $this->post['id']);
 				$res['success'] = true;
 			}
 		}
@@ -834,6 +880,18 @@ class DefaultController
 	}
 
 	/* Backend helpers */
+
+	public function logAction($action, $query = '') {
+		$user = $this->getUser();
+		$log = new Log;
+		$log->setUser($user);
+		$log->setAction($action);
+		$log->setDate(new Datetime());
+		$log->setQuery($query);
+		$log->setIP($_SERVER['REMOTE_ADDR']);
+		$this->em->persist($log);
+		$this->em->flush();
+	}
 
 	public function whereManager($entity) {
 		$wheres = explode('|', $this->get['w']);
@@ -1127,6 +1185,9 @@ class DefaultController
 		// not found
 		if ($params['code'] === 404) {
 			$this->render("404.html.twig");
+		} elseif ($params['code'] === 403) {
+			$this->render("403.html.twig");
 		}
+		die();
 	}
 }

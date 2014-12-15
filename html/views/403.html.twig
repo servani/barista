@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="Grupo NSNC">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{{ _PROJECT }}</title>
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3" />
+	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/styles.backend.css') }}" />
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="error-template">
+					<img src="{{ asset('img/logo-login.png') }}" class="img-responsive" alt="Responsive image">
+					<h2>403 Forbidden</h2>
+					<div class="error-details">
+						No tiene permisos para acceder a la página solicidata.
+					</div>
+					<div class="error-actions">
+						<a href="{{ url('') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"> </span> Ir al inicio </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
+	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+</body>
+</html>
