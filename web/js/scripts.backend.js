@@ -36,6 +36,9 @@ $(function () {
 					self.$wrapper.find('.ms input').prop('checked', false);
 					if ($(this).is(':checked')) {
 						self.$wrapper.find('.ms input').prop('checked', true);
+						self.$wrapper.find('#massive-actions').show();
+					} else {
+						self.$wrapper.find('#massive-actions').hide();
 					}
 				}),
 				this.$wrapper.on('click', '.rmsel', function (e) {
@@ -60,6 +63,13 @@ $(function () {
 							});
 							window.location = $btn.attr('href') + ids.join('-');
 						};
+					}
+				}),
+				this.$wrapper.on('change', '.ms input', function () {
+					if (self.$wrapper.find('.ms input:checked').size()) {
+						self.$wrapper.find('#massive-actions').show();
+					} else {
+						self.$wrapper.find('#massive-actions').hide();
 					}
 				}),
 				// Toggle Flag
