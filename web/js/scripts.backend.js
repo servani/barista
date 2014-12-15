@@ -343,7 +343,7 @@ $(function () {
 						}
 					}
 				});
-				if ($email.size() && !this.isEmail($email.val())) {
+				if ($email.size()&& $email.val() && !this.isEmail($email.val())) {
 					$email.addClass('error');
 					$email.siblings('.error').show();
 					errors = true;
