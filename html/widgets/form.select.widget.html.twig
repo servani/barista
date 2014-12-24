@@ -25,7 +25,7 @@
 		{% endfor %}
 	</select>
 	{% if errormsg or required %}
-		<small class="error">{{ errormsg|default('Campo Requerido') }}</small>
+		<div class="alert alert-danger error">{{ errormsg|default('Campo Requerido') }}</div>
 	{% endif %}
 	{% if example %}
 		<p class="help-block">{{ example }}</p>

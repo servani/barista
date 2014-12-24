@@ -2,6 +2,6 @@
 	<label>{{ label }}</label>
 	<textarea id="{{ id|default('') }}" name="{{ entityName }}[{{ name }}]" class="ckeditor {{ class|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" {{ required|default('') }}>{{ value|default('') }}</textarea>
 	{% if errormsg or required %}
-		<small class="error">{{ errormsg|default('Campo Requerido') }}</small>
+		<div class="alert alert-danger error">{{ errormsg|default('Campo Requerido') }}</div>
 	{% endif %}
 </div>

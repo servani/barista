@@ -1,3 +1,14 @@
+* En bootstrap.php pasarle $controller al construct y en el construct validar BackendController, ver motivarte.
+* log.form.html.twig nunca lo hice!
+* Images en setFromPost solo funca con Post, deberia mandarse la entity por POST
+* implementar many2many seleccionando de existentes
+* si una entity tiene default value definida, aplicarla
+* armar un breadcum o algo para saber donde estoy
+* eliminar la variable del nombre del form y list y el delete key. generalizar. que cuando edite un form no tenga que hardcodear nada mas que los nombres de los campos
+* bbcode required
+* file upload required
+* delete forever
+
 2.2 ==================================================================
 
 * ordenar /js/ y separar para todo lo que es backend

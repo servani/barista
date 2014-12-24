@@ -11,7 +11,9 @@
 {% if filters or bin %}
 	<div class="row">
 		<div class="filters col-md-12">
-			<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'bin': (params.bin ? 0 : 1)}) }}" class="btn {{ params.bin ? 'btn-info' : 'btn-default' }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Elementos eliminados</a>
+			{% if bin %}
+				<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'bin': (params.bin ? 0 : 1)}) }}" class="btn {{ params.bin ? 'btn-info' : 'btn-default' }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Elementos eliminados</a>
+			{% endif %}
 			{% if filters %}
 				{% for h,u in filters %}
 					{% if u.values %}
