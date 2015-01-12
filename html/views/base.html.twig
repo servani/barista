@@ -12,12 +12,15 @@
 	<link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
 </head>
 <body>
-	<div id="wrapper">
+	{# <div id="wrapper">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12" id="content">{% block section %}{% endblock %}</div>
 			</div>
 		</div>
+	</div> #}
+	<div class="container">
+		{% block section %}{% endblock %}
 	</div>
 	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
 	<script src="{{ asset('js/scripts.js') }}"></script>
