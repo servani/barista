@@ -191,7 +191,7 @@ $(function () {
 					}
 				});
 				// Fileupload Single
-				this.$wrapper.find('.fileupload.single').fileupload({
+				this.$wrapper.find('.fileupload').fileupload({
 					url: self.baseUrl + '/xhr/upload',
 					dataType: 'json',
 					add: function (e, data) {
@@ -205,59 +205,17 @@ $(function () {
 						if (data.result.success) {
 							var file = data.result.files[0].filename,
 								path = data.result.files[0].path;
-							self.FUV.upcontainer.html('');
 							self.appendFile(file, path);
-							self.FUV.button.text('Reemplazar');
-							self.FUV.button.addClass('secondary');
-							self.FUV.hidden.val(file);
-							// link file
-							file = '<a href="' + self.frontBaseUrl + '/' + path + '/' + file +'" target="_blank">' + file + '</a>';
-							var msg = 'Se subio el archivo ' + file + ' correctamente',
-								classname = 'alert-success';
-						} else {
-							var msg = 'Error en la carga del archivo',
-								classname = 'alert-danger';
-						}
-						self.createAlert(classname, msg, self.FUV.alertcontainer);
-					},
-					fail: function (e, data) {
-						var msg = 'Error en la carga del archivo';
-						self.createAlert('alert-danger', msg, self.FUV.alertcontainer);
-					},
-					always: function (e, data) {
-						console.log(data.result);
-						self.FUV.progressbarContainer.css('display', 'none');
-					},
-					progress: function (e, data) {
-						var progress = parseInt(data.loaded / data.total * 100, 10);
-						self.FUV.progressbarContainer.css({
-							'display': 'block'
-						});
-						self.FUV.progressbar.css({
-							'width': progress + '%'
-						});
-					}
-				});
-				// Fileupload Multi
-				this.$wrapper.find('.fileupload.multiple').fileupload({
-					url: self.baseUrl + '/xhr/upload',
-					dataType: 'json',
-					add: function (e, data) {
-						self.setFileUploadVars($(e.target));
-						data.submit();
-					},
-					submit: function (e, data) {
-						data.formData = {filetype: $(e.target).hasClass('image') ? 'image' : 'file' };
-					},
-					done: function (e, data) {
-						var msg, classname;
-						if (data.result.success) {
-							var file = data.result.files[0].filename,
-								path = data.result.files[0].path;
-							self.appendFile(file, path);
-							var files = self.FUV.hidden.val().split(', ');
-							files.push(file);
-							self.FUV.hidden.val(files.join(', '));
+							if ($(e.target).hasClass('single')) {
+								self.FUV.upcontainer.html('');
+								self.FUV.button.text('Reemplazar');
+								self.FUV.button.addClass('secondary');
+								self.FUV.hidden.val(file);
+							} else {
+								var files = self.FUV.hidden.val().split(', ');
+								files.push(file);
+								self.FUV.hidden.val(files.join(', '));
+							}
 							// link file
 							file = '<a href="' + self.frontBaseUrl + '/' + path + '/' + file +'" target="_blank">' + file + '</a>';
 							var msg = 'Se subio el archivo ' + file + ' correctamente',
