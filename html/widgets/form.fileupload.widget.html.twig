@@ -17,7 +17,10 @@
 			{{ value and not multiple ? 'Reemplazar' : 'Cargar' }}
 		</span>
 		<input {{ filetype == 'image' ? ' accept="image/*"' : '' }} class="button small fileupload {{ multiple|default('single') }} {{ filetype }}" type="file" name="{{ entityName }}-{{ name }}" {{ multiple|default('') }}/>
-		<input type="hidden" name="{{ entityName }}[{{ name }}]" value="{{ hv|default('')}}" />
+		<input {{ required|default("") }} type="hidden" name="{{ entityName }}[{{ name }}]" value="{{ hv|default('')}}" />
+		{% if errormsg or required %}
+			<div class="alert alert-danger error">{{ errormsg|default('Campo Requerido') }}</div>
+		{% endif %}
 	</div>
 	<div class="progress">
 		<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
