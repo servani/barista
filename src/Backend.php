@@ -152,7 +152,8 @@ class BackendController extends DefaultController
 	/* Custom delete methods */
 
 	public function deletePost($entity) {
-		return $entity->setBin(1);
+		// do something (like remove cfs)
+		return $entity;
 	}
 
 	/* Custom list order */

@@ -77,7 +77,7 @@
 								<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'o': order, 'd': (q.dir ? 0 : 1) }) }}">{{ v }} <span class="caret"></span></a></th>
 							{% endif %}
 						{% endfor %}
-						{% if not noedit %}<th style="width:105px">&nbsp;</th>{% endif %}
+						{% if not noedit %}<th style="width:125px">&nbsp;</th>{% endif %}
 						{% if starred %}<th style="width:20px">&nbsp;</th>{% endif %}
 						{% if visible %}<th style="width:20px">&nbsp;</th>{% endif %}
 						{% if entityName == 'User' %}<th style="width:20px">&nbsp;</th>{% endif %}
@@ -101,11 +101,12 @@
 							{% endfor %}
 							{% if not noedit %}
 								<td>
-									<a href="{{ url('admin/edit/' ~ entityName ~ '/' ~ e.id) }}" class="btn btn-primary btn-xs edit" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
 									{% set sdel = '' %}
 									{% if params.bin %}
-										<a href="{{ url('admin/restore/' ~ entityName ~ '/' ~ e.id) }}" title="Restaurar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+										<a href="{{ url('admin/restore/' ~ entityName ~ '/' ~ e.id) }}" title="Restaurar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Restaurar</a>
+										<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ e.id) }}" title="Eliminar para siempre" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 									{% else %}
+										<a href="{{ url('admin/edit/' ~ entityName ~ '/' ~ e.id) }}" class="btn btn-primary btn-xs edit" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
 										{% if deletekey %}
 											<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 										{% endif %}

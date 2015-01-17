@@ -750,16 +750,27 @@ class DefaultController
 
 	public function deleteAction($params = null) {
 		$entity = $this->em->getRepository($params['slug'])->find($params['id']);
+		// custom delete (e.g remove other entities)
 		$cm = 'delete' . $params['slug'];
 		if (method_exists($this, $cm)) {
-			// custom delete (e.g move to bin)
 			$entity = $this->$cm($entity);
 			$this->em->persist($entity);
-		} else {
-			// simple delete
-			$this->em->remove($entity);
 		}
-		$this->logAction('delete', $params['slug'] . ':' . $params['id']);
+		// check if entity has bin
+		if (method_exists($entity, 'setBin')) {
+			// if bin is already set, remove forever
+			if ($entity->getBin()) {
+				$this->em->remove($entity);
+				$this->logAction('delete', $params['slug'] . ':' . $params['id']);
+			// else, set bin
+			} else {
+				$entity->setBin(1);
+				$this->logAction('trash', $params['slug'] . ':' . $params['id']);
+			}
+		} else {
+			$this->em->remove($entity);
+			$this->logAction('delete', $params['slug'] . ':' . $params['id']);
+		}
 		$this->em->flush();
 		$this->redirect("admin/list/" . $params['slug']);
 	}
