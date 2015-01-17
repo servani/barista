@@ -1,136 +1,136 @@
 <!doctype html>
 <html lang="es">
-<head>
-	<meta charset="utf-8" />
-	<meta name="author" content="Servani">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>{{ _PROJECT }}</title>
-	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2" />
-	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
-	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}" />
-	<link rel="stylesheet" href="{{ asset('css/bootstrapValidator.min.css') }}" />
-	<link rel="stylesheet" href="{{ asset('css/styles.backend.css') }}" />
-	<link rel="stylesheet" href="{{ asset('css/jquery-ui-1.10.4.custom.min.css') }}" />
-</head>
-<body>
-	<div id="wrapper">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-9" id="alerts"></div>
-			</div>
-		</div>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="Servani">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{ _PROJECT }}</title>
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2" />
+		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/backend/bootstrapValidator.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/backend/styles.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/backend/jquery-ui-1.10.4.custom.min.css') }}" />
+	</head>
+	<body>
+		<div id="wrapper">
 			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="{{ url('admin') }}">{{ _PROJECT }}</a>
-				</div>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						{% for n,m in _MODS %}
-							{% if m is iterable %}
-								<li class="dropdown {{ active(m) }}">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ n }} <span class="caret"></span></a>
-									<ul class="dropdown-menu" role="menu">
-										{% for e,f in m %}
-											{% if f is null %}
-												<li class="divider"></li>
-											{% else %}
-												<li class="{{ active(e) }}"><a href="{{ url('admin/list/' ~ e) }}">{{ f }}</a></li>
-											{% endif %}
-										{% endfor %}
-									</ul>
-								</li>
-							{% else %}
-								{% if m is null %}
-									<li class="divider"></li>
-								{% else %}
-									<li class="{{ active(n) }}"><a href="{{ url('admin/list/' ~ n) }}">{{ m }}</a></li>
-								{% endif %}
-							{% endif %}
-						{% endfor %}
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="{{ active('Setting') }}"><a href="{{ url('admin/list/Setting') }}"><span class="glyphicon glyphicon-cog"></span></a></li>
-						<li><a href="{{ url('logout') }}" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
-					</ul>
+				<div class="row">
+					<div class="col-md-9" id="alerts"></div>
 				</div>
 			</div>
-		</nav>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12" id="content">{% block section %}{% endblock %}</div>
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="{{ url('admin') }}">{{ _PROJECT }}</a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							{% for n,m in _MODS %}
+								{% if m is iterable %}
+									<li class="dropdown {{ active(m) }}">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ n }} <span class="caret"></span></a>
+										<ul class="dropdown-menu" role="menu">
+											{% for e,f in m %}
+												{% if f is null %}
+													<li class="divider"></li>
+												{% else %}
+													<li class="{{ active(e) }}"><a href="{{ url('admin/list/' ~ e) }}">{{ f }}</a></li>
+												{% endif %}
+											{% endfor %}
+										</ul>
+									</li>
+								{% else %}
+									{% if m is null %}
+										<li class="divider"></li>
+									{% else %}
+										<li class="{{ active(n) }}"><a href="{{ url('admin/list/' ~ n) }}">{{ m }}</a></li>
+									{% endif %}
+								{% endif %}
+							{% endfor %}
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="{{ active('Setting') }}"><a href="{{ url('admin/list/Setting') }}"><span class="glyphicon glyphicon-cog"></span></a></li>
+							<li><a href="{{ url('logout') }}" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" id="content">{% block section %}{% endblock %}</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
-	<script src="{{ asset('js/bootstrapValidator.min.js') }}"></script>
-	<script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
-	<script src="{{ asset('js/jquery-ui-1.10.4.custom.min.js') }}"></script>
-	<script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
-	<script src="{{ asset('js/jquery.ui.datepicker-es.js') }}"></script>
-	<script src="{{ asset('js/scripts.backend.js') }}"></script>
-	<script src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
-	<script src="{{ asset('js/jquery.fileupload.js') }}"></script>
-	<script src="{{ asset('js/jquery.printElement.min.js') }}"></script>
-	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-	{% block scripts %}{% endblock %}
-	<script>
-		$(function () {
-			CKEDITOR.timestamp='ABCD';
-			Barista.init();
-			$('.datetimepicker').datetimepicker({
-				dateFormat: 'dd-mm-yy'
+		<script src="{{ asset('js/jquery-1.11.2.min.js') }}"></script>
+		<script src="{{ asset('js/backend/bootstrapValidator.min.js') }}"></script>
+		<script src="{{ asset('js/backend/ckeditor/ckeditor.js') }}"></script>
+		<script src="{{ asset('js/backend/jquery-ui-1.10.4.custom.min.js') }}"></script>
+		<script src="{{ asset('js/backend/jquery-ui-timepicker-addon.js') }}"></script>
+		<script src="{{ asset('js/backend/jquery.ui.datepicker-es.js') }}"></script>
+		<script src="{{ asset('js/backend/scripts.js') }}"></script>
+		<script src="{{ asset('js/backend/jquery.iframe-transport.js') }}"></script>
+		<script src="{{ asset('js/backend/jquery.fileupload.js') }}"></script>
+		<script src="{{ asset('js/backend/jquery.printElement.min.js') }}"></script>
+		<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+		{% block scripts %}{% endblock %}
+		<script>
+			$(function () {
+				CKEDITOR.timestamp='ABCD';
+				Barista.init();
+				$('.datetimepicker').datetimepicker({
+					dateFormat: 'dd-mm-yy'
+				});
+				$('.datepicker').datepicker({
+					dateFormat: 'dd-mm-yy'
+				});
+				$('.sortable').sortable({
+					placeholder: "ui-state-highlight",
+					axis: 'y',
+					update: function (event, ui) {
+						Barista.Backend.saveOrder();
+					}
+				});
+				$('.sortable').disableSelection();
 			});
-			$('.datepicker').datepicker({
-				dateFormat: 'dd-mm-yy'
-			});
-			$('.sortable').sortable({
-				placeholder: "ui-state-highlight",
-				axis: 'y',
-				update: function (event, ui) {
-					Barista.Backend.saveOrder();
-				}
-			});
-			$('.sortable').disableSelection();
-		});
-	</script>
-	<div class="modal" tabindex="-1" role="dialog" id="confirm" aria-labelledby="" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4></h4>
-				</div>
-				<div class="modal-body">
-					<p></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-sm btn-danger true">Borrar</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-	<div class="modal" tabindex="-1" role="dialog" id="loading" aria-labelledby="" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">Cargando...</div>
-				<div class="modal-body">
-					<div class="progress">
-						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-							<span class="sr-only">45% Complete</span>
+		</script>
+		<div class="modal" tabindex="-1" role="dialog" id="confirm" aria-labelledby="" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4></h4>
+					</div>
+					<div class="modal-body">
+						<p></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-sm btn-danger true">Borrar</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<div class="modal" tabindex="-1" role="dialog" id="loading" aria-labelledby="" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">Cargando...</div>
+					<div class="modal-body">
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+								<span class="sr-only">45% Complete</span>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>
