@@ -7,7 +7,7 @@ use Gregwar\Image\Image;
 
 class DefaultController
 {
-	public function __construct($action, $params) {
+	public function __construct($controller, $action, $params) {
 		// in case of a motherfucker phpini configuration
 		$this->fuckMagicQuotes();
 		// prepare the magic session
@@ -34,7 +34,7 @@ class DefaultController
 		// get logged user
 		$this->user = $this->getUser();
 		// restrict backend by user role
-		if (isset($params['slug'])) {
+		if ($controller === 'BackendController' && isset($params['slug'])) {
 			$permissions = $this->config['ROLES'][$this->user->getRole()];
 			if ($permissions !== '*') {
 				$permissions = explode(', ', $permissions);
@@ -421,6 +421,7 @@ class DefaultController
 		try {
 			$this->twig->loadTemplate($template)->display($params);
 		} catch (Exception $e) {
+			echo "<pre>"; print_r($e); echo "</pre>"; die();
 			echo "Template not found \n"; die();
 		}
 	}
@@ -615,6 +616,7 @@ class DefaultController
 			$query = $entity->getDQL();
 			$entity = $entity->getResult();
 		} catch (Exception $e) {
+			echo "<pre>"; print_r($e); echo "</pre>"; die();
 			echo "Entity not found \n"; die();
 		}
 		// custom data
@@ -707,6 +709,7 @@ class DefaultController
 				$this->em->persist($entity);
 				$this->em->flush();
 			} catch (Exception $e) {
+				echo "<pre>"; print_r($e); echo "</pre>"; die();
 				echo "Cannot persist entity to database \n"; die();
 			}
 			$this->logAction('create', $params['slug'] . ':' . $entity->getId());
@@ -735,6 +738,7 @@ class DefaultController
 				$this->em->persist($entity);
 				$this->em->flush();
 			} catch (Exception $e) {
+				echo "<pre>"; print_r($e); echo "</pre>"; die();
 				echo "Cannot persist entity to database \n"; die();
 			}
 			$this->logAction('update', $params['slug'] . ':' . $params['id']);

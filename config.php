@@ -24,7 +24,7 @@ $config = array(
 	),
 	'TWIG_GLOBALS' => array(
 		'_FRAMEWORK' => 'Barista',
-		'_VERSION' => '2.1',
+		'_VERSION' => '2.2',
 		'_PROJECT' => 'Barista',
 		'_UPLOAD_DIR_NICE' => 'content',
 	),

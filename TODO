@@ -1,35 +1,38 @@
-* En bootstrap.php pasarle $controller al construct y en el construct validar BackendController, ver motivarte.
-* log.form.html.twig nunca lo hice!
-* Images en setFromPost solo funca con Post, deberia mandarse la entity por POST
-* implementar many2many seleccionando de existentes
-* si una entity tiene default value definida, aplicarla
-* armar un breadcum o algo para saber donde estoy
-* eliminar la variable del nombre del form y list y el delete key. generalizar. que cuando edite un form no tenga que hardcodear nada mas que los nombres de los campos
+2.2.1 ================================================================
+
 * bbcode required
 * file upload required
 * delete forever
+* optimizar file upload func en scripts.backend (multi y single)
 
-2.2 ==================================================================
+2.2.2 ================================================================
 
+* armar un breadcum o algo para saber donde estoy
+* eliminar la variable del nombre del form y list y el delete key. generalizar. que cuando edite un form no tenga que hardcodear nada mas que los nombres de los campos
 * ordenar /js/ y separar para todo lo que es backend
+
+2.2.3 ================================================================
+
+* Images en setFromPost solo funca con Post, deberia mandarse la entity por POST
+* si una entity tiene default value definida, aplicarla
+
+2.2.4 ================================================================
+
+* distintos formatos de lista (ej: minimalista en tags)
+
+2.2.5 ================================================================
+
+* implementar many2many seleccionando de existentes
 * search que no sea por post (se pierde la paginacion)
 
-2.3 ==================================================================
+======================================================================
+3.0 ==================================================================
+======================================================================
 
-* optimizar file upload func en scripts.backend (multi y single)
-* distintos formatos de lista (ej: minimalista en tags)
 * deploy, clearcache, map, generate scripts
 * comprimir JS (idem sass quizas, con algun script ubuntu)
 * autocreate sitemap func
-* mejorar urls en backend, armar un url builder (filtros, pagenav, etc)
-
-2.4 ==================================================================
-
 * drag and drop files backend
-* ajustar grid responsive
-
-2.n ==================================================================
-
 * baristaframework.com
 * documentation
 

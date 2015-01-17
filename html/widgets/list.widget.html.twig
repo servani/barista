@@ -77,7 +77,7 @@
 								<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'o': order, 'd': (pagenav.dir ? 0 : 1) }) }}">{{ v }} <span class="caret"></span></a></th>
 							{% endif %}
 						{% endfor %}
-						<th style="width:105px">&nbsp;</th>
+						{% if not noedit %}<th style="width:105px">&nbsp;</th>{% endif %}
 						{% if starred %}<th style="width:20px">&nbsp;</th>{% endif %}
 						{% if visible %}<th style="width:20px">&nbsp;</th>{% endif %}
 						{% if en == 'User' %}<th style="width:20px">&nbsp;</th>{% endif %}
@@ -99,17 +99,19 @@
 									{% endif %}
 								</td>
 							{% endfor %}
-							<td>
-								<a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="btn btn-primary btn-xs edit" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
-								{% set sdel = '' %}
-								{% if params.bin %}
-									<a href="{{ url('admin/restore/' ~ en ~ '/' ~ e.id) }}" title="Restaurar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
-								{% else %}
-									{% if deletekey %}
-										<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+							{% if not noedit %}
+								<td>
+									<a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="btn btn-primary btn-xs edit" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
+									{% set sdel = '' %}
+									{% if params.bin %}
+										<a href="{{ url('admin/restore/' ~ en ~ '/' ~ e.id) }}" title="Restaurar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+									{% else %}
+										{% if deletekey %}
+											<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+										{% endif %}
 									{% endif %}
-								{% endif %}
-							</td>
+								</td>
+							{% endif %}
 							{% if starred %}
 								<td class="toggleflag">
 									<span data-id="{{ e.id }}" data-prop="starred" data-en="{{ entityName }}" class="starred {{ e.starred ? '' : 'null' }} glyphicon glyphicon-star" aria-hidden="true"></span>

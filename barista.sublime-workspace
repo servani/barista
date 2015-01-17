@@ -4,128 +4,76 @@
 		"selected_items":
 		[
 			[
-				"var_",
-				"var_dump"
+				"des",
+				"description"
 			],
 			[
-				"s",
-				"slug"
+				"getGa",
+				"getGalleryCover"
 			],
 			[
-				"gre",
-				"green_light"
+				"image",
+				"image_by_gal_slug"
 			],
 			[
-				"error",
-				"errorAction"
+				"home",
+				"home_cursos"
 			],
 			[
-				"el",
-				"elseif	elseif …"
+				"w",
+				"words"
 			],
 			[
-				"expl",
-				"explode"
+				"_LE",
+				"_LEVELS_SLUG"
 			],
 			[
-				"erro",
-				"errorAction"
-			],
-			[
-				"ent",
-				"entity"
-			],
-			[
-				"wra",
-				"wrapper"
+				"settin",
+				"setting_by_name"
 			],
 			[
 				"check",
-				"checkbox"
+				"check_http"
 			],
 			[
-				"clear",
-				"clearcache"
+				"select",
+				"selected"
 			],
 			[
-				"cache",
-				"cacheDriver"
+				"gall",
+				"gallery"
 			],
 			[
-				"auto",
-				"auto_reload"
+				"for",
+				"for"
 			],
 			[
-				"wher",
-				"whereTheFuckAmI"
+				"Templa",
+				"TemplateContent"
 			],
 			[
-				"pa",
-				"pagenev"
+				"is_n",
+				"is_numeric"
 			],
 			[
-				"page",
-				"pagenav"
+				"P",
+				"Páginas"
 			],
 			[
-				"remove",
-				"removefilter"
+				"T",
+				"Título"
 			],
 			[
-				"func",
-				"function"
-			],
-			[
-				"input",
+				"inpu",
 				"input_group"
 			],
 			[
-				"place",
-				"placeholder"
+				"G",
+				"Gallery"
 			],
 			[
-				"pl",
-				"placeholder"
-			],
-			[
-				"clas",
-				"class	Attr"
-			],
-			[
-				"fr",
-				"frontBaseUrl"
-			],
-			[
-				"cate",
-				"category"
-			],
-			[
-				"class",
-				"classname"
-			],
-			[
-				"max",
-				"max_size"
-			],
-			[
-				"prevent",
-				"preventDefault"
-			],
-			[
-				"defa",
-				"default_results"
-			],
-			[
-				"De",
-				"DefaultController"
-			],
-			[
-				"metho",
-				"method_exists"
-			],
-			[
-				"is_",
-				"is_array"
+				"course",
+				"courseAttendanceType"
 			],
 			[
 				"b",
@@ -134,6 +82,10 @@
 			[
 				"ov",
 				"ov	overflow: ${1:hidden};"
+			],
+			[
+				"fr",
+				"fl-r	float: right;"
 			],
 			[
 				"fl",
@@ -186,6 +138,10 @@
 			[
 				"de",
 				"default	!default"
+			],
+			[
+				"pa",
+				"payment_method"
 			],
 			[
 				"up",
@@ -300,6 +256,10 @@
 				"scrollTo"
 			],
 			[
+				"max",
+				"max-width"
+			],
+			[
 				"flo",
 				"float"
 			],
@@ -322,6 +282,10 @@
 			[
 				"remo",
 				"removeClass"
+			],
+			[
+				"remove",
+				"removeOldRated"
 			],
 			[
 				"ra",
@@ -456,6 +420,10 @@
 				"playSound"
 			],
 			[
+				"class",
+				"classnames"
+			],
+			[
 				"jc",
 				"jcarouselpagination"
 			],
@@ -514,81 +482,64 @@
 			[
 				"fu",
 				"function"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"border-",
+				"border-bottom"
+			],
+			[
+				"fs",
+				"font-size"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"ta",
+				"text-align"
+			],
+			[
+				"TRU",
+				"true"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": ".row.fluid {\n	max-width: 100%;\n}\n#header {\n	.top-bar {\n		ul {\n			li {\n				h1 {\n					color: white;\n				}\n			}\n		}\n	}\n}\n#sidebar {\n	margin-top: 45px;\n	ul.side-nav {\n		li {\n			a {\n				display: inline-block;\n			}\n		}\n	}\n}\n\n*, *:before, *:after {box-sizing:  border-box !important;}\n\n\n",
-			"file": "web/css/styles.scss",
-			"file_size": 552,
-			"file_write_time": 130651223760857498,
+			"file": "TODO",
 			"settings":
 			{
-				"buffer_size": 280,
+				"buffer_size": 1569,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "html/views/index.html.twig",
+			"file": "src/Default.php",
 			"settings":
 			{
-				"buffer_size": 4999,
+				"buffer_size": 40538,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "<!doctype html>\n<html lang=\"es\">\n<head>\n	<meta charset=\"utf-8\" />\n	<meta name=\"author\" content=\"Servani\">\n	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n	<title>Vendo vendo</title>\n	<link rel=\"stylesheet\" href=\"bootstrap.min.css\" />\n	<link rel=\"stylesheet\" href=\"bootstrap-theme.min.css\" />\n	<style>\n	.row {\n	 -moz-column-width: 18em;\n	 -webkit-column-width: 18em;\n	 -moz-column-gap: 1em;\n	 -webkit-column-gap:1em;\n\n	}\n\n	.item {\n	 display: inline-block;\n	 padding:  .25rem;\n	 width:  100%;\n	}\n\n	.well {\n	 position:relative;\n	 display: block;\n	 padding: 0;\n	}\n	.panel {\n		margin-bottom: 0;\n	}\n	</style>\n</head>\n<body>\n	<div class=\"container\">\n	<h1>Me voy de viaje y vendo todo esto! Los precios son negociables. Si estás interesado escribime a <a href=\"mailto:fede.viar@gmail.com\">fede.viar@gmail.com</a></h1>\n	<div class=\"row\">\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel \">\n					<div class=\"panel-heading\">\n						<h2>PlayStation 3 + joysticks + juegos<br><span class=\"label label-success\">$6500*</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"img/mex/ps3.jpg\" class=\"img-responsive\">\n						<p>PlayStation 3 Slim 250 gb. Menos de dos años de uso. Viene con dos Joysticks originales (dualshock 3), 2 joysticks de ps2 con adaptor a ps3, y 7 juegos:</p>\n						<ul>\n							<li>GTA V</li>\n							<li>Mortal kombat Komplete Edition</li>\n							<li>PES 2013</li>\n							<li>PES 2014</li>\n							<li>FIFA 2013</li>\n							<li>FIFA 2014 Worl Cup Brazil</li>\n							<li>Minecraft</li>\n						</ul>\n						<a href=\"http://articulo.mercadolibre.com.ar/MLA-536459554-sony-ps3-250gb-ultra-slim-metal-gear-rising-2-joysticks-_JM\" class=\"btn btn-primary\">Ver producto en ML</a>\n					</div>\n					<div class=\"panel-footer\">\n						<small>*Los $6500 incluyen todoslos juegos e items detallados. Se puede ajustar el precio si no se quiere algún item.</small>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Monitor LED Samsung<br><span class=\"label label-success\">$1800*</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"img/mex/led.jpg\" class=\"img-responsive\">\n						<p>Monitor LED Samsung 23 pulgadas modelo S23b350 en perfecto estado.</p>\n						<a href=\"http://articulo.mercadolibre.com.ar/MLA-536895800-monitor-led-hdmi-23-pulgas-samsung-s23b350-_JM\" class=\"btn btn-primary\">Ver producto en ML</a>\n					</div>\n					<div class=\"panel-footer\">\n						<small>*Tengo 2, si llevás los dos te hago precio.</small>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Bici Venzo Raptor<br><span class=\"label label-success\">$7200</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"img/mex/bici.jpg\" class=\"img-responsive\">\n						<p>Gran bici rodado 29 con bastante uso pero en buenas condiciones</p>\n						<a href=\"http://articulo.mercadolibre.com.ar/MLA-532265950-bicicleta-venzo-raptor-rod-29-27-vel-shimano-frenos-disco-_JM\" class=\"btn btn-primary\">Ver producto en ML</a>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Escritorio<br><span class=\"label label-success\">$2500</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"img/mex/escritorio.jpg\" class=\"img-responsive\">\n						<p>Escritorio blanco de 140 cm x 65 cm (es igual al de la foto pero en otras dimensiones)</p>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Parlantes Thonet & Vander Kurbis<br><span class=\"label label-success\">$1600</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"img/mex/parlantes.jpg\" class=\"img-responsive\">\n						<p>Altos parlantes, 2.0</p>\n						<a href=\"http://articulo.mercadolibre.com.ar/MLA-540372213-parlante-thonet-and-vander-kurbis-20-_JM\" class=\"btn btn-primary\">Ver producto en ML</a>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Cajón Peruano<br><span class=\"label label-success\">$400</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"img/mex/cajon.jpg\" class=\"img-responsive\">\n						<p>No es el de la foto (pero es muy parecido)</p>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Fichas de Póker<br><span class=\"label label-success\">$600</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"img/mex/poker.jpg\" class=\"img-responsive\">\n						<p>Vienen con el maletín</p>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>PC de escritorio<br><span class=\"label label-success\">$4200</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"img/mex/pc.jpg\" class=\"img-responsive\">\n						<p>PC de escritorio corriendo Linux, en excelente estado. Las especificaciones son las siguientes:</p>\n						<ul>\n							<li>Procesador Intel Core i5-3470</li>\n							<li>Motherboard ASUS P8Z77-M</li>\n							<li>Disco Rigido HD 1TB SATA3 64MB WD Caviar Blue</li>\n							<li>Memoria 8GB DDR3 | 1333MHz | Kingston</li>\n							<li>GABINETE ATXC OV-513 600W</li>\n						</ul>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n	</div>\n	<script src=\"jquery.js\"></script>\n	<script src=\"bootstrap.min.js\"></script>\n</body>\n</html>\n",
-			"file": "/home/fede/Desktop/mevoy.html",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "Bootstrap.php",
 			"settings":
 			{
-				"buffer_size": 5757,
+				"buffer_size": 2587,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "<!doctype html>\n<html lang=\"es\">\n<head>\n	<meta charset=\"utf-8\" />\n	<meta name=\"author\" content=\"Servani\">\n	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n	<title>Vendo vendo</title>\n	<link rel=\"stylesheet\" href=\"bootstrap.min.css\" />\n	<link rel=\"stylesheet\" href=\"bootstrap-theme.min.css\" />\n	<style>\n	.row {\n	 -moz-column-width: 18em;\n	 -webkit-column-width: 18em;\n	 -moz-column-gap: 1em;\n	 -webkit-column-gap:1em;\n\n	}\n\n	.item {\n	 display: inline-block;\n	 padding:  .25rem;\n	 width:  100%;\n	}\n\n	.well {\n	 position:relative;\n	 display: block;\n	 padding: 0;\n	}\n	.panel {\n		margin-bottom: 0;\n	}\n	</style>\n</head>\n<body>\n	<div class=\"container\">\n	<h1>Me voy de viaje y vendo todo esto! Los precios son negociables. Si estás interesado y no me conocés escribime a <a href=\"mailto:fede.viar@gmail.com\">fede.viar@gmail.com</a>, sino facebook, whatsapp, telegram, icq, etc.</h1>\n	<div class=\"row\">\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel \">\n					<div class=\"panel-heading\">\n						<h2>PlayStation 3 + joysticks + juegos<br><span class=\"label label-success\">$6500*</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"ps3.jpg\" class=\"img-responsive\">\n						<p>PlayStation 3 Slim 250 gb. Menos de dos años de uso. Viene con dos Joysticks originales (dualshock 3), 2 joysticks de ps2 con adaptor a ps3, y 7 juegos:</p>\n						<ul>\n							<li>GTA V</li>\n							<li>Mortal kombat Komplete Edition</li>\n							<li>PES 2013</li>\n							<li>PES 2014</li>\n							<li>FIFA 2013</li>\n							<li>FIFA 2014 Worl Cup Brazil</li>\n							<li>Minecraft</li>\n						</ul>\n						<a href=\"http://articulo.mercadolibre.com.ar/MLA-536459554-sony-ps3-250gb-ultra-slim-metal-gear-rising-2-joysticks-_JM\" class=\"btn btn-primary\">Ver producto en ML</a>\n					</div>\n					<div class=\"panel-footer\">\n						<small>*Los $6500 incluyen todoslos juegos e items detallados. Se puede ajustar el precio si no se quiere algún item.</small>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Monitor LED Samsung<br><span class=\"label label-success\">$1800*</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"led.jpg\" class=\"img-responsive\">\n						<p>Monitor LED Samsung 23 pulgadas modelo S23b350 en perfecto estado.</p>\n						<a href=\"http://articulo.mercadolibre.com.ar/MLA-536895800-monitor-led-hdmi-23-pulgas-samsung-s23b350-_JM\" class=\"btn btn-primary\">Ver producto en ML</a>\n					</div>\n					<div class=\"panel-footer\">\n						<small>*Tengo 2, si llevás los dos te hago precio.</small>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Bici Venzo Raptor<br><span class=\"label label-success\">$7200</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"bici.jpg\" class=\"img-responsive\">\n						<p>Gran bici rodado 29 con bastante uso pero en buenas condiciones</p>\n						<a href=\"http://articulo.mercadolibre.com.ar/MLA-532265950-bicicleta-venzo-raptor-rod-29-27-vel-shimano-frenos-disco-_JM\" class=\"btn btn-primary\">Ver producto en ML</a>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Escritorio<br><span class=\"label label-success\">$2500</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"escritorio.jpg\" class=\"img-responsive\">\n						<p>Escritorio blanco de 140 cm x 65 cm (es igual al de la foto pero en otras dimensiones)</p>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Parlantes Thonet & Vander Kurbis<br><span class=\"label label-success\">$1600</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"parlantes.jpg\" class=\"img-responsive\">\n						<p>Altos parlantes, 2.0</p>\n						<a href=\"http://articulo.mercadolibre.com.ar/MLA-540372213-parlante-thonet-and-vander-kurbis-20-_JM\" class=\"btn btn-primary\">Ver producto en ML</a>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Cajón Peruano<br><span class=\"label label-success\">$400</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"cajon.jpg\" class=\"img-responsive\">\n						<p>No es el de la foto (pero es muy parecido)</p>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>Fichas de Póker<br><span class=\"label label-success\">$600</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"poker.jpg\" class=\"img-responsive\">\n						<p>Vienen con el maletín</p>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"item\">\n			<div class=\"well\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<h2>PC de escritorio<br><span class=\"label label-success\">$4200</span></h2>\n					</div>\n					<div class=\"panel-body\">\n						<img src=\"pc.jpg\" class=\"img-responsive\">\n						<p>PC de escritorio corriendo Linux, en excelente estado. Las especificaciones son las siguientes:</p>\n						<ul>\n							<li>Procesador Intel Core i5-3470</li>\n							<li>Motherboard ASUS P8Z77-M</li>\n							<li>Disco Rigido HD 1TB SATA3 64MB WD Caviar Blue</li>\n							<li>Memoria 8GB DDR3 | 1333MHz | Kingston</li>\n							<li>GABINETE ATXC OV-513 600W</li>\n						</ul>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n	</div>\n	<script src=\"jquery.js\"></script>\n	<script src=\"bootstrap.min.js\"></script>\n</body>\n</html>\n",
-			"file": "/home/fede/Desktop/mevoy/mevoy.html",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "config.php",
 			"settings":
 			{
-				"buffer_size": 5755,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/fede/Desktop/index.php",
-			"settings":
-			{
-				"buffer_size": 670,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/fede/Desktop/mevoy/.htaccess",
-			"settings":
-			{
-				"buffer_size": 25,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/fede/Desktop/mevoy/index.html",
-			"settings":
-			{
-				"buffer_size": 3431,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "html/views/base.html.twig",
-			"settings":
-			{
-				"buffer_size": 1076,
+				"buffer_size": 1232,
 				"line_ending": "Unix"
 			}
 		}
@@ -596,17 +547,9 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 60.0,
+		"height": 375.0,
 		"selected_items":
 		[
-			[
-				"install p",
-				"Package Control: Install Package"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
-			],
 			[
 				"rein",
 				"Indentation: Reindent Lines"
@@ -648,7 +591,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 507.0
+		"width": 588.0
 	},
 	"console":
 	{
@@ -676,152 +619,144 @@
 	],
 	"file_history":
 	[
-		"/var/www/barista/html/views/base.backend.html.twig",
-		"/var/www/barista/src/Backend.php",
-		"/var/www/barista/html/views/index.backend.html.twig",
-		"/var/www/barista/web/css/styles.backend.css",
-		"/var/www/barista/web/css/styles.backend.scss",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/shell_tester.php",
 		"/var/www/barista/src/Frontend.php",
-		"/var/www/barista/TODO",
-		"/var/www/barista/src/Post.php",
-		"/var/www/barista/html/widgets/form.select.widget.html.twig",
-		"/var/www/barista/web/js/scripts.backend.js",
-		"/var/www/barista/src/Default.php",
-		"/var/www/barista/html/widgets/list.widget.html.twig",
-		"/var/www/barista/html/widgets/form.bbcode.widget.html.twig",
-		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Tests/Fixtures/BarBucCommand.php",
-		"/var/www/barista/orm/Post.dcm.yml",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/doc/overview.rst",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/selector.php",
-		"/var/www/barista/html/lists/Setting.list.html.twig",
-		"/var/www/barista/web/js/scripts.js",
-		"/var/www/barista/vendor/doctrine/orm/docs/en/cookbook/strategy-cookbook-introduction.rst",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/lib/classes/Swift/KeyCache/SimpleKeyCacheInputStream.php",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Signers/SMimeSigner.php",
-		"/var/www/barista/src/User.php",
-		"/var/www/barista/Bootstrap.php",
-		"/var/www/barista/config.php",
-		"/var/www/barista/html/forms/User.form.html.twig",
-		"/var/www/barista/html/forms/Log.form.html.twig",
-		"/var/www/barista/html/lists/Log.list.html.twig",
-		"/var/www/barista/html/forms/Post.form.html.twig",
-		"/var/www/barista/html/lists/User.list.html.twig",
-		"/var/www/barista/html/views/403.html.twig",
-		"/var/www/barista/routing.json",
-		"/var/www/barista/orm/User.dcm.yml",
-		"/var/www/barista/orm/Log.dcm.yml",
-		"/var/www/barista/src/Log.php",
-		"/var/www/barista/html/views/login.html.twig",
-		"/var/www/barista/vendor/doctrine/orm/tests/Doctrine/Tests/ORM/Criteria/DqlGenerationTest.php",
-		"/var/www/barista/html/lists/Post.list.html.twig",
-		"/var/www/barista/orm/Category.dcm.yml",
-		"/var/www/barista/cli-config.php",
-		"/var/www/motivarte/PROJECT",
-		"/var/www/motivarte/TODO",
-		"/var/www/motivarte/PLAN",
-		"/var/www/barista/web/index.php",
-		"/var/www/barista/vendor/doctrine/orm/docs/en/reference/yaml-mapping.rst",
-		"/var/www/barista/vendor/gargron/fileupload/tests/fixtures/yadda.txt",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/tests/acceptance/Swift/Transport/StreamBuffer/BasicSocketAcceptanceTest.php",
-		"/var/www/barista/html/widgets/pagenav.widget.html.twig",
-		"/var/www/barista/vendor/doctrine/dbal/lib/Doctrine/DBAL/Platforms/AbstractPlatform.php",
-		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/AbstractCollectionPersister.php",
-		"/var/www/barista/TOCHANGE",
-		"/var/www/barista/vendor/doctrine/orm/tests/Doctrine/Tests/ORM/Functional/IndexByAssociationTest.php",
-		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Query/AST/IndexBy.php",
-		"/var/www/barista/console",
-		"/var/www/barista/bin/deploy.php",
-		"/var/www/barista/bin/clearcache.php",
-		"/var/www/frescavita/app/AppCache.php",
-		"/var/www/frescavita/app/console",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/Sweety/TestLocator/PearStyleLocator.php",
-		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/Pagination/LimitSubqueryOutputWalker.php",
-		"/var/www/barista/vendor/twig/twig/test/Twig/Tests/Node/Expression/Unary/PosTest.php",
-		"/var/www/barista/web/css/styles.css",
-		"/var/www/barista/html/lists/Tag.list.html.twig",
-		"/var/www/barista/html/lists/CfType.list.html.twig",
-		"/var/www/barista/vendor/doctrine/orm/tests/Doctrine/Tests/Models/Company/CompanyFlexUltraContractListener.php",
-		"/var/www/barista/html/forms/CfType.form.html.twig",
-		"/var/www/barista/html/forms/Tag.form.html.twig",
-		"/var/www/barista/vendor/doctrine/orm/docs/en/cookbook/resolve-target-entity-listener.rst",
-		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/Pagination/LimitSubqueryWalker.php",
-		"/var/www/barista/vendor/doctrine/annotations/tests/Doctrine/Tests/Common/Annotations/Fixtures/GlobalNamespacesPerFileWithClassAsFirst.php",
-		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Id/AssignedGenerator.php",
-		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Tests/Fixtures/definition_astext.txt",
-		"/var/www/barista/html/forms/TagType.form.html.twig",
-		"/var/www/barista/html/lists/TagType.list.html.twig",
-		"/var/www/barista/html/forms/Image.form.html.twig",
-		"/var/www/barista/src/CfType.php",
-		"/var/www/barista/orm/CfType.dcm.yml",
-		"/var/www/barista/src/CustomField.php",
-		"/var/www/barista/vendor/doctrine/common/lib/Doctrine/Common/Util/ClassUtils.php",
-		"/var/www/barista/src/TagType.php",
-		"/var/www/barista/html/widgets/form.tags.widget.html.twig",
-		"/var/www/barista/vendor/doctrine/orm/docs/en/reference/transactions-and-concurrency.rst",
-		"/var/www/barista/html/lists/Category.list.html.twig",
-		"/var/www/barista/html/forms/Category.form.html.twig",
-		"/var/www/barista/src/Category.php",
-		"/var/www/barista/html/lists/File.list.html.twig",
-		"/var/www/barista/html/forms/File.form.html.twig",
-		"/var/www/barista/html/lists/Image.list.html.twig",
-		"/var/www/barista/vendor/doctrine/orm/docs/en/cookbook/implementing-arrayaccess-for-domain-objects.rst",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/form_data_encoded_form.html",
-		"/var/www/barista/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/DefaultFileLocator.php",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/doc/uml/Mime.graffle",
-		"/var/www/barista/src/File.php",
-		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Event/ListenersInvoker.php",
-		"/var/www/barista/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/FileLocator.php",
-		"/var/www/barista/vendor/twig/twig/lib/Twig/FilterInterface.php",
-		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Tests/Descriptor/ObjectsProvider.php",
-		"/var/www/barista/vendor/doctrine/orm/tests/Doctrine/Tests/ORM/Functional/SchemaTool/PostgreSqlSchemaToolTest.php",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/packages/simpletest.org/test/package/here_overview.xml",
-		"/var/www/barista/web/js/ckeditor/ckeditor.js",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/yaymock/classes/Yay/Actions/CallbackAction.php",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/VERSION",
-		"/var/www/barista/db/default.mwb.bak",
-		"/var/www/barista/src/Image.php",
-		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Input/InputArgument.php",
-		"/var/www/barista/vendor/doctrine/orm/docs/en/reference/inheritance-mapping.rst",
-		"/var/www/barista/html/widgets/form.input.widget.html.twig",
-		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Input/InputAwareInterface.php",
-		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Input/Input.php",
-		"/var/www/barista/vendor/doctrine/orm/docs/en/cookbook/implementing-the-notify-changetracking-policy.rst",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/packages/simpletest.org/test/package/one_section_with_php_code.xml",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/packages/simpletest.org/test/package/one_section_with_autorum_php.xml",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/protected/.htpasswd",
-		"/var/www/barista/web/js/ckeditor/plugins/clipboard/dialogs/paste.js",
-		"/var/www/barista/vendor/autoload.php",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/ArrayByteStream.php",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/lib/classes/Swift/CharacterReader/UsAsciiReader.php",
-		"/home/fede/Downloads/Frank 2014 1080p BRRip x264 AC3-JYK/Subs/Frank 2014 1080p BRRip x264 AC3-JYK.smi",
-		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/PostLoad.php",
-		"/var/www/barista/vendor/doctrine/orm/tests/Doctrine/Tests/Models/CMS/CmsAddress.php",
-		"/var/www/barista/html/widgets/form.cf.widget.html.twig",
 		"/var/www/barista/html/views/base.html.twig",
-		"/var/www/barista/vendor/twig/twig/lib/Twig/CompilerInterface.php",
-		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/Sweety/Reporter/CliReporter.php",
-		"/var/www/barista/vendor/doctrine/orm/tests/Doctrine/Tests/ORM/Functional/SingleTableCompositeKeyTest.php",
-		"/var/www/barista/vendor/doctrine/common/tests/Doctrine/Tests/Common/Proxy/SleepClass.php",
-		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/SqlExpressionVisitor.php"
+		"/var/www/barista/html/widgets/list.widget.html.twig",
+		"/var/www/motivarte/html/views/carrera.html.twig",
+		"/var/www/motivarte-web/includes/carrera.php",
+		"/var/www/motivarte/html/views/index.html.twig",
+		"/var/www/motivarte/src/Course.php",
+		"/var/www/motivarte/orm/Course.dcm.yml",
+		"/var/www/motivarte/config.php",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/lib/classes/Swift/StreamFilters/ByteArrayReplacementFilter.php",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mailer/ArrayRecipientIterator.php",
+		"/var/www/motivarte/src/CourseAttendance.php",
+		"/var/www/motivarte/html/forms/Meeting.form.html.twig",
+		"/var/www/motivarte/vendor/doctrine/dbal/tests/Doctrine/Tests/Mocks/HydratorMockStatement.php",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/packages/simpletest.org/test/package/here_overview.xml",
+		"/var/www/motivarte/web/js/highcharts.js",
+		"/var/www/motivarte-web/index.php",
+		"/var/www/motivarte-web/config.php",
+		"/var/www/motivarte/html/views/base.html.twig",
+		"/var/www/motivarte/routing.json",
+		"/var/www/motivarte/html/views/escuela.html.twig",
+		"/var/www/motivarte/src/Default.php",
+		"/var/www/motivarte/Bootstrap.php",
+		"/var/www/motivarte/src/Backend.php",
+		"/var/www/motivarte/html/views/base.backend.html.twig",
+		"/var/www/motivarte-web/includes/escuela.php",
+		"/var/www/motivarte/html/lists/Post.list.html.twig",
+		"/var/www/motivarte/src/Frontend.php",
+		"/var/www/motivarte/__OLD SITE/functions.php",
+		"/var/www/motivarte/html/widgets/info.widget.html.twig",
+		"/var/www/motivarte/TODO",
+		"/var/www/motivarte/web/css/styles.scss",
+		"/var/www/motivarte/__OLD SITE/includes/inicio.php",
+		"/var/www/motivarte/orm/Post.dcm.yml",
+		"/var/www/motivarte/orm/Slide.dcm.yml",
+		"/var/www/motivarte/src/Slide.php",
+		"/var/www/motivarte/src/Post.php",
+		"/var/www/motivarte/vendor/twig/twig/test/Twig/Tests/Node/Expression/Unary/PosTest.php",
+		"/var/www/motivarte/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/PostPersist.php",
+		"/var/www/motivarte/orm/Staff.dcm.yml",
+		"/var/www/motivarte/vendor/doctrine/orm/docs/en/cookbook/strategy-cookbook-introduction.rst",
+		"/var/www/motivarte/web/js/scripts.js",
+		"/var/www/motivarte/html/views/index.backend.html.twig",
+		"/var/www/motivarte/web/css/styles.css",
+		"/var/www/motivarte/web/css/styles.backend.scss",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/shell_tester.php",
+		"/var/www/motivarte/README.md",
+		"/var/www/motivarte/src/Image.php",
+		"/var/www/motivarte/__OLD SITE/index.php",
+		"/var/www/motivarte/__OLD SITE/functions.js",
+		"/var/www/motivarte/web/js/scripts.backend.js",
+		"/var/www/motivarte/__OLD SITE/config.php",
+		"/var/www/motivarte/__OLD SITE/_inc.php",
+		"/var/www/motivarte/__OLD SITE/intro.php",
+		"/var/www/motivarte/__OLD SITE/404.php",
+		"/var/www/motivarte/vendor/doctrine/cache/tests/Doctrine/Tests/Common/Cache/BaseFileCacheTest.php",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/base_tag/frameset.html",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/base_tag/form.html",
+		"/var/www/motivarte/html/forms/Inscription.form.html.twig",
+		"/var/www/motivarte/html/forms/Application.form.html.twig",
+		"/var/www/motivarte/html/forms/Student.form.html.twig",
+		"/var/www/motivarte/orm/Student.dcm.yml",
+		"/var/www/motivarte/src/Student.php",
+		"/var/www/motivarte/html/forms/Course.form.html.twig",
+		"/var/www/motivarte/html/lists/Student.list.html.twig",
+		"/var/www/motivarte/src/User.php",
+		"/var/www/motivarte/orm/User.dcm.yml",
+		"/var/www/motivarte/html/forms/User.form.html.twig",
+		"/var/www/motivarte/html/lists/User.list.html.twig",
+		"/var/www/motivarte/html/forms/CourseAttendance.form.html.twig",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/tests/acceptance/Swift/EmbeddedFileAcceptanceTest.php",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/lib/classes/Swift/EmbeddedFile.php",
+		"/var/www/motivarte/cache/5b/78/eeb55aac8f33358fe819c2d6bd3b874540813fffe7214ea6ec5ecbf82b0d.php",
+		"/var/www/motivarte/vendor/leafo/lessphp/tests/ApiTest.php",
+		"/var/www/motivarte/vendor/autoload.php",
+		"/var/www/motivarte/html/forms/View.form.html.twig",
+		"/var/www/motivarte/html/forms/TemplateContent.form.html.twig",
+		"/var/www/motivarte/html/widgets/form.textarea.widget.html.twig",
+		"/var/www/motivarte/web/css/styles.backend.css",
+		"/var/www/motivarte/web/index.php",
+		"/var/www/barista/src/Backend.php",
+		"/var/www/motivarte/html/forms/Template.form.html.twig",
+		"/var/www/motivarte/html/widgets/form.content.widget.html.twig",
+		"/var/www/motivarte/html/widgets/form.content.text.widget.html.twig",
+		"/var/www/motivarte/html/lists/Template.list.html.twig",
+		"/var/www/motivarte/vendor/twig/twig/lib/Twig/Node/Text.php",
+		"/var/www/motivarte/orm/Template.dcm.yml",
+		"/var/www/motivarte/html/widgets/form.content.bbcode.widget.html.twig",
+		"/var/www/barista/html/widgets/form.cf.widget.html.twig",
+		"/var/www/motivarte/vendor/symfony/console/Symfony/Component/Console/Tests/Fixtures/FoobarCommand.php",
+		"/var/www/motivarte/vendor/twig/twig/test/Twig/Tests/Fixtures/filters/force_escape.test",
+		"/var/www/motivarte/html/widgets/form.bbcode.widget.html.twig",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/packages/simpletest.org/test/package/content_without_section.xml",
+		"/var/www/motivarte/vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/ConnectionTest.php",
+		"/var/www/motivarte/vendor/doctrine/orm/CONTRIBUTING.md",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/doc/overview.rst",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/form_with_radio_buttons.html",
+		"/var/www/motivarte/vendor/twig/twig/doc/tags/for.rst",
+		"/var/www/motivarte/vendor/doctrine/dbal/docs/examples/sharding/query_filtering_off.php",
+		"/var/www/barista/html/forms/Post.form.html.twig",
+		"/var/www/motivarte/html/forms/Staff.form.html.twig",
+		"/var/www/motivarte/html/lists/View.list.html.twig",
+		"/var/www/motivarte/src/Template.php",
+		"/var/www/motivarte/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/ToolEvents.php",
+		"/var/www/motivarte-web/content/templates/default_curso.html",
+		"/var/www/motivarte-web/content/templates/dslr-filmmaking.html",
+		"/var/www/motivarte-web/content/templates/default_carrera.html",
+		"/var/www/motivarte-web/content/templates/default.html",
+		"/var/www/motivarte/html/lists/Slide.list.html.twig",
+		"/var/www/motivarte/src/View.php",
+		"/var/www/motivarte/vendor/doctrine/dbal/docs/en/reference/known-vendor-issues.rst",
+		"/var/www/motivarte/html/forms/Slide.form.html.twig",
+		"/var/www/motivarte/html/widgets/form.input.widget.html.twig",
+		"/var/www/motivarte/vendor/symfony/console/Symfony/Component/Console/Input/InputAwareInterface.php",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Events/SendListener.php",
+		"/var/www/motivarte/html/forms/Post.form.html.twig",
+		"/var/www/barista/html/lists/Post.list.html.twig",
+		"/var/www/motivarte/html/lists/Meeting.list.html.twig",
+		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Plugins/MessageLogger.php",
+		"/var/www/motivarte/orm/Meeting.dcm.yml",
+		"/var/www/motivarte/src/Meeting.php",
+		"/var/www/motivarte/html/forms/Download.form.html.twig",
+		"/var/www/motivarte/src/Download.php",
+		"/var/www/motivarte/html/lists/Download.list.html.twig",
+		"/var/www/motivarte/orm/Download.dcm.yml",
+		"/var/www/motivarte/vendor/doctrine/orm/docs/en/cookbook/mysql-enums.rst",
+		"/var/www/motivarte/motiv.sublime-project",
+		"/var/www/motivarte/html/lists/Log.list.html.twig"
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
 		"height": 93.0,
 		"where_history":
 		[
-			"/var/www/barista/web/js/ckeditor",
-			"/var/www/barista/web/js/ckeditor/plugins",
-			"/var/www/barista/web/js/ckeditor",
-			"/var/www/barista/web",
-			"/var/www/barista/html",
-			"/var/www/barista/src, /var/www/barista/html, /var/www/barista/web, /var/www/barista/Bootstrap.php, /var/www/barista/config.php",
-			"/var/www/barista/src, /var/www/barista/html, /var/www/barista/web",
-			"/var/www/barista",
 			"/var/www/donna/html/",
 			"return 'http://' . $_SERVER['SERVER_NAME'] . '/' . $config['PATHS']['prefix'] . $path;",
 			"/var/www/frescavita",
@@ -838,134 +773,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"=\"panel\"",
-			"panel",
-			"h1",
-			"\"item\"",
-			"item",
-			"img/mex/",
-			"bootstrap/css/",
-			"') }}\"",
-			"{{ asset('",
-			"alt=\"Responsive image\"",
-			"panel-info",
-			"col-sm-4",
-			"img-circle",
-			",",
-			"></",
-			"setIP",
-			"errorAction",
-			"20",
-			"logAction",
-			"whereTheFuckAmI",
-			"whereTheFuckAmI()",
-			"whereTheFuckAmI",
-			"Datetime",
-			"Username",
-			"username",
-			"Username",
-			"username",
-			"etrol",
-			"tr",
-			"Username",
-			"username",
-			"Username",
-			"username",
-			"role",
-			"100",
-			"massiv",
-			"info",
-			"findBy",
-			"bin_numb",
-			"abc",
-			"tb",
-			"Visible",
-			"visible",
-			"Visible",
-			"visible",
-			"\n    /**\n     * Set abc\n     *\n     * @param integer $abc\n     * @return Post\n     */\n    public function setAbc($abc)\n    {\n        $this->abc = $abc;\n\n        return $this;\n    }\n\n    /**\n     * Get abc\n     *\n     * @return integer\n     */\n    public function getAbc()\n    {\n        return $this->abc;\n    }",
-			"visible",
-			"redirect",
-			"loadDoctrine",
-			"sort",
-			"Sort",
-			"sort",
-			"Sort",
-			"sort",
-			"Sort",
-			"sort",
-			"eta",
-			"Sort",
-			"sort",
-			"Sort",
-			"sort",
-			"title",
-			"&amp;o={{ pagenav.order }}&amp;d={{ pagenav.dir }}&amp;w={{ pagenav.where }}&amp;cw={{ pagenav.customWhere }}",
-			"n=",
-			"'tagtype'",
-			"gt",
-			"'type'",
-			"type",
-			"getTitle",
-			"getType",
-			"ttyp",
-			"Post",
-			"post",
-			"Post",
-			"post",
-			"cover','image'",
-			"entityName",
-			"cannot pe",
-			"\n					%}",
-			"getCategory",
+			"asss",
+			"galerry",
+			"N (:ga",
+			"IN",
+			"<?= SITE_ROOT }}",
+			"<?=SITE_ROOT}}/",
+			"galerry",
+			"gallery",
+			"meeting",
+			"gallery",
+			"Gallery",
+			"gallery",
+			"Gallery",
+			"gallery",
+			"Gallery",
+			"gallery",
+			"<?= $titulo }}",
+			"<?= $link }}",
+			"$link",
+			"?>",
+			"<?= $tab",
+			"tab",
+			"carrera",
+			"como",
+			"?>",
+			"<?= $tab == ",
+			"=\"<?= $tab == 2",
+			"<?= $tab == ",
+			"home_carrea",
+			"carre",
+			"url",
+			"carrera",
+			"cursos",
+			"config",
+			"http",
+			"$w",
+			"course",
+			"$galerias",
+			"galerias",
+			"getRepository",
+			".css",
+			"<?= SITE_ROOT ?>/",
+			"asset",
+			".js",
+			"asset",
+			"\" alt",
+			"src=\"<?= SITE_ROOT ?>",
+			"#main",
+			"') }}",
+			"escuela",
+			"Equipamiento",
+			"ra') ",
+			"escuela",
+			"href=\"{{ url",
+			"\"{{ url",
+			"src=\"<?= SITE_ROOT ?>/js",
+			"src=\"<?= SITE_ROOT ?>/",
+			"cursos",
+			"<?= $current == \"",
+			"index",
+			"home",
+			"'inicio'",
+			"inicio",
+			"Inicio",
+			"inicio",
+			"href=\"<?= SITE_ROOT ?>/",
+			"\"<?= SITE_ROOT ?>",
 			"password",
-			"te",
-			"Name",
-			"name",
-			"Name",
-			"name",
-			"required: 'required'",
-			"required",
-			"}\n				%}",
-			"pagenev",
-			"title",
-			"']);\n",
-			"explode",
-			"whereManager",
-			"pagenav",
-			"filter",
+			"user",
+			"Username",
+			"username",
+			"birth",
+			"Birth",
+			"birth",
+			"Birth",
+			"birth",
+			"IP",
+			"getIP",
+			"country",
+			"coutry",
+			"check",
+			"cf",
+			"Cf",
+			"cf",
+			"Cf",
+			"cf",
+			"CF",
+			"cf",
+			"1",
+			"Course",
+			"Text",
+			"tg",
+			"Post",
+			"post",
+			"Post",
+			"post",
+			"Post",
+			"IdPost",
+			"Post",
+			"cannot pers",
+			"Post",
+			"post",
+			"Post",
+			"post",
+			"Post",
+			"post",
+			"Post",
+			"post",
+			"Post",
+			"post",
+			"sort",
+			"now",
+			"Post",
+			"urseType",
+			"H:i - ",
+			"level",
+			"AttendanceType",
+			"'$'",
+			"Category",
 			"category",
-			"isActiveFilter",
-			"    ",
-			"   ",
-			"  ",
-			"span",
-			"createAlert",
-			"modal",
-			"date",
-			"toggleEntityFlag",
-			"borrados",
-			"legend",
-			"index: loop.index\n							}\n						%}",
-			"small-4 columns",
-			"legend",
-			"placeholder",
-			"&nbsp",
-			"placeholder",
-			"' '",
-			"&nbsp",
-			"				",
-			"placeholder",
-			"class=\"example\"",
-			"data.result.files[0].filename",
-			"appendFile",
-			"div",
-			"appendFile",
-			"progressbar",
-			"content",
-			"data.result.files",
-			"data.result.files[0];",
-			"data.result.files[0]"
+			"courseTypeId",
+			"CourseTypeId",
+			"courseTypeId",
+			"CourseTypeId",
+			"courseTypeId",
+			"rseTypeId",
+			"tvi",
+			"Starred"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -992,24 +927,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "web/css/styles.scss",
+					"file": "TODO",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 280,
+						"buffer_size": 1569,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								280,
-								280
+								184,
+								184
 							]
 						],
 						"settings":
@@ -1017,31 +952,21 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -1057,53 +982,56 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
+								"bh_regex_content"
 							],
-							"syntax": "Packages/Syntax Highlighting for Sass/Syntaxes/SCSS.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 52.0,
+						"translation.y": 2.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 5,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 1,
-					"file": "html/views/index.html.twig",
+					"file": "src/Default.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4999,
+						"buffer_size": 40538,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4999,
-								4999
+								26998,
+								26998
 							]
 						],
 						"settings":
@@ -1111,31 +1039,21 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -1151,288 +1069,31 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/PHP-Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/fede/Desktop/mevoy.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5757,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								293,
-								293
-							],
-							[
-								345,
-								345
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3498.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/fede/Desktop/mevoy/mevoy.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5755,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								947,
-								947
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 104.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/home/fede/Desktop/index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 670,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								621,
-								621
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
+								"bh_regex_content"
 							],
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
@@ -1441,24 +1102,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "/home/fede/Desktop/mevoy/.htaccess",
+					"buffer": 2,
+					"file": "Bootstrap.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 25,
+						"buffer_size": 2587,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								25,
-								25
+								2587,
+								2587
 							]
 						],
 						"settings":
@@ -1466,31 +1127,21 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -1506,46 +1157,57 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
+								"bh_regex_content"
 							],
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 792.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "/home/fede/Desktop/mevoy/index.html",
+					"buffer": 3,
+					"file": "config.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3431,
+						"buffer_size": 1232,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								584,
-								584
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1553,31 +1215,21 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -1593,118 +1245,40 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 134.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "html/views/base.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1076,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1076,
-								1076
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
+								"bh_regex_content"
 							],
-							"syntax": "Packages/PHP-Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1727,18 +1301,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.2671875,
 			1.0
 		],
 		"rows":
@@ -1768,59 +1335,39 @@
 		"selected_items":
 		[
 			[
-				"base",
-				"html/views/base.html.twig"
+				"boo",
+				"Bootstrap.php"
+			],
+			[
+				"def",
+				"src/Default.php"
+			],
+			[
+				"confi",
+				"config.php"
+			],
+			[
+				"tod",
+				"TODO"
+			],
+			[
+				"coursephp",
+				"src/Course.php"
 			],
 			[
 				"index",
 				"html/views/index.html.twig"
 			],
 			[
-				"style",
-				"web/css/styles.scss"
+				"base",
+				"html/views/base.html.twig"
 			],
 			[
-				"defau",
-				"src/Default.php"
-			],
-			[
-				"listwi",
-				"html/widgets/list.widget.html.twig"
-			],
-			[
-				"bbcodewi",
-				"html/widgets/form.bbcode.widget.html.twig"
-			],
-			[
-				"post",
-				"src/Post.php"
-			],
-			[
-				"selectw",
-				"html/widgets/form.select.widget.html.twig"
-			],
-			[
-				"backend",
-				"src/Backend.php"
-			],
-			[
-				"scriptb",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"userform",
-				"html/forms/User.form.html.twig"
-			],
-			[
-				"config",
-				"config.php"
+				"to",
+				"TODO"
 			],
 			[
 				"boot",
-				"Bootstrap.php"
-			],
-			[
-				"boots",
 				"Bootstrap.php"
 			],
 			[
@@ -1828,384 +1375,464 @@
 				"routing.json"
 			],
 			[
-				"postfor",
-				"html/forms/Post.form.html.twig"
-			],
-			[
-				"baseback",
-				"html/views/base.backend.html.twig"
-			],
-			[
-				"bac",
-				"src/Backend.php"
-			],
-			[
-				"listwid",
-				"html/widgets/list.widget.html.twig"
-			],
-			[
-				"userlist",
-				"html/lists/User.list.html.twig"
-			],
-			[
-				"useryml",
-				"orm/User.dcm.yml"
-			],
-			[
-				"user",
-				"src/User.php"
-			],
-			[
-				"scripback",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"styleback",
-				"web/css/styles.backend.scss"
-			],
-			[
-				"routi",
-				"routing.json"
-			],
-			[
-				"lis",
-				"html/widgets/list.widget.html.twig"
-			],
-			[
-				"postlist",
-				"html/lists/Post.list.html.twig"
-			],
-			[
-				"posyml",
-				"orm/Post.dcm.yml"
-			],
-			[
-				"yml",
-				"orm/Category.dcm.yml"
-			],
-			[
-				"postf",
-				"html/forms/Post.form.html.twig"
-			],
-			[
-				"back",
-				"src/Backend.php"
-			],
-			[
-				"backen",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"indebac",
-				"html/views/index.backend.html.twig"
-			],
-			[
-				"postyml",
-				"orm/Post.dcm.yml"
-			],
-			[
-				"confi",
+				"config",
 				"config.php"
 			],
 			[
-				"scriptba",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"postlis",
-				"html/lists/Post.list.html.twig"
-			],
-			[
-				"pagenav",
-				"html/widgets/pagenav.widget.html.twig"
-			],
-			[
-				"listw",
-				"html/widgets/list.widget.html.twig"
-			],
-			[
-				"cflis",
-				"html/lists/CfType.list.html.twig"
-			],
-			[
-				"taglist",
-				"html/lists/Tag.list.html.twig"
-			],
-			[
-				"de",
-				"src/Default.php"
-			],
-			[
-				"settlis",
-				"html/lists/Setting.list.html.twig"
-			],
-			[
-				"selecwi",
-				"html/widgets/form.select.widget.html.twig"
-			],
-			[
-				"backe",
-				"src/Backend.php"
-			],
-			[
-				"cftypform",
-				"html/forms/CfType.form.html.twig"
-			],
-			[
-				"cftpelist",
-				"html/lists/CfType.list.html.twig"
-			],
-			[
-				"tagtyfor",
-				"html/forms/TagType.form.html.twig"
-			],
-			[
-				"tagtylis",
-				"html/lists/TagType.list.html.twig"
-			],
-			[
-				"tagform",
-				"html/forms/Tag.form.html.twig"
-			],
-			[
-				"categoryform",
-				"html/forms/Category.form.html.twig"
-			],
-			[
-				"categolist",
-				"html/lists/Category.list.html.twig"
-			],
-			[
-				"imageform",
-				"html/forms/Image.form.html.twig"
-			],
-			[
-				"fileform",
-				"html/forms/File.form.html.twig"
-			],
-			[
-				"fillist",
-				"html/lists/File.list.html.twig"
-			],
-			[
-				"imaglis",
-				"html/lists/Image.list.html.twig"
-			],
-			[
-				"list",
-				"html/widgets/list.widget.html.twig"
-			],
-			[
-				"scriptsba",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"default",
-				"src/Default.php"
-			],
-			[
-				"postform",
-				"html/forms/Post.form.html.twig"
-			],
-			[
-				"bak",
-				"src/Backend.php"
-			],
-			[
-				"imagelist",
-				"html/lists/Image.list.html.twig"
-			],
-			[
-				"imagfi",
-				"html/forms/Image.form.html.twig"
-			],
-			[
-				"userphp",
-				"src/User.php"
-			],
-			[
-				"inpuwidg",
-				"html/widgets/form.input.widget.html.twig"
-			],
-			[
-				"userfo",
-				"html/forms/User.form.html.twig"
-			],
-			[
-				"userfor",
-				"html/forms/User.form.html.twig"
-			],
-			[
-				"userlis",
-				"html/lists/User.list.html.twig"
-			],
-			[
-				"page",
-				"html/widgets/pagenav.widget.html.twig"
-			],
-			[
-				"categ",
-				"src/Category.php"
-			],
-			[
-				"stylesback",
-				"web/css/styles.backend.scss"
-			],
-			[
-				"inputwi",
-				"html/widgets/form.input.widget.html.twig"
-			],
-			[
-				"cripbac",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"postli",
-				"html/lists/Post.list.html.twig"
-			],
-			[
-				"slectwid",
-				"html/widgets/form.select.widget.html.twig"
-			],
-			[
-				"defa",
-				"src/Default.php"
-			],
-			[
-				"cfwidget",
-				"html/widgets/form.cf.widget.html.twig"
-			],
-			[
-				"bbcode",
-				"html/widgets/form.bbcode.widget.html.twig"
-			],
-			[
-				"ckedito",
-				"web/js/ckeditor/ckeditor.js"
-			],
-			[
-				"cke",
-				"web/js/ckeditor/ckeditor.js"
-			],
-			[
-				"inputwid",
-				"html/widgets/form.input.widget.html.twig"
-			],
-			[
-				"tagswid",
-				"html/widgets/form.tags.widget.html.twig"
-			],
-			[
-				"backes",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"selecw",
-				"html/widgets/form.select.widget.html.twig"
-			],
-			[
-				"scripbs",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"fileupw",
-				"html/widgets/form.fileupload.widget.html.twig"
-			],
-			[
-				"check",
-				"html/widgets/form.checkbox.widget.html.twig"
-			],
-			[
-				"login",
-				"html/views/login.html.twig"
-			],
-			[
-				"formheader",
-				"html/widgets/form.header.widget.html.twig"
-			],
-			[
-				"scrip",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"styleba",
-				"web/css/styles.backend.scss"
-			],
-			[
-				"styleb",
-				"web/css/styles.backend.css"
-			],
-			[
-				"settingli",
-				"html/lists/Setting.list.html.twig"
-			],
-			[
-				"formbu",
-				"html/widgets/form.buttons.widget.html.twig"
-			],
-			[
-				"formbutt",
-				"html/widgets/form.buttons.widget.html.twig"
+				"bas",
+				"html/views/base.html.twig"
 			],
 			[
 				"baseb",
 				"html/views/base.backend.html.twig"
 			],
 			[
-				"styl",
-				"web/css/styles.backend.scss"
-			],
-			[
-				"basebac",
-				"html/views/base.backend.html.twig"
-			],
-			[
-				"front",
+				"fron",
 				"src/Frontend.php"
 			],
 			[
-				"settilist",
-				"html/lists/Setting.list.html.twig"
+				"backen",
+				"src/Backend.php"
 			],
 			[
-				"inde",
-				"html/views/index.backend.html.twig"
+				"postlist",
+				"html/lists/Post.list.html.twig"
 			],
 			[
-				"boo",
-				"Bootstrap.php"
+				"postphp",
+				"src/Post.php"
 			],
 			[
-				"to",
-				"TODO"
+				"postym",
+				"orm/Post.dcm.yml"
 			],
 			[
-				"todo",
-				"TODO"
+				"slidepph",
+				"src/Slide.php"
 			],
 			[
-				"proj",
-				"PROJECT"
+				"slide",
+				"orm/Slide.dcm.yml"
+			],
+			[
+				"backe",
+				"src/Backend.php"
 			],
 			[
 				"conf",
 				"config.php"
 			],
 			[
-				"purchasmail",
-				"html/views/purchase.mail.html.twig"
+				"bac",
+				"src/Backend.php"
 			],
 			[
-				"fron",
-				"src/Frontend.php"
+				"defaul",
+				"src/Default.php"
+			],
+			[
+				"defa",
+				"src/Default.php"
+			],
+			[
+				"defau",
+				"src/Default.php"
+			],
+			[
+				"baseba",
+				"html/views/base.backend.html.twig"
+			],
+			[
+				"styles",
+				"web/css/styles.scss"
+			],
+			[
+				"inde",
+				"html/views/index.html.twig"
+			],
+			[
+				"script",
+				"web/js/scripts.js"
+			],
+			[
+				"studenyml",
+				"orm/Student.dcm.yml"
+			],
+			[
+				"userphp",
+				"src/User.php"
+			],
+			[
+				"studenphp",
+				"src/Student.php"
+			],
+			[
+				"useryml",
+				"orm/User.dcm.yml"
+			],
+			[
+				"userform",
+				"html/forms/User.form.html.twig"
+			],
+			[
+				"de",
+				"src/Default.php"
+			],
+			[
+				"efau",
+				"src/Default.php"
+			],
+			[
+				"atteform",
+				"html/forms/CourseAttendance.form.html.twig"
+			],
+			[
+				"courseform",
+				"html/forms/Course.form.html.twig"
+			],
+			[
+				"studenli",
+				"html/lists/Student.list.html.twig"
+			],
+			[
+				"styleba",
+				"web/css/styles.backend.scss"
+			],
+			[
+				"indebac",
+				"html/views/index.backend.html.twig"
+			],
+			[
+				"basebac",
+				"html/views/base.backend.html.twig"
+			],
+			[
+				"textwid",
+				"html/widgets/form.textarea.widget.html.twig"
+			],
+			[
+				"forconbb",
+				"html/widgets/form.content.bbcode.widget.html.twig"
+			],
+			[
+				"contnwid",
+				"html/widgets/form.content.widget.html.twig"
+			],
+			[
+				"scriptba",
+				"web/js/scripts.backend.js"
+			],
+			[
+				"formbb",
+				"html/widgets/form.bbcode.widget.html.twig"
+			],
+			[
+				"staffform",
+				"html/forms/Staff.form.html.twig"
+			],
+			[
+				"staff",
+				"orm/Staff.dcm.yml"
+			],
+			[
+				"templalist",
+				"html/lists/Template.list.html.twig"
+			],
+			[
+				"templa",
+				"orm/Template.dcm.yml"
+			],
+			[
+				"basebacke",
+				"html/views/base.backend.html.twig"
+			],
+			[
+				"vielist",
+				"html/lists/View.list.html.twig"
+			],
+			[
+				"inpuw",
+				"html/widgets/form.input.widget.html.twig"
+			],
+			[
+				"slideyml",
+				"orm/Slide.dcm.yml"
+			],
+			[
+				"slidelist",
+				"html/lists/Slide.list.html.twig"
+			],
+			[
+				"backend",
+				"src/Backend.php"
+			],
+			[
+				"meelist",
+				"html/lists/Meeting.list.html.twig"
+			],
+			[
+				"meeting",
+				"orm/Meeting.dcm.yml"
+			],
+			[
+				"atten",
+				"html/forms/CourseAttendance.form.html.twig"
+			],
+			[
+				"downloadform",
+				"html/forms/Download.form.html.twig"
+			],
+			[
+				"meetinlist",
+				"html/lists/Meeting.list.html.twig"
+			],
+			[
+				"listwid",
+				"html/widgets/list.widget.html.twig"
+			],
+			[
+				"loglist",
+				"html/lists/Log.list.html.twig"
+			],
+			[
+				"imagfor",
+				"html/forms/Image.form.html.twig"
+			],
+			[
+				"galleryfor",
+				"html/forms/Gallery.form.html.twig"
+			],
+			[
+				"stafffo",
+				"html/forms/Staff.form.html.twig"
+			],
+			[
+				"benefifo",
+				"html/forms/Benefit.form.html.twig"
+			],
+			[
+				"couratttyfo",
+				"html/forms/CourseAttendanceType.form.html.twig"
+			],
+			[
+				"courattform",
+				"html/forms/CourseAttendance.form.html.twig"
+			],
+			[
+				"coursform",
+				"html/forms/CourseType.form.html.twig"
+			],
+			[
+				"attenda",
+				"html/forms/CourseAttendance.form.html.twig"
+			],
+			[
+				"dowyml",
+				"orm/Download.dcm.yml"
+			],
+			[
+				"",
+				"cli-config.php"
+			],
+			[
+				"imagform",
+				"html/forms/Image.form.html.twig"
+			],
+			[
+				"listwi",
+				"html/widgets/list.widget.html.twig"
+			],
+			[
+				"diclsi",
+				"html/lists/Dictionary.list.html.twig"
+			],
+			[
+				"downlolist",
+				"html/lists/Download.list.html.twig"
+			],
+			[
+				"todo",
+				"TODO"
+			],
+			[
+				"imagelis",
+				"html/lists/Image.list.html.twig"
+			],
+			[
+				"imagep",
+				"src/Image.php"
+			],
+			[
+				"staffdcm",
+				"orm/Staff.dcm.yml"
+			],
+			[
+				"imag",
+				"src/Image.php"
+			],
+			[
+				"galler",
+				"src/Gallery.php"
+			],
+			[
+				"attendaform",
+				"html/forms/CourseAttendance.form.html.twig"
+			],
+			[
+				"gal",
+				"orm/Gallery.dcm.yml"
+			],
+			[
+				"galle",
+				"src/Gallery.php"
+			],
+			[
+				"gallerlist",
+				"html/lists/Gallery.list.html.twig"
+			],
+			[
+				"benefiform",
+				"html/forms/Benefit.form.html.twig"
+			],
+			[
+				"benefitlis",
+				"html/lists/Benefit.list.html.twig"
+			],
+			[
+				"stafflist",
+				"html/lists/Staff.list.html.twig"
+			],
+			[
+				"list",
+				"html/widgets/list.widget.html.twig"
+			],
+			[
+				"courseali",
+				"html/lists/CourseAttendance.list.html.twig"
+			],
+			[
+				"benefilist",
+				"html/lists/Benefit.list.html.twig"
+			],
+			[
+				"default",
+				"src/Default.php"
+			],
+			[
+				"inpwid",
+				"html/widgets/form.input.widget.html.twig"
+			],
+			[
+				"inputwi",
+				"vendor/symfony/console/Symfony/Component/Console/Input/InputAwareInterface.php"
+			],
+			[
+				"bbcowi",
+				"html/widgets/form.bbcode.widget.html.twig"
+			],
+			[
+				"inpuwid",
+				"html/widgets/form.input.widget.html.twig"
+			],
+			[
+				"courform",
+				"html/forms/Course.form.html.twig"
+			],
+			[
+				"coursylis",
+				"html/lists/CourseType.list.html.twig"
+			],
+			[
+				"courtpfo",
+				"html/forms/CourseType.form.html.twig"
+			],
+			[
+				"atetypli",
+				"html/lists/CourseAttendanceType.list.html.twig"
+			],
+			[
+				"attenlist",
+				"html/lists/CourseAttendance.list.html.twig"
+			],
+			[
+				"cour",
+				"orm/Course.dcm.yml"
+			],
+			[
+				"selectw",
+				"html/widgets/form.select.widget.html.twig"
+			],
+			[
+				"couryml",
+				"orm/Course.dcm.yml"
+			],
+			[
+				"course",
+				"src/Course.php"
+			],
+			[
+				"inputw",
+				"html/widgets/form.input.widget.html.twig"
+			],
+			[
+				"sele",
+				"html/widgets/form.select.widget.html.twig"
+			],
+			[
+				"courseym",
+				"orm/Course.dcm.yml"
+			],
+			[
+				"courli",
+				"html/lists/Course.list.html.twig"
+			],
+			[
+				"ctyfor",
+				"html/forms/CourseType.form.html.twig"
+			],
+			[
+				"ctyp",
+				"html/lists/CourseType.list.html.twig"
+			],
+			[
+				"coursty",
+				"src/CourseType.php"
+			],
+			[
+				"couli",
+				"html/lists/Course.list.html.twig"
+			],
+			[
+				"scriptbac",
+				"web/js/scripts.backend.js"
+			],
+			[
+				"con",
+				"config.php"
+			],
+			[
+				"indeback",
+				"html/views/index.backend.html.twig"
+			],
+			[
+				"back",
+				"src/Backend.php"
+			],
+			[
+				"proj",
+				"PROJECT"
+			],
+			[
+				"purchasmail",
+				"html/views/purchase.mail.html.twig"
 			],
 			[
 				"purch",
 				"html/views/purchase.html.twig"
 			],
 			[
-				"styles",
-				"web/css/sass/styles.scss"
+				"scrip",
+				"web/js/scripts.js"
 			],
 			[
 				".ht",
@@ -2218,66 +1845,6 @@
 			[
 				"autolo",
 				"vendor/autoload.php"
-			],
-			[
-				"index.",
-				"html/views/index.html.twig"
-			],
-			[
-				"purchase",
-				"html/views/purchase.html.twig"
-			],
-			[
-				"baseba",
-				"html/views/base.backend.html.twig"
-			],
-			[
-				"conta",
-				"html/views/contact.html.twig"
-			],
-			[
-				"cont",
-				"html/views/contact.html.twig"
-			],
-			[
-				"recip",
-				"html/views/recipes.html.twig"
-			],
-			[
-				"produ",
-				"html/views/product.html.twig"
-			],
-			[
-				"purchasema",
-				"html/views/purchase.mail.html.twig"
-			],
-			[
-				"sty",
-				"web/css/sass/styles.scss"
-			],
-			[
-				"logi",
-				"html/views/login.html.twig"
-			],
-			[
-				"ba",
-				"src/Backend.php"
-			],
-			[
-				"bas",
-				"html/views/base.backend.html.twig"
-			],
-			[
-				"recet",
-				"html/views/recipes.html.twig"
-			],
-			[
-				"contama",
-				"html/views/contact.mail.html.twig"
-			],
-			[
-				"purc",
-				"html/views/purchase.html.twig"
 			]
 		],
 		"width": 0.0
@@ -2288,15 +1855,7 @@
 		"selected_items":
 		[
 			[
-				"macsa",
-				"/var/www/_sublime-projects/macsa.sublime-project"
-			],
-			[
-				"motiv",
-				"/var/www/motivarte/motiv.sublime-project"
-			],
-			[
-				"moti",
+				"mo",
 				"/var/www/motivarte/motiv.sublime-project"
 			],
 			[
@@ -2304,44 +1863,52 @@
 				"/var/www/motivarte/motiv.sublime-project"
 			],
 			[
-				"motv",
-				"/var/www/motivarte/motiv.sublime-project"
-			],
-			[
-				"mb",
-				"/var/www/_sublime-projects/mnba.sublime-project"
-			],
-			[
-				"fre",
-				"/var/www/_sublime-projects/frescavita.sublime-project"
+				"vf",
+				"/var/www/frescavita/fv.sublime-project"
 			],
 			[
 				"fres",
 				"/var/www/_sublime-projects/frescavita.sublime-project"
 			],
 			[
-				"mn",
-				"/var/www/_sublime-projects/mnba.sublime-project"
+				"baris",
+				"/var/www/barista/barista.sublime-project"
 			],
 			[
-				"nb",
-				"/var/www/_sublime-projects/mnba.sublime-project"
+				"sa",
+				"/var/www/_sublime-projects/sa.sublime-project"
 			],
 			[
-				"f",
-				"/var/www/_sublime-projects/frescavita.sublime-project"
+				"moti",
+				"/var/www/motivarte-web/motivarte-web.sublime-project"
+			],
+			[
+				"barist",
+				"/var/www/barista/barista.sublime-project"
+			],
+			[
+				"",
+				"/var/www/barista/barista.sublime-project"
+			],
+			[
+				"bari",
+				"/var/www/barista/barista.sublime-project"
+			],
+			[
+				"mac",
+				"/var/www/_sublime-projects/macsa.sublime-project"
 			],
 			[
 				"admin",
 				"/var/www/_sublime-projects/frescavita.admin.sublime-project"
 			],
 			[
-				"fread",
-				"/var/www/_sublime-projects/frescavita.admin.sublime-project"
-			],
-			[
 				"donn",
 				"/var/www/_sublime-projects/donna.sublime-project"
+			],
+			[
+				"macsa",
+				"/var/www/_sublime-projects/macsa.sublime-project"
 			],
 			[
 				"don",
@@ -2350,10 +1917,6 @@
 			[
 				"mnb",
 				"/var/www/_sublime-projects/mnba.sublime-project"
-			],
-			[
-				"",
-				"/var/www/mesagio/mesagio.sublime-project"
 			],
 			[
 				"mes",
@@ -2384,6 +1947,10 @@
 				"/var/www/guarnic/guarnic.sublime-project"
 			],
 			[
+				"motiv",
+				"/var/www/_sublime-projects/motivarte.sublime-project"
+			],
+			[
 				"dek",
 				"/var/www/_sublime-projects/desktop.sublime-project"
 			],
@@ -2408,12 +1975,16 @@
 				"/var/www/_sublime-projects/barista.sublime-project"
 			],
 			[
-				"bari",
-				"/var/www/_sublime-projects/barista.sublime-project"
-			],
-			[
 				"bran",
 				"/var/www/_sublime-projects/branson.sublime-project"
+			],
+			[
+				"mn",
+				"/var/www/_sublime-projects/mnba.sublime-project"
+			],
+			[
+				"fre",
+				"/var/www/_sublime-projects/frescavita.sublime-project"
 			],
 			[
 				"fr",
@@ -2448,6 +2019,10 @@
 				"/var/www/_sublime-projects/um.sublime-project"
 			],
 			[
+				"f",
+				"/var/www/framework/framework.sublime-workspace"
+			],
+			[
 				"c",
 				"/var/www/tomascotik/cotik.sublime-project"
 			],
@@ -2474,7 +2049,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},

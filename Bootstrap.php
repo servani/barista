@@ -77,7 +77,7 @@ class Bootstrap
 		// Load Action
 		$controller .= 'Controller';
 		$action.= 'Action';
-		$c = new $controller($action, $params);
+		$c = new $controller($controller, $action, $params);
 		$c->$action($params);
 		return;
 	}
