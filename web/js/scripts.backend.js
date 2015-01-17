@@ -328,7 +328,8 @@ $(function () {
 
 				$form.find('[required]').removeClass('error');
 				$form.find('[required]').siblings('.error').hide();
-				$form.find('[required]').siblings('.error').hide();
+				$form.find('.cke_chrome').removeClass('error');
+				$form.find('.cke_chrome').siblings('.error').hide();
 
 				$form.find('input, select, textarea').each(function () {
 					if ($(this).is('[required]')) {
@@ -356,6 +357,18 @@ $(function () {
 						errors = true;
 					}
 				}
+
+				// bbcode required
+				var target = '';
+				var $bbreq = $form.find('.bbcode-required');
+				$bbreq.each(function() {
+					target = $(this).data('target');
+					if ($form.find('textarea[name="' + target + '"]').val() === '') {
+						$(this).siblings('.cke_chrome').addClass('error');
+						$(this).siblings('.error').show();
+						errors = true;
+					}
+				});
 
 				return !errors;
 			},

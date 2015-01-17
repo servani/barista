@@ -1,7 +1,8 @@
 <div class="form-group bbcontainer">
 	<label>{{ label }}</label>
-	<textarea id="{{ id|default('') }}" name="{{ entityName }}[{{ name }}]" class="ckeditor {{ class|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}" {{ required|default('') }}>{{ value|default('') }}</textarea>
+	<textarea id="{{ id|default('') }}" name="{{ entityName }}[{{ name }}]" class="ckeditor {{ class|default('')}}" placeholder="{{ value ? '' : placeholder|default(label) }}">{{ value|default('') }}</textarea>
 	{% if errormsg or required %}
+		<input type="hidden" data-target="{{ entityName }}[{{ name }}]" class="bbcode-required">
 		<div class="alert alert-danger error">{{ errormsg|default('Campo Requerido') }}</div>
 	{% endif %}
 </div>

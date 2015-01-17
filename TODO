@@ -1,6 +1,5 @@
 2.2.1 ================================================================
 
-* bbcode required
 * file upload required
 * delete forever
 * optimizar file upload func en scripts.backend (multi y single)
