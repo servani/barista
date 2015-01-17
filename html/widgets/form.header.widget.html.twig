@@ -1,4 +1,14 @@
-<!--<h2>{{ edit ? 'Editar' : 'Crear' }} {{ title }}</h2>-->
+{% block breadcrumb %}
+	<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><a href="{{ url('admin') }}">Inicio</a></li>
+				<li><a href="{{ url('admin/list/' ~ entityName) }}">{{ title }}</a></li>
+				<li>{{ edit ? 'Editar' : 'Crear' }}</li>
+			</ol>
+		</div>
+	</div>
+{% endblock %}
 {% if error %}
 	<div class="alert alert-danger">Error: {{ error }}</div>
 {% endif %}

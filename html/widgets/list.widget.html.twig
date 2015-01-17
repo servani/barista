@@ -1,3 +1,13 @@
+{% block breadcrumb %}
+	<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><a href="{{ url('admin') }}">Inicio</a></li>
+				<li>{{ title }}</li>
+			</ol>
+		</div>
+	</div>
+{% endblock %}
 <h1 class="hide">{{ title }}</h1>
 <div id="entityName" class="hide">{{ entityName }}</div>
 {% if not nocreate %}

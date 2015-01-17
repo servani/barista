@@ -1,7 +1,3 @@
-2.2.2 ================================================================
-
-* armar un breadcum o algo para saber donde estoy
-
 2.2.3 ================================================================
 
 * Images en setFromPost solo funca con Post, deberia mandarse la entity por POST

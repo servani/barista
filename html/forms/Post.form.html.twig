@@ -1,7 +1,7 @@
 {% extends 'base.backend.html.twig' %}
 
 {% block section %}
-	{% set title = 'Post' %}
+	{% set title = 'Posts' %}
 	{% set deletevalue = entity.title %}
 	{# -- #}
 	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
