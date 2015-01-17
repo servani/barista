@@ -10,17 +10,10 @@
 				'post.title': 'Post'
 			},
 			deletekey: 'src',
-			entity: entity,
-			pagenav: q,
-			en: entityName,
 			sort: true,
 			nocreate: true,
 			isfile: true
 		}
 	%}
-	{% include 'pagenav.widget.html.twig' with {
-			pagenav: q,
-			en: entityName
-		}
-	%}
+	{% include 'pagenav.widget.html.twig' %}
 {% endblock %}

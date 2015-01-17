@@ -9,14 +9,7 @@
 				'value': 'Valor'
 			},
 			deletekey: 'name',
-			entity: entity,
-			pagenav: q,
-			en: entityName
 		}
 	%}
-	{% include 'pagenav.widget.html.twig' with {
-			pagenav: q,
-			en: entityName
-		}
-	%}
+	{% include 'pagenav.widget.html.twig' %}
 {% endblock %}

@@ -1,26 +1,26 @@
-{% if pagenav.results %}
-	{% if pagenav.nofpages > 1 %}
+{% if q.results %}
+	{% if q.nofpages > 1 %}
 		<ul class="pagination">
-			<li class="{{ pagenav.page == 1 ? 'disabled' : '' }}">
-				{% if pagenav.page == 1 %}
+			<li class="{{ q.page == 1 ? 'disabled' : '' }}">
+				{% if q.page == 1 %}
 					<a href="#">&laquo;</a>
 				{% else %}
-					<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'p': (pagenav.page - 1)}) }}">&laquo;</a>
+					<a href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'p': (q.page - 1)}) }}">&laquo;</a>
 				{% endif %}
 			</li>
 			{% set aux = true %}
 			{% set aux2 = false %}
 			{% set min = 5 %}
-			{% set max = pagenav.nofpages - 4 %}
-			{% set midmin = pagenav.page - 2 %}
-			{% set midmax = pagenav.page + 2 %}
-			{% if pagenav.nofpages < 10 %}
+			{% set max = q.nofpages - 4 %}
+			{% set midmin = q.page - 2 %}
+			{% set midmax = q.page + 2 %}
+			{% if q.nofpages < 10 %}
 				{% set min = 0 %}
 				{% set aux = false %}
 			{% endif %}
-			{% for i in 1..pagenav.nofpages %}
+			{% for i in 1..q.nofpages %}
 				{% if not min or i < min or i > max or (i > midmin and i < midmax) %}
-					<li class="{{ pagenav.page == i ? 'active' : '' }}"><a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'p': i}) }}">{{ i }}</a></li>
+					<li class="{{ q.page == i ? 'active' : '' }}"><a href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'p': i}) }}">{{ i }}</a></li>
 					{% if i > min and i < max and (i > midmin and i < midmax) %}
 						{% set aux2 = true %}
 					{% endif %}
@@ -30,23 +30,23 @@
 					{% set aux2 = false %}
 				{% endif %}
 			{% endfor %}
-			<li class="{{ pagenav.page == pagenav.nofpages ? 'disabled' : '' }}">
-				{% if pagenav.page == pagenav.nofpages %}
+			<li class="{{ q.page == q.nofpages ? 'disabled' : '' }}">
+				{% if q.page == q.nofpages %}
 					<a href="#">&raquo;</a>
 				{% else %}
-					<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'p': (pagenav.page + 1) }) }}">&raquo;</a>
+					<a href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'p': (q.page + 1) }) }}">&raquo;</a>
 				{% endif %}
 			</li>
 		</ul>
 	{% endif %}
 	<br>
-	<small>Mostrando {{ pagenav.max > pagenav.results ? pagenav.results : pagenav.max }} de {{ pagenav.results }} resultados</small>
+	<small>Mostrando {{ q.max > q.results ? q.results : q.max }} de {{ q.results }} resultados</small>
 	<p>Cantidad de resultados por página:</p>
 	<form id="results-page" class="form-horizontal">
 		<div class="form-group">
 			<div class="col-sm-2">
-				<input type="text" class="form-control" placeholder="{{ pagenav.max }}">
-				<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params) }}" class="btn btn-default">Listar</a>
+				<input type="text" class="form-control" placeholder="{{ q.max }}">
+				<a href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params) }}" class="btn btn-default">Listar</a>
 			</div>
 		</div>
 	</form>

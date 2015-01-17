@@ -1,8 +1,11 @@
 {% extends 'base.backend.html.twig' %}
 
 {% block section %}
+	{% set title = 'Post' %}
+	{% set deletevalue = entity.title %}
+	{# -- #}
 	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
-	{% include 'form.header.widget.html.twig' with { title: 'Post' } %}
+	{% include 'form.header.widget.html.twig' %}
 	<div id="form">
 		<form action="{{ url(action) }}" method="POST" novalidate>
 			<label>Flags</label>
@@ -248,7 +251,7 @@
 				</div>
 			{% endfor %}
 			<a href="#" class="addcf btn btn-primary small" data-index="{{ data.cf[1]|length }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Agregar</a>
-			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.title } %}
+			{% include 'form.buttons.widget.html.twig' %}
 		</form>
 	</div>
 {% endblock %}

@@ -11,16 +11,9 @@
 				'IP': 'IP',
 			},
 			deletekey: 'id',
-			entity: entity,
-			pagenav: q,
-			en: entityName,
 			nocreate: true,
 			noedit: true
 		}
 	%}
-	{% include 'pagenav.widget.html.twig' with {
-			pagenav: q,
-			en: entityName
-		}
-	%}
+	{% include 'pagenav.widget.html.twig' %}
 {% endblock %}

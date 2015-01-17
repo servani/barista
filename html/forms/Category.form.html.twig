@@ -1,8 +1,11 @@
 {% extends 'base.backend.html.twig' %}
 
 {% block section %}
+	{% set title = 'Categoría' %}
+	{% set deletevalue = entity.name %}
+	{# -- #}
 	{% set action = edit ? 'admin/update/' ~ entityName ~ '/' ~ entity.id : 'admin/create/' ~ entityName %}
-	{% include 'form.header.widget.html.twig' with { title: 'Categoría' } %}
+	{% include 'form.header.widget.html.twig' %}
 	<div id="form">
 		<form action="{{ url(action) }}" method="POST" novalidate>
 			<div class="row">
@@ -25,7 +28,7 @@
 					} %}
 				</div>
 			</div>
-			{% include 'form.buttons.widget.html.twig' with { deletevalue: entity.name } %}
+			{% include 'form.buttons.widget.html.twig' %}
 		</form>
 	</div>
 {% endblock %}

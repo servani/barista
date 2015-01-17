@@ -3,25 +3,18 @@
 {% block section %}
 	{% include 'list.widget.html.twig' with {
 			title: 'Posts',
+			deletekey: 'title',
 			cols: {
 				'loop' : '#',
 				'title': 'Título',
 				'category.name': 'Categoría',
 				'creationDate': 'Creado'
 			},
-			deletekey: 'title',
-			entity: entity,
-			pagenav: q,
-			en: entityName,
 			sort: true,
 			starred: true,
 			visible: true,
 			bin: true,
 		}
 	%}
-	{% include 'pagenav.widget.html.twig' with {
-			pagenav: q,
-			en: entityName
-		}
-	%}
+	{% include 'pagenav.widget.html.twig' %}
 {% endblock %}

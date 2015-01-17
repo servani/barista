@@ -2,7 +2,6 @@
 
 * delete forever
 * armar un breadcum o algo para saber donde estoy
-* eliminar la variable del nombre del form y list y el delete key. generalizar. que cuando edite un form no tenga que hardcodear nada mas que los nombres de los campos
 * ordenar /js/ y separar para todo lo que es backend
 
 2.2.3 ================================================================
@@ -29,8 +28,5 @@
 * drag and drop files backend
 * baristaframework.com
 * documentation
-
-3.0 ==================================================================
-
 * angular
 * nodejs

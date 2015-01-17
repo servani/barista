@@ -3,6 +3,7 @@
 {% block section %}
 	{% include 'list.widget.html.twig' with {
 			title: 'Usuarios',
+			deletekey: 'username',
 			cols: {
 				'id': 'ID',
 				'name': 'Nombre',
@@ -10,15 +11,7 @@
 				'email': 'Email',
 				'IP': 'IP',
 			},
-			deletekey: 'username',
-			entity: entity,
-			pagenav: q,
-			en: entityName
 		}
 	%}
-	{% include 'pagenav.widget.html.twig' with {
-			pagenav: q,
-			en: entityName
-		}
-	%}
+	{% include 'pagenav.widget.html.twig' %}
 {% endblock %}

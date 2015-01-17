@@ -10,16 +10,9 @@
 				'title': 'Título',
 			},
 			deletekey: 'src',
-			entity: entity,
-			pagenav: q,
-			en: entityName,
 			sort: true,
 			nocreate: true
 		}
 	%}
-	{% include 'pagenav.widget.html.twig' with {
-			pagenav: q,
-			en: entityName
-		}
-	%}
+	{% include 'pagenav.widget.html.twig' %}
 {% endblock %}

@@ -1,9 +1,9 @@
 <h1 class="hide">{{ title }}</h1>
-<div id="entityName" class="hide">{{ en }}</div>
+<div id="entityName" class="hide">{{ entityName }}</div>
 {% if not nocreate %}
 <div class="row">
 	<div class="col-md-12 list-header">
-		<a class="btn btn-primary btn-lg" href="{{ url('admin/new/' ~ en) }}" title="Cargar">Cargar</a>
+		<a class="btn btn-primary btn-lg" href="{{ url('admin/new/' ~ entityName) }}" title="Cargar">Cargar</a>
 	</div>
 </div>
 <hr>
@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="filters col-md-12">
 			{% if bin %}
-				<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'bin': (params.bin ? 0 : 1)}) }}" class="btn {{ params.bin ? 'btn-info' : 'btn-default' }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Elementos eliminados</a>
+				<a href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'bin': (params.bin ? 0 : 1)}) }}" class="btn {{ params.bin ? 'btn-info' : 'btn-default' }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Elementos eliminados</a>
 			{% endif %}
 			{% if filters %}
 				{% for h,u in filters %}
@@ -20,12 +20,12 @@
 						<div class="btn-group">
 							{% if u.active %}
 								{% set pair = h ~ ':' ~ u.active.value ~ '|' %}
-								<a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'w': pagenav.where|replace({(pair): ''})}) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> {{ u.title|title }}: {{ u.values[u.active.value] }}</a>
+								<a href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'w': q.where|replace({(pair): ''})}) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> {{ u.title|title }}: {{ u.values[u.active.value] }}</a>
 							{% else %}
 								<button class="btn btn-default dropdown-toggle" type="button" id="drop{{ u.title }}" data-toggle="dropdown" aria-expanded="true">Filtrar por {{ u.title }} <span class="caret"></span></button>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="drop{{ u.title }}">
 									{% for k,v in u.values %}
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'w': h ~ ':' ~ k ~ '|' ~ pagenav.where }) }}" title="Filtrar por: {{ v }}">{{ v }}</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'w': h ~ ':' ~ k ~ '|' ~ q.where }) }}" title="Filtrar por: {{ v }}">{{ v }}</a></li>
 									{% endfor %}
 								</ul>
 							{% endif %}
@@ -38,7 +38,7 @@
 	<hr>
 {% endif %}
 {% if search %}
-	<form action="{{ url('admin/list/' ~ en) }}" method="POST">
+	<form action="{{ url('admin/list/' ~ entityName) }}" method="POST">
 		<div class="row">
 			{% for k,s in search %}
 				<div class="col-md-3">
@@ -56,7 +56,7 @@
 		</div>
 	</form>
 {% endif %}
-{% if pagenav.results %}
+{% if q.results %}
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table table-responsive table-striped">
@@ -74,16 +74,16 @@
 							{% elseif k in ['src','cover','image'] and not isfile %}
 								<th>&nbsp;</th>
 							{% else %}
-								<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'o': order, 'd': (pagenav.dir ? 0 : 1) }) }}">{{ v }} <span class="caret"></span></a></th>
+								<th {{ loop.first ? 'style="width:50px"' : '' }}><a href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'o': order, 'd': (q.dir ? 0 : 1) }) }}">{{ v }} <span class="caret"></span></a></th>
 							{% endif %}
 						{% endfor %}
 						{% if not noedit %}<th style="width:105px">&nbsp;</th>{% endif %}
 						{% if starred %}<th style="width:20px">&nbsp;</th>{% endif %}
 						{% if visible %}<th style="width:20px">&nbsp;</th>{% endif %}
-						{% if en == 'User' %}<th style="width:20px">&nbsp;</th>{% endif %}
+						{% if entityName == 'User' %}<th style="width:20px">&nbsp;</th>{% endif %}
 					</tr>
 				</thead>
-				<tbody class="{{ pagenav.order == 'sort' ? 'sortable' : '' }}">
+				<tbody class="{{ q.order == 'sort' ? 'sortable' : '' }}">
 					{% for e in entity %}
 						{% set i = loop.index %}
 						<tr data-id="{{ e.id }}" class="{{ loop.index % 2 ? '' : 'even' }}">
@@ -101,13 +101,13 @@
 							{% endfor %}
 							{% if not noedit %}
 								<td>
-									<a href="{{ url('admin/edit/' ~ en ~ '/' ~ e.id) }}" class="btn btn-primary btn-xs edit" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
+									<a href="{{ url('admin/edit/' ~ entityName ~ '/' ~ e.id) }}" class="btn btn-primary btn-xs edit" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
 									{% set sdel = '' %}
 									{% if params.bin %}
-										<a href="{{ url('admin/restore/' ~ en ~ '/' ~ e.id) }}" title="Restaurar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+										<a href="{{ url('admin/restore/' ~ entityName ~ '/' ~ e.id) }}" title="Restaurar" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
 									{% else %}
 										{% if deletekey %}
-											<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ en ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+											<a data-value="{{ sdel ~ e|get(deletekey) }}" href="{{ url('admin/delete/' ~ entityName ~ '/' ~ e.id) }}" title="Borrar" class="btn btn-danger btn-xs del delen"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 										{% endif %}
 									{% endif %}
 								</td>
@@ -122,7 +122,7 @@
 									<span data-id="{{ e.id }}" data-prop="visible" data-en="{{ entityName }}" class="visible {{ e.visible ? '' : 'null' }} glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 								</td>
 							{% endif %}
-							{% if en == 'User' %}
+							{% if entityName == 'User' %}
 								<td>
 									<a href="{{ url('admin/list/Log') }}?w=user:{{ e.id }}" title="Ver log" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Log</a>
 								</td>
@@ -136,9 +136,9 @@
 	<div class="row" id="massive-actions">
 		<div class="col-md-8">
 			{% if params.bin %}
-				<a href="{{ url('admin/massive/restore/' ~ en ~ '/') }}" title="Restaurar" class="action restore green"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Restaurar los elementos seleccionados</a>
+				<a href="{{ url('admin/massive/restore/' ~ entityName ~ '/') }}" title="Restaurar" class="action restore green"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Restaurar los elementos seleccionados</a>
 			{% else %}
-				<a href="{{ url('admin/massive/delete/' ~ en ~ '/') }}" class="action del red"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar los elementos seleccionados</a>
+				<a href="{{ url('admin/massive/delete/' ~ entityName ~ '/') }}" class="action del red"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar los elementos seleccionados</a>
 			{% endif %}
 			<br>
 			<a href="#" class="rmsel"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Borrar selección</a>
@@ -147,10 +147,10 @@
 	{% if sort %}
 		<div class="row">
 			<div class="col-md-12">
-				{% if pagenav.order == 'sort' %}
+				{% if q.order == 'sort' %}
 					<p class="help-block">Para ordenar mueva los elementos utilizando drag and drop.</p>
 				{% else %}
-					<a class="btn btn-info btn/sm" href="{{ url('admin/list/' ~ en) }}{{ url_params(params, {'o': 'sort'}) }}">Ordenar</a>
+					<a class="btn btn-info btn/sm" href="{{ url('admin/list/' ~ entityName) }}{{ url_params(params, {'o': 'sort'}) }}">Ordenar</a>
 				{% endif %}
 			</div>
 		</div>
