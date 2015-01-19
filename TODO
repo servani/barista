@@ -1,7 +1,6 @@
 2.2.3 ================================================================
 
 * Images en setFromPost solo funca con Post, deberia mandarse la entity por POST
-* si una entity tiene default value definida, aplicarla
 
 2.2.4 ================================================================
 

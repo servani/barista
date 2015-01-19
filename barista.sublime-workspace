@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"entit",
+				"entityName"
+			],
+			[
+				"bread",
+				"breadcrumb"
+			],
+			[
+				"ent",
+				"entity"
+			],
+			[
+				"param",
+				"params"
+			],
+			[
+				"delete",
+				"deletevalue"
+			],
+			[
+				"has",
+				"hasClass	.hasClass()"
+			],
+			[
+				"ta",
+				"ta_name"
+			],
+			[
 				"des",
 				"description"
 			],
@@ -486,26 +514,6 @@
 			[
 				"wid",
 				"width"
-			],
-			[
-				"border-",
-				"border-bottom"
-			],
-			[
-				"fs",
-				"font-size"
-			],
-			[
-				"te",
-				"text-align"
-			],
-			[
-				"ta",
-				"text-align"
-			],
-			[
-				"TRU",
-				"true"
 			]
 		]
 	},
@@ -515,31 +523,7 @@
 			"file": "TODO",
 			"settings":
 			{
-				"buffer_size": 1569,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Default.php",
-			"settings":
-			{
-				"buffer_size": 40538,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Bootstrap.php",
-			"settings":
-			{
-				"buffer_size": 2587,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config.php",
-			"settings":
-			{
-				"buffer_size": 1232,
+				"buffer_size": 949,
 				"line_ending": "Unix"
 			}
 		}
@@ -619,9 +603,75 @@
 	],
 	"file_history":
 	[
+		"/var/www/barista/html/widgets/form.header.widget.html.twig",
+		"/var/www/barista/config.php",
+		"/var/www/barista/html/widgets/form.bbcode.widget.html.twig",
 		"/var/www/barista/src/Frontend.php",
-		"/var/www/barista/html/views/base.html.twig",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/lib/classes/Swift/CharacterReaderFactory/SimpleCharacterReaderFactory.php",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/HeaderFactory.php",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/doc/headers.rst",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/HeaderEncoder.php",
+		"/var/www/barista/html/forms/Category.form.html.twig",
+		"/var/www/barista/html/forms/CfType.form.html.twig",
+		"/var/www/barista/html/forms/File.form.html.twig",
+		"/var/www/barista/html/forms/Image.form.html.twig",
+		"/var/www/barista/html/forms/Log.form.html.twig",
+		"/var/www/barista/html/forms/Post.form.html.twig",
+		"/var/www/barista/html/forms/Setting.form.html.twig",
+		"/var/www/barista/html/forms/Tag.form.html.twig",
+		"/var/www/barista/html/forms/TagType.form.html.twig",
+		"/var/www/barista/html/forms/User.form.html.twig",
+		"/var/www/barista/src/Default.php",
+		"/var/www/barista/html/views/base.backend.html.twig",
 		"/var/www/barista/html/widgets/list.widget.html.twig",
+		"/var/www/barista/html/widgets/form.buttons.widget.html.twig",
+		"/var/www/barista/html/widgets/form.cf.widget.html.twig",
+		"/var/www/barista/html/widgets/form.checkbox.widget.html.twig",
+		"/var/www/barista/html/widgets/form.fileupload.widget.html.twig",
+		"/var/www/barista/html/widgets/form.input.widget.html.twig",
+		"/var/www/barista/html/widgets/form.select.widget.html.twig",
+		"/var/www/barista/html/widgets/form.tags.widget.html.twig",
+		"/var/www/barista/html/widgets/form.textarea.widget.html.twig",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/form_with_mixed_post_and_get.html",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/form_with_false_defaults.html",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/form_with_array_based_inputs.php",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/form_without_action.php",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/doc/overview.rst",
+		"/var/www/barista/src/Backend.php",
+		"/var/www/barista/html/views/base.html.twig",
+		"/var/www/barista/routing.json",
+		"/home/fede/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/fede/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/fede/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/fede/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/var/www/barista/Bootstrap.php",
+		"/var/www/barista/html/lists/File.list.html.twig",
+		"/var/www/barista/html/lists/Image.list.html.twig",
+		"/var/www/barista/html/lists/Log.list.html.twig",
+		"/var/www/barista/html/lists/Tag.list.html.twig",
+		"/var/www/barista/html/lists/TagType.list.html.twig",
+		"/var/www/barista/html/lists/Category.list.html.twig",
+		"/var/www/barista/html/lists/CfType.list.html.twig",
+		"/var/www/barista/html/lists/Setting.list.html.twig",
+		"/var/www/barista/html/lists/Post.list.html.twig",
+		"/var/www/barista/html/lists/User.list.html.twig",
+		"/var/www/barista/html/widgets/pagenav.widget.html.twig",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/PlainAuthenticator.php",
+		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Helper/FormatterHelper.php",
+		"/var/www/barista/src/User.php",
+		"/var/www/barista/vendor/doctrine/orm/lib/Doctrine/ORM/Event/PostFlushEventArgs.php",
+		"/var/www/barista/web/css/styles.backend.scss",
+		"/var/www/barista/web/js/scripts.backend.js",
+		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Input/InputAwareInterface.php",
+		"/var/www/barista/html/views/index.html.twig",
+		"/var/www/barista/web/css/styles.backend.css",
+		"/var/www/barista/web/css/styles.scss",
+		"/var/www/barista/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/shell_tester.php",
+		"/var/www/barista/web/js/scripts.js",
+		"/var/www/barista/orm/Post.dcm.yml",
+		"/var/www/barista/web/js/ckeditor/samples/plugins/bbcode/bbcode.html",
+		"/var/www/barista/vendor/symfony/console/Symfony/Component/Console/Tests/Fixtures/BarBucCommand.php",
+		"/var/www/barista/vendor/twig/twig/lib/Twig/Node/Expression/Binary/BitwiseOr.php",
 		"/var/www/motivarte/html/views/carrera.html.twig",
 		"/var/www/motivarte-web/includes/carrera.php",
 		"/var/www/motivarte/html/views/index.html.twig",
@@ -680,77 +730,11 @@
 		"/var/www/motivarte/html/forms/Inscription.form.html.twig",
 		"/var/www/motivarte/html/forms/Application.form.html.twig",
 		"/var/www/motivarte/html/forms/Student.form.html.twig",
-		"/var/www/motivarte/orm/Student.dcm.yml",
-		"/var/www/motivarte/src/Student.php",
-		"/var/www/motivarte/html/forms/Course.form.html.twig",
-		"/var/www/motivarte/html/lists/Student.list.html.twig",
-		"/var/www/motivarte/src/User.php",
-		"/var/www/motivarte/orm/User.dcm.yml",
-		"/var/www/motivarte/html/forms/User.form.html.twig",
-		"/var/www/motivarte/html/lists/User.list.html.twig",
-		"/var/www/motivarte/html/forms/CourseAttendance.form.html.twig",
-		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/tests/acceptance/Swift/EmbeddedFileAcceptanceTest.php",
-		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/lib/classes/Swift/EmbeddedFile.php",
-		"/var/www/motivarte/cache/5b/78/eeb55aac8f33358fe819c2d6bd3b874540813fffe7214ea6ec5ecbf82b0d.php",
-		"/var/www/motivarte/vendor/leafo/lessphp/tests/ApiTest.php",
-		"/var/www/motivarte/vendor/autoload.php",
-		"/var/www/motivarte/html/forms/View.form.html.twig",
-		"/var/www/motivarte/html/forms/TemplateContent.form.html.twig",
-		"/var/www/motivarte/html/widgets/form.textarea.widget.html.twig",
-		"/var/www/motivarte/web/css/styles.backend.css",
-		"/var/www/motivarte/web/index.php",
-		"/var/www/barista/src/Backend.php",
-		"/var/www/motivarte/html/forms/Template.form.html.twig",
-		"/var/www/motivarte/html/widgets/form.content.widget.html.twig",
-		"/var/www/motivarte/html/widgets/form.content.text.widget.html.twig",
-		"/var/www/motivarte/html/lists/Template.list.html.twig",
-		"/var/www/motivarte/vendor/twig/twig/lib/Twig/Node/Text.php",
-		"/var/www/motivarte/orm/Template.dcm.yml",
-		"/var/www/motivarte/html/widgets/form.content.bbcode.widget.html.twig",
-		"/var/www/barista/html/widgets/form.cf.widget.html.twig",
-		"/var/www/motivarte/vendor/symfony/console/Symfony/Component/Console/Tests/Fixtures/FoobarCommand.php",
-		"/var/www/motivarte/vendor/twig/twig/test/Twig/Tests/Fixtures/filters/force_escape.test",
-		"/var/www/motivarte/html/widgets/form.bbcode.widget.html.twig",
-		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/packages/simpletest.org/test/package/content_without_section.xml",
-		"/var/www/motivarte/vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/ConnectionTest.php",
-		"/var/www/motivarte/vendor/doctrine/orm/CONTRIBUTING.md",
-		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/doc/overview.rst",
-		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/form_with_radio_buttons.html",
-		"/var/www/motivarte/vendor/twig/twig/doc/tags/for.rst",
-		"/var/www/motivarte/vendor/doctrine/dbal/docs/examples/sharding/query_filtering_off.php",
-		"/var/www/barista/html/forms/Post.form.html.twig",
-		"/var/www/motivarte/html/forms/Staff.form.html.twig",
-		"/var/www/motivarte/html/lists/View.list.html.twig",
-		"/var/www/motivarte/src/Template.php",
-		"/var/www/motivarte/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/ToolEvents.php",
-		"/var/www/motivarte-web/content/templates/default_curso.html",
-		"/var/www/motivarte-web/content/templates/dslr-filmmaking.html",
-		"/var/www/motivarte-web/content/templates/default_carrera.html",
-		"/var/www/motivarte-web/content/templates/default.html",
-		"/var/www/motivarte/html/lists/Slide.list.html.twig",
-		"/var/www/motivarte/src/View.php",
-		"/var/www/motivarte/vendor/doctrine/dbal/docs/en/reference/known-vendor-issues.rst",
-		"/var/www/motivarte/html/forms/Slide.form.html.twig",
-		"/var/www/motivarte/html/widgets/form.input.widget.html.twig",
-		"/var/www/motivarte/vendor/symfony/console/Symfony/Component/Console/Input/InputAwareInterface.php",
-		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Events/SendListener.php",
-		"/var/www/motivarte/html/forms/Post.form.html.twig",
-		"/var/www/barista/html/lists/Post.list.html.twig",
-		"/var/www/motivarte/html/lists/Meeting.list.html.twig",
-		"/var/www/motivarte/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Plugins/MessageLogger.php",
-		"/var/www/motivarte/orm/Meeting.dcm.yml",
-		"/var/www/motivarte/src/Meeting.php",
-		"/var/www/motivarte/html/forms/Download.form.html.twig",
-		"/var/www/motivarte/src/Download.php",
-		"/var/www/motivarte/html/lists/Download.list.html.twig",
-		"/var/www/motivarte/orm/Download.dcm.yml",
-		"/var/www/motivarte/vendor/doctrine/orm/docs/en/cookbook/mysql-enums.rst",
-		"/var/www/motivarte/motiv.sublime-project",
-		"/var/www/motivarte/html/lists/Log.list.html.twig"
+		"/var/www/motivarte/orm/Student.dcm.yml"
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -773,6 +757,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"delete",
+			"shift",
+			"js",
+			"vendor",
+			"js/",
+			"deletevalue",
+			" en",
+			"~ en",
+			"pagenav",
+			" en",
+			" en ",
+			"~ en",
+			" en",
+			"en",
+			"pagenav",
+			"required",
+			"validate",
 			"asss",
 			"galerry",
 			"N (:ga",
@@ -883,24 +884,7 @@
 			"post",
 			"Post",
 			"post",
-			"sort",
-			"now",
-			"Post",
-			"urseType",
-			"H:i - ",
-			"level",
-			"AttendanceType",
-			"'$'",
-			"Category",
-			"category",
-			"courseTypeId",
-			"CourseTypeId",
-			"courseTypeId",
-			"CourseTypeId",
-			"courseTypeId",
-			"rseTypeId",
-			"tvi",
-			"Starred"
+			"sort"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -927,7 +911,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -936,270 +920,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1569,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								184,
-								184
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 2.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/Default.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 40538,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								26998,
-								26998
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Bootstrap.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2587,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2587,
-								2587
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 792.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "config.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1232,
+						"buffer_size": 949,
 						"regions":
 						{
 						},
@@ -1271,16 +992,20 @@
 								"bh_regex_close",
 								"bh_regex_content"
 							],
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -1301,11 +1026,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.303806734993,
 			1.0
 		],
 		"rows":
@@ -1335,16 +1067,132 @@
 		"selected_items":
 		[
 			[
+				"formheader",
+				"html/widgets/form.header.widget.html.twig"
+			],
+			[
+				"confi",
+				"config.php"
+			],
+			[
+				"formhea",
+				"html/widgets/form.header.widget.html.twig"
+			],
+			[
+				"list",
+				"html/widgets/list.widget.html.twig"
+			],
+			[
+				"c",
+				"config.php"
+			],
+			[
+				"defa",
+				"src/Default.php"
+			],
+			[
+				"backe",
+				"src/Backend.php"
+			],
+			[
+				"baseba",
+				"html/views/base.backend.html.twig"
+			],
+			[
+				"bak",
+				"src/Backend.php"
+			],
+			[
+				"rout",
+				"routing.json"
+			],
+			[
+				"defau",
+				"src/Default.php"
+			],
+			[
+				"listw",
+				"html/widgets/list.widget.html.twig"
+			],
+			[
+				"base",
+				"html/views/base.html.twig"
+			],
+			[
+				"ba",
+				"html/views/base.html.twig"
+			],
+			[
+				"basebac",
+				"html/views/base.backend.html.twig"
+			],
+			[
+				"postlis",
+				"html/lists/Post.list.html.twig"
+			],
+			[
+				"pagena",
+				"html/widgets/pagenav.widget.html.twig"
+			],
+			[
+				"formbut",
+				"html/widgets/form.buttons.widget.html.twig"
+			],
+			[
+				"userlist",
+				"html/lists/User.list.html.twig"
+			],
+			[
+				"userfor",
+				"html/forms/User.form.html.twig"
+			],
+			[
+				"postli",
+				"html/lists/Post.list.html.twig"
+			],
+			[
+				"listwi",
+				"html/widgets/list.widget.html.twig"
+			],
+			[
+				"conf",
+				"config.php"
+			],
+			[
+				"inputwi",
+				"html/widgets/form.input.widget.html.twig"
+			],
+			[
+				"formfile",
+				"html/widgets/form.fileupload.widget.html.twig"
+			],
+			[
+				"stylesback",
+				"web/css/styles.backend.scss"
+			],
+			[
+				"scrip",
+				"web/js/scripts.backend.js"
+			],
+			[
+				"postw",
+				"html/forms/Post.form.html.twig"
+			],
+			[
+				"bbcodtw",
+				"html/widgets/form.bbcode.widget.html.twig"
+			],
+			[
+				"loglist",
+				"html/lists/Log.list.html.twig"
+			],
+			[
 				"boo",
 				"Bootstrap.php"
 			],
 			[
 				"def",
 				"src/Default.php"
-			],
-			[
-				"confi",
-				"config.php"
 			],
 			[
 				"tod",
@@ -1357,10 +1205,6 @@
 			[
 				"index",
 				"html/views/index.html.twig"
-			],
-			[
-				"base",
-				"html/views/base.html.twig"
 			],
 			[
 				"to",
@@ -1415,32 +1259,12 @@
 				"orm/Slide.dcm.yml"
 			],
 			[
-				"backe",
-				"src/Backend.php"
-			],
-			[
-				"conf",
-				"config.php"
-			],
-			[
 				"bac",
 				"src/Backend.php"
 			],
 			[
 				"defaul",
 				"src/Default.php"
-			],
-			[
-				"defa",
-				"src/Default.php"
-			],
-			[
-				"defau",
-				"src/Default.php"
-			],
-			[
-				"baseba",
-				"html/views/base.backend.html.twig"
 			],
 			[
 				"styles",
@@ -1501,10 +1325,6 @@
 			[
 				"indebac",
 				"html/views/index.backend.html.twig"
-			],
-			[
-				"basebac",
-				"html/views/base.backend.html.twig"
 			],
 			[
 				"textwid",
@@ -1591,10 +1411,6 @@
 				"html/widgets/list.widget.html.twig"
 			],
 			[
-				"loglist",
-				"html/lists/Log.list.html.twig"
-			],
-			[
 				"imagfor",
 				"html/forms/Image.form.html.twig"
 			],
@@ -1637,10 +1453,6 @@
 			[
 				"imagform",
 				"html/forms/Image.form.html.twig"
-			],
-			[
-				"listwi",
-				"html/widgets/list.widget.html.twig"
 			],
 			[
 				"diclsi",
@@ -1703,10 +1515,6 @@
 				"html/lists/Staff.list.html.twig"
 			],
 			[
-				"list",
-				"html/widgets/list.widget.html.twig"
-			],
-			[
 				"courseali",
 				"html/lists/CourseAttendance.list.html.twig"
 			],
@@ -1721,10 +1529,6 @@
 			[
 				"inpwid",
 				"html/widgets/form.input.widget.html.twig"
-			],
-			[
-				"inputwi",
-				"vendor/symfony/console/Symfony/Component/Console/Input/InputAwareInterface.php"
 			],
 			[
 				"bbcowi",
@@ -1773,78 +1577,6 @@
 			[
 				"inputw",
 				"html/widgets/form.input.widget.html.twig"
-			],
-			[
-				"sele",
-				"html/widgets/form.select.widget.html.twig"
-			],
-			[
-				"courseym",
-				"orm/Course.dcm.yml"
-			],
-			[
-				"courli",
-				"html/lists/Course.list.html.twig"
-			],
-			[
-				"ctyfor",
-				"html/forms/CourseType.form.html.twig"
-			],
-			[
-				"ctyp",
-				"html/lists/CourseType.list.html.twig"
-			],
-			[
-				"coursty",
-				"src/CourseType.php"
-			],
-			[
-				"couli",
-				"html/lists/Course.list.html.twig"
-			],
-			[
-				"scriptbac",
-				"web/js/scripts.backend.js"
-			],
-			[
-				"con",
-				"config.php"
-			],
-			[
-				"indeback",
-				"html/views/index.backend.html.twig"
-			],
-			[
-				"back",
-				"src/Backend.php"
-			],
-			[
-				"proj",
-				"PROJECT"
-			],
-			[
-				"purchasmail",
-				"html/views/purchase.mail.html.twig"
-			],
-			[
-				"purch",
-				"html/views/purchase.html.twig"
-			],
-			[
-				"scrip",
-				"web/js/scripts.js"
-			],
-			[
-				".ht",
-				"web/.htaccess"
-			],
-			[
-				"f",
-				"src/Frontend.php"
-			],
-			[
-				"autolo",
-				"vendor/autoload.php"
 			]
 		],
 		"width": 0.0
@@ -2049,7 +1781,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},

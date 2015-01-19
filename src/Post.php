@@ -77,17 +77,17 @@ class Post
     /**
      * @var boolean
      */
-    private $visible;
+    private $visible = 1;
 
     /**
      * @var boolean
      */
-    private $bin;
+    private $bin = 0;
 
     /**
      * @var boolean
      */
-    private $starred;
+    private $starred = 0;
 
     /**
      * @var \Category

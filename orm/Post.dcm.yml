@@ -93,6 +93,7 @@ Post:
             type: boolean
             nullable: true
             comment: ''
+            default: '0'
         starred:
             type: boolean
             nullable: true

@@ -148,6 +148,8 @@
 		<div class="col-md-8">
 			{% if params.bin %}
 				<a href="{{ url('admin/massive/restore/' ~ entityName ~ '/') }}" title="Restaurar" class="action restore green"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Restaurar los elementos seleccionados</a>
+				<br>
+				<a href="{{ url('admin/massive/delete/' ~ entityName ~ '/') }}" class="action del red"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar permanentemente los elementos seleccionados</a>
 			{% else %}
 				<a href="{{ url('admin/massive/delete/' ~ entityName ~ '/') }}" class="action del red"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar los elementos seleccionados</a>
 			{% endif %}

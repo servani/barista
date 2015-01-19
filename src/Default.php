@@ -778,20 +778,37 @@ class DefaultController
 	public function massiveDeleteAction($params = null) {
 		$ids = explode('-', $params['ids']);
 		$entity = $this->em->getRepository($params['slug'])->findById($ids);
+		// custom delete (e.g remove other entities)
 		$cm = 'delete' . $params['slug'];
 		if (method_exists($this, $cm)) {
-			// custom delete (e.g move to bin)
 			foreach ($entity as $e) {
 				$e = $this->$cm($e);
 				$this->em->persist($e);
 			}
+		}
+		// check if entity has bin
+		if (method_exists($entity{0}, 'setBin')) {
+			$trash = false;
+			foreach ($entity as $e) {
+				// if bin is already set, remove forever
+				if ($e->getBin()) {
+					$this->em->remove($e);
+				// else, set bin
+				} else {
+					$e->setBin(1);
+					$trash = true;
+				}
+			}
 		} else {
-			// simple delete
 			foreach ($entity as $e) {
 				$this->em->remove($e);
 			}
 		}
-		$this->logAction('massive-delete', $params['slug'] . ':' . $params['ids']);
+		if (isset($trash) && $trash) {
+			$this->logAction('massive-trash', $params['slug'] . ':' . $params['ids']);
+		} else {
+			$this->logAction('massive-delete', $params['slug'] . ':' . $params['ids']);
+		}
 		$this->em->flush();
 		$this->redirect("admin/list/" . $params['slug']);
 	}
