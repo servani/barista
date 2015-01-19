@@ -1,7 +1,3 @@
-2.2.3 ================================================================
-
-* Images en setFromPost solo funca con Post, deberia mandarse la entity por POST
-
 2.2.4 ================================================================
 
 * distintos formatos de lista (ej: minimalista en tags)
