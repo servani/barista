@@ -989,6 +989,8 @@ class DefaultController
 	}
 
 	public function setFromPost($post, $entity) {
+		$en_col = strtolower(get_class($entity));
+		$en_set = 'set' . get_class($entity);
 		foreach ($post as $key => $value) {
 			// Custom fucking fields
 			if (strpos($key, 'CustomField') !== FALSE) {
@@ -997,7 +999,7 @@ class DefaultController
 					$cf = $this->em
 						->getRepository('CustomField')
 						->createQueryBuilder('q')
-						->where('q.post = :id')
+						->where('q.' . $en . ' = :id')
 						->setParameter('id', $entity->getId())
 						->getQuery()
 						->getResult();
@@ -1019,7 +1021,7 @@ class DefaultController
 								$cf->setCfType($t);
 							}
 						}
-						$cf->setPost($entity);
+						$cf->$en_set($entity);
 						$this->em->persist($cf);
 					}
 				}
@@ -1099,7 +1101,7 @@ class DefaultController
 					$e = $this->em
 						->getRepository($en)
 						->createQueryBuilder('q')
-						->where('q.post = :id')
+						->where('q.' . $en . ' = :id')
 						->setParameter('id', $entity->getId())
 						->getQuery()
 						->getResult();
@@ -1118,7 +1120,7 @@ class DefaultController
 					if ($a) {
 						$i = new $en;
 						$i->setSrc($a);
-						$i->setPost($entity);
+						$i->$en_set($entity);
 						$now = new DateTime();
 						$i->setSort(time());
 						$this->em->persist($i);
